@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.btn-primary{
+    @apply  bg-opacity-80 bg-primary-200 text-white border border-primary-200 rounded-md py-2  px-5 hover:bg-primary-200 hover:bg-opacity-100
+}
+.btn-outline-primary{
+    @apply bg-none text-primary-200 border border-primary-200 rounded-md py-2  px-5 hover:bg-sky-200  hover:text-white
+}
+.btn-success{
+    @apply bg-green-600 text-white border border-green-700 rounded-md py-2  px-5 hover:bg-green-700 hover:text-white
+}
+.btn-warning{
+    @apply bg-yellow-500 text-white border border-yellow-600 rounded-md py-2  px-5 hover:bg-yellow-600
+}
+
+.btn-danger{
+    @apply bg-red-500 text-white border border-red-800 rounded-md py-2  px-5 hover:bg-red-600
+}
+.btn-secondary{
+    @apply bg-sky-800 text-white border border-sky-800 rounded-md py-2  px-5 hover:bg-sky-600
+}
+
+.btn-small{
+    @apply  py-1  px-3 text-sm
+}
+
+.creative-input{
+    @apply w-full mt-3 rounded-lg border bg-gray-50 border border-gray-300 text-gray-900 focus:ring-gray-800 focus:border-gray-800 outline-0 block h-10 p-2
+}
+.creative-label{
+    @apply text-sm font-semibold text-gray-900
+}
