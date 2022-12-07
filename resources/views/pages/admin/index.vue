@@ -1,11 +1,13 @@
 <template>
+    <admin>
+
+    </admin>
 
 </template>
 
-<script>
-export default {
-    name: "index"
-}
+<script setup lang="ts">
+import {Link} from "@inertiajs/inertia-vue3";
+import Admin from "@/views/layouts/admin.vue";
 </script>
 
 <style scoped>
