@@ -47,15 +47,29 @@
 
         </div>
         <div class="py-2 px-2">
-            <ul class="flex justify-center gap-4 font-bold w-full">
-                <li>
+            <ul class="flex justify-center gap-3 md:gap-5 font-medium font-montserrat w-full">
+                <li class="hover:text-teal-900">
                     <Link href="#" title="Category name">Home & Decor</Link>
+                </li>
+                <li class="hover:text-teal-900">
                     <Link href="#" title="Category name">Pets</Link>
+                </li>
+                <li class="hover:text-teal-900">
                     <Link href="#" title="Category name">Wildlife</Link>
+                </li>
+                <li class="hover:text-teal-900">
                     <Link href="#" title="Category name">Appliques</Link>
+                </li>
+                <li class="hover:text-teal-900">
                     <Link href="#" title="Category name">Baby & Kids</Link>
+                </li>
+                <li class="hover:text-teal-900">
                     <Link href="#" title="Category name">Flower & Plants</Link>
+                </li>
+                <li class="hover:text-teal-900">
                     <Link href="#" title="Category name">Fashions</Link>
+                </li>
+                <li class="hover:text-teal-900">
                     <Link href="#" title="Category name">Love & Romance</Link>
 
                 </li>
