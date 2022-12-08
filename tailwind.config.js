@@ -8,6 +8,7 @@ module.exports = {
 		extend: {
             fontFamily: {
                 'sansation': ['Sansation', 'sans-serif'],
+                'montserrat':['Montserrat', 'sans-serif'],
 
             },
             colors: {

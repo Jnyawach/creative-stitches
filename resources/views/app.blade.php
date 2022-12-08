@@ -6,8 +6,9 @@
         @routes
 		@vite
         <link href="https://fonts.cdnfonts.com/css/sansation" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     </head>
-	<body class="font-sansation bg-gray-50">
+	<body class="font-sansation bg-stone-50">
 		@inertia
 	</body>
 </html>

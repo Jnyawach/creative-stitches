@@ -3,6 +3,9 @@
 // Include me with <template layout="default" />
 </script>
 
-<template>
-	<slot />
+<template >
+
+        <slot />
+
+
 </template>

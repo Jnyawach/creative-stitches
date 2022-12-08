@@ -13,7 +13,7 @@ defineProps({
                 <aside class="w-64 top-0">
                     <div class="fixed w-64">
                         <div class="mt-5 px-3">
-                            <h1>CREATIVE STITCHES</h1>
+                            <h1 class="font-bold">CREATIVE STITCHES</h1>
                         </div>
                         <div class="w-full mt-12">
                             <div class="flex gap-3 px-3">
@@ -92,7 +92,7 @@ defineProps({
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="#">
+                                    <Link :href="route('roles.index')">
                                         <div class="w-full rounded-md px-3 py-1">
                                             <p class="font-semibold hover:text-primary-200 text-sm text-gray-800"><span class="mr-2 text-primary-200"><i class="far fa-angle-right"></i></span>Roles & Permissions</p>
                                         </div>
@@ -119,10 +119,10 @@ defineProps({
 
             </div>
             <div class="w-full min-h-screen w-72 px-3">
-                <div class="fixed w-full">
-                    <div class="pt-12 ">
-                        <h6 class="font-bold">Quick links</h6>
-                        <hr class="mt-2">
+                <div class="fixed ">
+                    <div class="pt-8 ">
+                        <h6 class="font-bold text-teal-900">Quick links</h6>
+
 
                     </div>
                     <div class="">
@@ -135,7 +135,7 @@ defineProps({
         <div class="bg-black-100 py-3 px-3">
             <div class="">
                 <ul class="flex gap-2 text-white">
-                    <li><p>&copy; Creative Stitches {{new Date().getFullYear()}}</p></li>
+                    <li><p><span><i class="far fa-copyright"></i></span> Creative Stitches {{new Date().getFullYear()}}</p></li>
                 </ul>
             </div>
         </div>
