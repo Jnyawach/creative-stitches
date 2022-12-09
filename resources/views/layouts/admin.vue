@@ -71,9 +71,9 @@ defineProps({
 
                                     </li>
                                     <li>
-                                        <Link href="#">
+                                        <Link :href="route('faqs-category.index')">
                                             <div class="hover:bg-gray-100 w-full rounded-md px-3 py-3">
-                                                <p class="font-semibold text-sm"> <span class="mr-3 text-primary-200"><i class="fa-regular fa-gear"></i></span>Account Settings</p>
+                                                <p class="font-semibold text-sm"> <span class="mr-3 text-primary-200"><i class="fa-regular fa-gear"></i></span>Faqs Category</p>
                                             </div>
                                         </Link>
 

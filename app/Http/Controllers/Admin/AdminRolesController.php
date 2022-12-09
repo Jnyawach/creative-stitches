@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Spatie\Permission\Models\Role;
 
 class AdminRolesController extends Controller
 {
@@ -16,7 +17,20 @@ class AdminRolesController extends Controller
     public function index()
     {
         //
-        return inertia::render('admin.roles-and-permission.roles.index');
+        $roles=Role::query()
+            ->when(request('search'),function ($query,$search){
+                $query->where('name','like', '%'.$search.'%');
+            })
+            ->paginate(10)->withQueryString()
+            ->through(fn($role)=>[
+                'id'=>$role->id,
+                'name'=>$role->name,
+                'guard_name'=>$role->guard_name
+            ]);
+
+        $filters=request()->only(['search']);
+        return inertia::render('admin.roles-and-permission.roles.index',
+        compact('roles','filters'));
     }
 
     /**
@@ -38,6 +52,18 @@ class AdminRolesController extends Controller
     public function store(Request $request)
     {
         //
+        $validated=$request->validate([
+            'name'=>'required|string|max:25|unique:roles',
+            'guard_name'=>'required|string|max:25|unique:roles'
+        ]);
+
+        $role=Role::create([
+            'name'=>$validated['name'],
+            'guard_name'=>$validated['guard_name']
+        ]);
+
+        return redirect()->back()
+            ->with('status','Role created Successfully');
     }
 
     /**
@@ -60,6 +86,7 @@ class AdminRolesController extends Controller
     public function edit($id)
     {
         //
+
     }
 
     /**
@@ -72,6 +99,17 @@ class AdminRolesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validated=$request->validate([
+            'name'=>'required|string|max:25',
+            'guard_name'=>'required|string|max:25'
+        ]);
+
+        $role=Role::findOrFail($id);
+        $role->update([
+            'name'=>$validated['name'],
+            'guard_name'=>$validated['guard_name']
+        ]);
+
     }
 
     /**
@@ -83,5 +121,8 @@ class AdminRolesController extends Controller
     public function destroy($id)
     {
         //
+        $role=Role::findOrFail($id);
+        $role->delete();
+
     }
 }

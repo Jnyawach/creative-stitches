@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\FaqCategory;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Spatie\Permission\Models\Permission;
 
-class AdminPermissionController extends Controller
+class AdminFaqCategory extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,20 +17,15 @@ class AdminPermissionController extends Controller
     public function index()
     {
         //
-        $permissions=Permission::query()
-            ->when(request('search'),function ($query,$search){
-                $query->where('name','like', '%'.$search.'%');
-            })
-            ->paginate(10)->withQueryString()
-            ->through(fn($permission)=>[
-                'id'=>$permission->id,
-                'name'=>$permission->name,
-                'guard_name'=>$permission->guard_name
+
+        $categories=FaqCategory::paginate(10)
+            ->through(fn($category)=>[
+                'id'=>$category->id,
+                'name'=>$category->name,
+                'status'=>$category->status
             ]);
 
-        $filters=request()->only(['search']);
-        return inertia::render('admin.roles-and-permission.permissions.index',
-            compact('permissions','filters'));
+        return inertia::render('admin.faqs-category.index', compact('categories'));
     }
 
     /**
@@ -53,17 +48,15 @@ class AdminPermissionController extends Controller
     {
         //
         $validated=$request->validate([
-            'name'=>'required|string|max:25|unique:permissions',
-            'guard_name'=>'required|string|max:25'
+            'name'=>'string|max:255|unique:faq_categories|required',
+            'status'=>'required'
         ]);
 
-        $permission=Permission::create([
+        $category=FaqCategory::create([
             'name'=>$validated['name'],
-            'guard_name'=>$validated['guard_name']
+            'status'=>$validated['status']
         ]);
-
         return redirect()->back();
-
     }
 
     /**
@@ -98,19 +91,19 @@ class AdminPermissionController extends Controller
     public function update(Request $request, $id)
     {
         //
-
+        $category=FaqCategory::findOrFail($id);
         $validated=$request->validate([
-            'name'=>'required|string|max:25|unique:permissions',
-            'guard_name'=>'required|string|max:25'
+            'name'=>'string|max:255|required',
+            'status'=>'required'
         ]);
 
-        $permission=Permission::findOrFail($id);
-        $permission->update([
+        $category->update([
             'name'=>$validated['name'],
-            'guard_name'=>$validated['guard_name']
+            'status'=>$validated['status']
         ]);
-
         return redirect()->back();
+
+
     }
 
     /**
@@ -123,8 +116,8 @@ class AdminPermissionController extends Controller
     {
         //
 
-        $permission=Permission::findOrFail($id);
-        $permission->delete();
+        $category=FaqCategory::findOrFail($id);
+        $category->delete();
         return redirect()->back();
     }
 }

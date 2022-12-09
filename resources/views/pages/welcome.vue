@@ -5,7 +5,7 @@
    </Head>
     <header>
      <div class="bg-gray-900 py-3 text-center">
-         <p class="uppercase text-white font-medium text-sm md:text-md">GRAB AN EXCLUSIVE OFFER! USE CODE -<span class="text-teal-700">EB78HD</span>  AND GET 10%-OFF!! OFFER ENDS IN 15:00:37</p>
+         <p class="uppercase text-white font-bold text-xs sm:text-sm">GRAB AN EXCLUSIVE OFFER! USE CODE -<span class="text-teal-700">EB78HD</span>  AND GET 10%-OFF!! OFFER ENDS IN 15:00:37</p>
      </div>
         <div class="flex py-4  px-3 gap-5 justify-between">
           <div class="flex w-3/4 gap-5 justify-between">
@@ -46,8 +46,8 @@
             </div>
 
         </div>
-        <div class="py-2 px-2">
-            <ul class="flex justify-center gap-3 md:gap-5 font-medium font-montserrat w-full">
+        <div class="py-1 px-2">
+            <ul class="flex justify-center gap-3 md:gap-5 font-bold font-montserrat w-full text-sm">
                 <li class="hover:text-teal-900">
                     <Link href="#" title="Category name">Home & Decor</Link>
                 </li>
