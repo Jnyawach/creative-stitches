@@ -13,12 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('faq_categories', function (Blueprint $table) {
+        Schema::create('faqs', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('name');
-            $table->string('slug');
-            $table->integer('status')->default(1);
+            $table->string('question', 455);
+            $table->string('slug',455);
+            $table->mediumText('answer');
+            $table->bigInteger('faq_category_id')->unsigned()->index();
+            $table->foreign('faq_category_id')->references('id')
+                ->on('faq_categories')->cascadeOnDelete();
         });
     }
 
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('faq_categories');
+        Schema::dropIfExists('faqs');
     }
 };

@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\FaqCategoryResource;
-use App\Models\FaqCategory;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class AdminFaqCategory extends Controller
+class AdminCategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,15 +17,14 @@ class AdminFaqCategory extends Controller
     public function index()
     {
         //
-
-        $categories=FaqCategory::paginate(10)
+        $categories=Category::paginate(10)
             ->through(fn($category)=>[
                 'id'=>$category->id,
                 'name'=>$category->name,
-                'status'=>$category->status
+                'status'=>$category->status,
+                'slug'=>$category->slug
             ]);
-
-        return inertia::render('admin.faqs-category.index', compact('categories'));
+        return inertia::render('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -37,6 +35,7 @@ class AdminFaqCategory extends Controller
     public function create()
     {
         //
+        return inertia::render('admin.categories.create');
     }
 
     /**
@@ -49,15 +48,20 @@ class AdminFaqCategory extends Controller
     {
         //
         $validated=$request->validate([
-            'name'=>'string|max:255|unique:faq_categories|required',
-            'status'=>'required'
+           'name'=>'required|string|max:50',
+            'tags'=>'required|string|max:500',
+            'description'=>'required|min:3|max:1000',
+            'status'=>'required|integer|max:2'
         ]);
 
-        $category=FaqCategory::create([
+        $category=Category::create([
             'name'=>$validated['name'],
+            'tags'=>$validated['tags'],
+            'description'=>$validated['description'],
             'status'=>$validated['status']
         ]);
-        return redirect()->back();
+
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -69,10 +73,8 @@ class AdminFaqCategory extends Controller
     public function show($id)
     {
         //
-
-        $category=new FaqCategoryResource(FaqCategory::findBySlugOrFail($id));
-        $branches=FaqCategory::select('name','id','slug')->get();
-        return inertia::render('admin.faqs-category.show', compact('category','branches'));
+        $category=Category::findBySlugOrFail($id)->only('name','id','description','slug','tags','status');
+        return inertia::render('admin.categories.show', compact('category'));
     }
 
     /**
@@ -84,6 +86,8 @@ class AdminFaqCategory extends Controller
     public function edit($id)
     {
         //
+        $category=Category::findOrFail($id);
+        return inertia::render('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -96,19 +100,22 @@ class AdminFaqCategory extends Controller
     public function update(Request $request, $id)
     {
         //
-        $category=FaqCategory::findOrFail($id);
         $validated=$request->validate([
-            'name'=>'string|max:255|required',
-            'status'=>'required'
+            'name'=>'required|string|max:50',
+            'tags'=>'required|string|max:500',
+            'description'=>'required|min:3|max:1000',
+            'status'=>'required|integer|max:2'
         ]);
 
+        $category=Category::findOrFail($id);
         $category->update([
             'name'=>$validated['name'],
+            'tags'=>$validated['tags'],
+            'description'=>$validated['description'],
             'status'=>$validated['status']
         ]);
-        return redirect()->back();
 
-
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -121,7 +128,7 @@ class AdminFaqCategory extends Controller
     {
         //
 
-        $category=FaqCategory::findOrFail($id);
+        $category=Category::findOrFail($id);
         $category->delete();
         return redirect()->back();
     }

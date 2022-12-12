@@ -25,9 +25,16 @@
 .btn-small{
     @apply  py-1  px-3 text-sm
 }
+.btn-link{
+    @apply  py-1  px-3 hover:text-teal-700
+}
 
 .creative-input{
     @apply w-full mt-3 rounded-lg border bg-gray-50 border border-gray-300 text-gray-900 focus:ring-gray-800 focus:border-gray-800 outline-0 block h-10 p-2
+}
+
+.creative-text-input{
+    @apply w-full mt-3 rounded-lg border bg-gray-50 border border-gray-300 text-gray-900 focus:ring-gray-800 focus:border-gray-800 outline-0 block  p-2
 }
 .creative-label{
     @apply text-sm font-semibold text-gray-900 placeholder:text-sm font-medium

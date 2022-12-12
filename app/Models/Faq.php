@@ -7,10 +7,9 @@ use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FaqCategory extends Model
+class Faq extends Model
 {
-    use HasFactory, Sluggable, SluggableScopeHelpers;
-
+    use HasFactory,Sluggable, SluggableScopeHelpers;
     /**
      * Return the sluggable configuration array for this model.
      *
@@ -20,14 +19,14 @@ class FaqCategory extends Model
     {
         return [
             'slug' => [
-                'source' => 'name'
+                'source' => 'question'
             ]
         ];
     }
 
-    protected $fillable=['name','status'];
+    protected $fillable=['question','answer','faq_category_id'];
 
-    public function faqs(){
-        return $this->hasMany(Faq::class);
+    public function faqCategory(){
+        return $this->belongsTo(FaqCategory::class);
     }
 }

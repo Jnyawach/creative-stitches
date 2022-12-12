@@ -71,13 +71,15 @@ defineProps({
 
                                     </li>
                                     <li>
-                                        <Link :href="route('faqs-category.index')">
+                                        <Link href="#">
                                             <div class="hover:bg-gray-100 w-full rounded-md px-3 py-3">
-                                                <p class="font-semibold text-sm"> <span class="mr-3 text-primary-200"><i class="fa-regular fa-gear"></i></span>Faqs Category</p>
+                                                <p class="font-semibold text-sm"> <span class="mr-3 text-primary-200"><i class="fa-regular fa-gear"></i></span>Profile Settings</p>
                                             </div>
                                         </Link>
 
                                     </li>
+
+
                                 </ul>
                             </div>
                         </div>
@@ -95,6 +97,27 @@ defineProps({
                                     <Link :href="route('roles.index')">
                                         <div class="w-full rounded-md px-3 py-1">
                                             <p class="font-semibold hover:text-primary-200 text-sm text-gray-800"><span class="mr-2 text-primary-200"><i class="far fa-angle-right"></i></span>Roles & Permissions</p>
+                                        </div>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link :href="route('categories.index')">
+                                        <div class="w-full rounded-md px-3 py-1">
+                                            <p class="font-semibold hover:text-primary-200 text-sm text-gray-800"><span class="mr-2 text-primary-200"><i class="far fa-angle-right"></i></span>Categories</p>
+                                        </div>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link :href="route('faqs-category.index')">
+                                        <div class="w-full rounded-md px-3 py-1">
+                                            <p class="font-semibold hover:text-primary-200 text-sm text-gray-800"><span class="mr-2 text-primary-200"><i class="far fa-angle-right"></i></span>FAQs Categories</p>
+                                        </div>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link :href="route('faqs.index')">
+                                        <div class="w-full rounded-md px-3 py-1">
+                                            <p class="font-semibold hover:text-primary-200 text-sm text-gray-800"><span class="mr-2 text-primary-200"><i class="far fa-angle-right"></i></span>FAQs</p>
                                         </div>
                                     </Link>
                                 </li>

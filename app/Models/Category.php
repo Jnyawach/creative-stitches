@@ -6,10 +6,12 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class FaqCategory extends Model
+class Category extends Model
 {
-    use HasFactory, Sluggable, SluggableScopeHelpers;
+    use HasFactory,Sluggable, SluggableScopeHelpers;
 
     /**
      * Return the sluggable configuration array for this model.
@@ -25,9 +27,5 @@ class FaqCategory extends Model
         ];
     }
 
-    protected $fillable=['name','status'];
-
-    public function faqs(){
-        return $this->hasMany(Faq::class);
-    }
+    protected $fillable=['name','tags','description','status'];
 }
