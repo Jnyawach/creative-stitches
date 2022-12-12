@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -15,7 +16,8 @@ class MainController extends Controller
     public function index()
     {
         //
-        return inertia::render('welcome');
+        $categories=Category::select('name','slug','id')->get();
+        return inertia::render('welcome',compact('categories'));
     }
 
     /**
