@@ -16,8 +16,8 @@ class MainController extends Controller
     public function index()
     {
         //
-        $categories=Category::select('name','slug','id')->get();
-        return inertia::render('welcome',compact('categories'));
+
+        return inertia::render('welcome');
     }
 
     /**
