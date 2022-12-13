@@ -1,4 +1,4 @@
-<template layout="default">
+<template layout>
     <Head>
         <title>Login</title>
         <meta head-key="description" name="description" content="Login to access Backend" />

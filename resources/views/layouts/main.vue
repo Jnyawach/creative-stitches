@@ -121,7 +121,7 @@
         ></div>
     </header>
     <main>
-
+     <slot/>
     </main>
     <footer class="bg-gray-800">
         <div class="grid grid-cols-2 md:grid-cols-3 gap-5 py-5 px-5 md:px-14">
@@ -167,7 +167,7 @@
                 <div class="mt-3 flex justify-between w-full md:block gap-5">
                     <ul class="text-[13px] font-medium">
                         <li class="py-1">
-                            <Link href="#" class="text-white hover:text-teal-500" title="FAQs">FAQs</Link>
+                            <Link :href="route('help-center.index')" class="text-white hover:text-teal-500" title="FAQs">FAQs</Link>
                         </li>
                         <li class="py-1">
                             <Link href="#" class="text-white hover:text-teal-500" title="Contact Us">Contact Us</Link>
