@@ -2,39 +2,30 @@
     <div class="w-full">
         <div
             @click="toggleAccordion()"
-            class="flex justify-between w-full cursor-pointer"
+            class="flex justify-between w-full cursor-pointer px-3"
             :aria-expanded="isOpen"
             :aria-controls="id"
         >
 
             <slot name="title" />
+            <span><i :class="{'far fa-plus':!isOpen, 'far fa-minus':isOpen}"></i></span>
 
-            <svg
-                class="w-3 transition-all duration-200 transform"
-                :class="{
-          'rotate-180': isOpen,
-          'rotate-0': !isOpen,
-        }"
-                fill="none"
-                stroke="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 10"
-                aria-hidden="true"
+        </div>
+
+        <Transition
+            name="accordion"
+            v-on:before-enter="beforeEnter" v-on:enter="enter"
+            v-on:before-leave="beforeLeave" v-on:leave="leave"
             >
-                <path
-                    d="M15 1.2l-7 7-7-7"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-            </svg>
-        </div>
+            <div v-show="isOpen" :id="id" class="mt-4 accord px-3">
+                <slot name="content" />
 
-
-        <div v-show="isOpen" :id="id">
-            <slot name="content" />
-        </div>
+            </div>
+        </Transition>
         <hr class="w-full mt-5">
+
+
+
     </div>
 </template>
 
@@ -48,8 +39,23 @@ const isOpen=ref(false)
 const toggleAccordion=()=>{
     isOpen.value = !isOpen.value;
 }
+
+const beforeEnter=(el)=>{
+    el.style.height = '0';
+}
+const enter=(el)=>{
+    el.style.height = el.scrollHeight + 'px';
+}
+const leave=(el)=>{
+    el.style.height = '0';
+}
+const beforeLeave=(el)=>{
+    el.style.height = el.scrollHeight + 'px';
+}
 </script>
 
 <style scoped>
-
+.accord{
+    transition: 200ms ease-in-out;
+}
 </style>

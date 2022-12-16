@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\General;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\FaqResource;
+use App\Models\Faq;
 use App\Models\FaqCategory;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -18,7 +20,12 @@ class HelpCenterConroller extends Controller
     {
         //
         $categories=FaqCategory::select('name','id','slug')->get();
-        return inertia::render('help-center.index', compact('categories'));
+        $faqs=FaqResource::collection(Faq::when(request('search'),function ($query,$search){
+            $query->where('question','like', '%'.$search.'%');
+        })->
+        paginate(20));
+        $search=request('search');
+        return inertia::render('help-center.index', compact('categories','faqs','search'));
     }
 
     /**
@@ -51,6 +58,16 @@ class HelpCenterConroller extends Controller
     public function show($id)
     {
         //
+        $faq_category=FaqCategory::findBySlugOrFail($id);
+
+        $categories=FaqCategory::select('name','id','slug')->get();
+        $faqs=FaqResource::collection(Faq::where('faq_category_id', $faq_category->id)->when(request('search'),function ($query,$search){
+            $query->where('question','like', '%'.$search.'%');
+        })->
+        paginate(20));
+        $search=request('search');
+
+        return inertia::render('help-center.show', compact('faqs', 'faq_category','categories','search'));
     }
 
     /**

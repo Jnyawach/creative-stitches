@@ -1,13 +1,13 @@
 <template layout="main">
     <Head>
-        <title>Frequently asked Question</title>
+        <title>FAQs about {{faq_category.name}}</title>
         <meta name="description" content="Do you have a question about embroidery? We are here to help">
     </Head>
-  <div class="py-14 text-center">
-    <h6 class="font-bold">FAQS</h6>
-      <h1 class="font-black text-2xl md:text-4xl mt-4">Frequently asked Questions</h1>
-      <h6 class="text-xl font-light mt-5">Have any Questions? We are here to help.</h6>
-  </div>
+    <div class="py-14 text-center">
+        <h6 class="font-bold">FAQS</h6>
+        <h1 class="font-black text-2xl md:text-4xl mt-4">Frequently asked Questions</h1>
+        <h6 class="text-xl font-light mt-5">Have any Questions? We are here to help.</h6>
+    </div>
     <div class="mt-3 px-3 w-full pb-5 flex justify-center">
         <form class="w-full md:w-1/2 px-5">
 
@@ -26,7 +26,7 @@
             <li class="hover:text-teal-700">
                 <Link :href="route('help-center.index')" class="capitalize">All</Link>
             </li>
-            <li v-for="category in categories" :key="category.id" class="hover:text-teal-700">
+            <li v-for="category in categories" :key="category.id" class="hover:text-teal-700" :class="{'text-teal-700':category.id==faq_category.id}">
                 <Link :href="route('help-center.show', category.slug)" class="capitalize">{{ category.name }}</Link>
             </li>
         </ul>
@@ -91,7 +91,8 @@ import _ from "lodash"
 let props=defineProps({
     categories:Object,
     faqs:Object,
-    search:String
+    search:String,
+    faq_category:Object
 })
 let search=ref(props.search)
 watch(search, _.debounce(function (value) {
