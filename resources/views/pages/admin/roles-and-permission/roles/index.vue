@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-    <div class="">
+    <div>
         <!--table search and name-->
         <table class="table-auto w-full mt-3 border-t">
             <thead>

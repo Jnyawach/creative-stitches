@@ -7,7 +7,7 @@
     <!--structured data-->
     <Teleport to="head">
         <component :is="'script'"  type="application/ld+json">
-        {{jsonld}}
+        {{jsonLd}}
         </component>
     </Teleport>
   <div class="py-14 text-center">
@@ -107,22 +107,25 @@ watch(search, _.debounce(function (value) {
     }, {preserveState:true, replace:true});
 }, 300))
 
-
-
-const jsonld={
+const jsonLd={
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [
+    "mainEntity":[
 
-        {
+    ]
+}
+props.faqs.data.forEach(q=>{
+    jsonLd.mainEntity.push({
         "@type": "Question",
-        "name": "What is the return policy?",
+        "name": q.question,
         "acceptedAnswer": {
             "@type": "Answer",
-            "text": "<p>Most unopened items in new condition and returned within <b>90 days</b> will receive a refund or exchange. Some items have a modified return policy noted on the receipt or packing slip. Items that are opened or damaged or do not have a receipt may be denied a refund or exchange. Items purchased online or in-store may be returned to any store.</p><p>Online purchases may be returned via a major parcel carrier. <a href=https://example.com/returns> Click here </a> to initiate a return.</p>"
-        }
-    }, ]
-}
+            "text":q.answer,
+    }})
+})
+
+
+
 </script>
 
 <style scoped>

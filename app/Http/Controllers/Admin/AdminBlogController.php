@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -17,7 +18,13 @@ class AdminBlogController extends Controller
     public function index()
     {
         //
-        return  inertia::render('admin.posts.index');
+        $posts=Post::when(request('search'),function ($query,$search){
+            $query->where('title','like', '%'.$search.'%');
+        })
+            ->paginate(10);
+        $posts=PostResource::collection($posts);
+        $search=request('search');
+        return  inertia::render('admin.posts.index',compact('search','posts'));
     }
 
     /**
@@ -78,6 +85,9 @@ class AdminBlogController extends Controller
     public function show($id)
     {
         //
+        $post=new PostResource(Post::findBySlugOrFail($id));
+
+        return inertia::render('admin.posts.show', compact('post'));
     }
 
     /**
@@ -89,6 +99,9 @@ class AdminBlogController extends Controller
     public function edit($id)
     {
         //
+        $post=Post::findOrFail($id);
+        $postImage=$post->getFirstMediaUrl('blogImage','blog-icon');
+        return inertia::render('admin.posts.edit', compact('post', 'postImage'));
     }
 
     /**
@@ -101,6 +114,34 @@ class AdminBlogController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validated=$request->validate([
+            'title'=>'required|min:10|string|max:120',
+            'credit'=>'required|min:10|string|max:120',
+            'author'=>'required|min:10|string|max:120',
+            'summary'=>'required|min:10|string|max:850',
+            'tags'=>'required|string',
+            'content'=>'required',
+            'image'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:width=1200,height=675',
+        ]);
+
+        $post=Post::findOrFail($id);
+        $post->update([
+            'title'=>$validated['title'],
+            'summary'=>$validated['summary'],
+            'content'=>$validated['content'],
+            'credit'=>$validated['credit'],
+            'author'=>$validated['author'],
+            'tags'=>$validated['tags'],
+
+        ]);
+
+        if($files=$request->image){
+            $post->clearMediaCollection('blogImage');
+            $post->addMedia($files)->toMediaCollection('blogImage');
+        }
+
+        return redirect()->route('posts.index')
+            ->with('status','Post Updated Successfully');
     }
 
     /**
@@ -112,5 +153,8 @@ class AdminBlogController extends Controller
     public function destroy($id)
     {
         //
+        $post=Post::findOrFail($id);
+        $post->delete();
+        return redirect()->back()->with('status','Post Deleted Successfully');
     }
 }
