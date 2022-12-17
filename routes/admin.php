@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminBlogController;
 use App\Http\Controllers\Admin\AdminFaqCategory;
 use App\Http\Controllers\Admin\AdminFaqsController;
 use App\Http\Controllers\Admin\AdminMainController;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware'=>['auth:admin']], function (){
+    Route::resource('admin/posts', AdminBlogController::class);
     Route::resource('admin/faqs', AdminFaqsController::class);
     Route::resource('admin/categories', AdminCategoriesController::class);
     Route::resource('admin/faqs-category', AdminFaqCategory::class);

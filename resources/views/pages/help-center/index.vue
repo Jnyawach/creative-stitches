@@ -2,7 +2,14 @@
     <Head>
         <title>Frequently asked Question</title>
         <meta name="description" content="Do you have a question about embroidery? We are here to help">
+
     </Head>
+    <!--structured data-->
+    <Teleport to="head">
+        <component :is="'script'"  type="application/ld+json">
+        {{jsonld}}
+        </component>
+    </Teleport>
   <div class="py-14 text-center">
     <h6 class="font-bold">FAQS</h6>
       <h1 class="font-black text-2xl md:text-4xl mt-4">Frequently asked Questions</h1>
@@ -99,6 +106,23 @@ watch(search, _.debounce(function (value) {
         search:value
     }, {preserveState:true, replace:true});
 }, 300))
+
+
+
+const jsonld={
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+
+        {
+        "@type": "Question",
+        "name": "What is the return policy?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<p>Most unopened items in new condition and returned within <b>90 days</b> will receive a refund or exchange. Some items have a modified return policy noted on the receipt or packing slip. Items that are opened or damaged or do not have a receipt may be denied a refund or exchange. Items purchased online or in-store may be returned to any store.</p><p>Online purchases may be returned via a major parcel carrier. <a href=https://example.com/returns> Click here </a> to initiate a return.</p>"
+        }
+    }, ]
+}
 </script>
 
 <style scoped>
