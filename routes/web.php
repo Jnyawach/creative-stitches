@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\General\BlogController;
 use App\Http\Controllers\General\HelpCenterConroller;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
@@ -21,7 +22,8 @@ Route::group([], function (){
 });
 
 Route::group([],function(){
- Route::resource('help-center',HelpCenterConroller::class);
+    Route::resource('blog',BlogController::class);
+    Route::resource('help-center',HelpCenterConroller::class);
 });
 
 

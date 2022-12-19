@@ -18,10 +18,7 @@ class AdminBlogController extends Controller
     public function index()
     {
         //
-        $posts=Post::when(request('search'),function ($query,$search){
-            $query->where('title','like', '%'.$search.'%');
-        })
-            ->paginate(10);
+        $posts=Post::paginate(10);
         $posts=PostResource::collection($posts);
         $search=request('search');
         return  inertia::render('admin.posts.index',compact('search','posts'));
@@ -49,7 +46,7 @@ class AdminBlogController extends Controller
         //
        $validated=$request->validate([
            'title'=>'required|min:10|string|max:120',
-           'credit'=>'required|min:10|string|max:120',
+           'credit'=>'required|string|max:120',
            'author'=>'required|min:10|string|max:120',
            'summary'=>'required|min:10|string|max:850',
            'tags'=>'required|string',
@@ -116,7 +113,7 @@ class AdminBlogController extends Controller
         //
         $validated=$request->validate([
             'title'=>'required|min:10|string|max:120',
-            'credit'=>'required|min:10|string|max:120',
+            'credit'=>'required|string|max:120',
             'author'=>'required|min:10|string|max:120',
             'summary'=>'required|min:10|string|max:850',
             'tags'=>'required|string',
@@ -156,5 +153,16 @@ class AdminBlogController extends Controller
         $post=Post::findOrFail($id);
         $post->delete();
         return redirect()->back()->with('status','Post Deleted Successfully');
+    }
+
+
+    public function postStatus($id){
+        $post=Post::findOrFail($id);
+        if($post->status){
+            $post->update(['status'=>0]);
+        }else{
+            $post->update(['status'=>1]);
+        }
+        return redirect()->back()->with('status','Post Status changed successfully' );
     }
 }

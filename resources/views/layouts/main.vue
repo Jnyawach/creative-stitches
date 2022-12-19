@@ -144,7 +144,7 @@
                             <Link href="#" class="text-white hover:text-teal-500" title="About Us">About Us</Link>
                         </li>
                         <li class="py-1">
-                            <Link href="#" class="text-white hover:text-teal-500" title="Blog">Blog</Link>
+                            <Link :href="route('blog.index')" class="text-white hover:text-teal-500" title="Blog">Blog</Link>
                         </li>
                         <li class="py-1">
                             <Link href="#" class="text-white hover:text-teal-500" title="Jobs">Jobs</Link>

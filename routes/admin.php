@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware'=>['auth:admin']], function (){
+    Route::patch('post-status/{id}',[AdminBlogController::class,'postStatus'])->name('post-status');
     Route::resource('admin/posts', AdminBlogController::class);
     Route::resource('admin/faqs', AdminFaqsController::class);
     Route::resource('admin/categories', AdminCategoriesController::class);
