@@ -7,6 +7,7 @@
     <div class="flex bg-teal-50 py-5 px-5 justify-between">
         <div>
             <h1 class="text-4xl font-bold">Creative Stitches Blog</h1>
+
             <p class="text-lg font-medium mt-2 text-gray-700">Explore and discover ways for creative living</p>
         </div>
         <div class="self-center hidden md:block">
@@ -72,6 +73,8 @@ import {Head} from "@inertiajs/inertia-vue3";
 import {Link} from "@inertiajs/inertia-vue3";
 import {useTruncate} from "@/scripts/use/useTruncate";
 import Articles from "@/views/components/articles.vue";
+
+
 
 let props=defineProps({
     posts:Object

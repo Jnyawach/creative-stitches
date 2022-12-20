@@ -18,7 +18,8 @@ class ApiController extends Controller
     }
 
     public function getPosts(){
-        $posts=PostResource::collection(Post::latest()->get());
+
+        $posts=PostResource::collection(Post::latest()->skip(request('skip'))->limit(request('limit'))->get());
         return $posts;
     }
 
