@@ -28,6 +28,9 @@
                 <div>
                     <label class="creative-label">Enter Question:</label>
                     <input type="text" v-model="form.question" class="creative-input" required>
+                    <div v-if="form.errors.question" class="creative-error">
+                        <span>{{ form.errors.question }}</span>
+                    </div>
                 </div>
             </div>
 

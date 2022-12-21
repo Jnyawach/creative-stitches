@@ -7,7 +7,7 @@
         <h6 class="font-bold text-sm">Blog Posts</h6>
 
         <template #info >
-            <p class="text-sm" v-if="$page.props.status"><span class="ml-2 text-teal-900"><i class="fas fa-info-circle"></i></span> {{$page.props.status}}</p>
+            <p class="text-sm" v-show="$page.props.status"><span class="ml-2 text-teal-900"><i class="fas fa-info-circle"></i></span> {{$page.props.status}}</p>
         </template>
     </title-block>
 

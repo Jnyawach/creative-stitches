@@ -170,7 +170,7 @@
                             <Link :href="route('help-center.index')" class="text-white hover:text-teal-500" title="FAQs">FAQs</Link>
                         </li>
                         <li class="py-1">
-                            <Link href="#" class="text-white hover:text-teal-500" title="Contact Us">Contact Us</Link>
+                            <Link :href="route('contact-us.index')" class="text-white hover:text-teal-500" title="Contact Us">Contact Us</Link>
                         </li>
 
                     </ul>
@@ -237,6 +237,8 @@
     </footer>
 </template>
 <script setup lang="ts">
+import {InertiaProgress} from "@inertiajs/progress";
+InertiaProgress.init()
 import {Link} from "@inertiajs/inertia-vue3";
 import {Head} from "@inertiajs/inertia-vue3";
 import {ref} from "vue";

@@ -75,7 +75,7 @@
             <div class="text-center">
                 <h6 class="text-xl font-bold">Still have Question?</h6>
                 <p class="font-medium text-lg mt-2">Can't find the answers you are looking for?
-                    <Link class="text-teal-700" href="#">Please chat with our friendly team</Link></p>
+                    <Link class="text-teal-700" :href="route('contact-us.index')">Please contact our friendly team</Link></p>
             </div>
         </div>
     </div>
