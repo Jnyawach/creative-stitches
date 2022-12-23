@@ -47,7 +47,7 @@ class AdminBlogController extends Controller
        $validated=$request->validate([
            'title'=>'required|min:10|string|max:120',
            'credit'=>'required|string|max:120',
-           'author'=>'required|min:10|string|max:120',
+           'authors'=>'required|min:10|string|max:120',
            'summary'=>'required|min:10|string|max:850',
            'tags'=>'required|string',
            'content'=>'required',
@@ -61,7 +61,7 @@ class AdminBlogController extends Controller
             'summary'=>$validated['summary'],
             'content'=>$validated['content'],
             'credit'=>$validated['credit'],
-            'author'=>$validated['author'],
+            'authors'=>$validated['authors'],
             'tags'=>$validated['tags'],
 
         ]);
@@ -114,7 +114,7 @@ class AdminBlogController extends Controller
         $validated=$request->validate([
             'title'=>'required|min:10|string|max:120',
             'credit'=>'required|string|max:120',
-            'author'=>'required|min:10|string|max:120',
+            'authors'=>'required|min:10|string|max:120',
             'summary'=>'required|min:10|string|max:850',
             'tags'=>'required|string',
             'content'=>'required',
@@ -127,7 +127,7 @@ class AdminBlogController extends Controller
             'summary'=>$validated['summary'],
             'content'=>$validated['content'],
             'credit'=>$validated['credit'],
-            'author'=>$validated['author'],
+            'authors'=>$validated['authors'],
             'tags'=>$validated['tags'],
 
         ]);

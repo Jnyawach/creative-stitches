@@ -22,7 +22,7 @@ class PostResource extends JsonResource
             'slug'=>$this->slug,
             'summary'=>$this->summary,
             'content'=>$this->content,
-            'author'=>$this->author,
+            'authors'=>$this->author,
             'status'=>$this->status,
             'tags'=>$this->tags,
             'credit'=>$this->credit,

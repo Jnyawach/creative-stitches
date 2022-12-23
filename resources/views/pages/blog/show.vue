@@ -4,6 +4,11 @@
     <meta name="description" :content="post.data.summary">
     <meta name="keywords" :content="post.data.tags">
 </Head>
+    <Teleport to="head">
+        <component :is="'script'"  type="application/ld+json">
+            {{jsonLd}}
+        </component>
+    </Teleport>
     <div class="my-10 px-3 md:px-36">
        <h1 class="text-4xl font-bold text-center">{{post.data.title}}</h1>
         <p class="text-teal-700 text-sm text-center mt-2 font-bold">Published on {{ new Date(post.data.created_at).toDateString() }} by {{post.data.author}}</p>
@@ -44,10 +49,25 @@
 import {Head} from "@inertiajs/inertia-vue3";
 import {useTruncate} from "@/scripts/use/useTruncate";
 import {Link} from "@inertiajs/inertia-vue3";
-defineProps({
+let props=defineProps({
     post:Object,
     posts:Object
 })
+const jsonLd={
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": props.post.data.title,
+    "image":[
+        props.post.data.postImage
+    ],
+    "datePublished": props.post.data.created_at,
+    "dateModified":  props.post.data.updated_at,
+    "author": [{
+        "@type": "Person",
+        "name": "Jane Doe",
+        "url": "https://example.com/profile/janedoe123"
+    }]
+}
 </script>
 
 <style scoped>

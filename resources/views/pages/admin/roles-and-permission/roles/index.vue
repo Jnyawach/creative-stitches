@@ -224,7 +224,7 @@ let updateForm=useForm({
     id:''
 })
 const editRole=(role)=>{
-    console.log(role)
+
     updateForm.name=role.name;
     updateForm.guard_name=role.guard_name;
     updateForm.id=role.id

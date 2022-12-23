@@ -8,8 +8,8 @@
             leave-from-class="opacity-100 scale-100"
             leave-to-class="opacity-0 scale-125"
         >
-            <div v-if="show" class="inset-0 fixed bg-black-100 bg-opacity-70 z-50 grid place-items-center p-5">
-                <div class="bg-white lg:w-1/2 w-full rounded-xl">
+            <div v-if="show" class="inset-0 fixed bg-black-100 bg-opacity-70 z-50 grid place-items-center p-5" >
+                <div class="bg-white lg:w-4/6 w-full rounded-xl">
                     <header class="p-3">
                         <div class="flex justify-between">
 
@@ -46,11 +46,13 @@
 </template>
 
 <script setup lang="ts">
+
 const emits=defineEmits(['close'])
 emits("close")
-defineProps({
+let props=defineProps({
     show:Boolean,
 })
+
 </script>
 
 <style scoped>

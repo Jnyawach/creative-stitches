@@ -28,7 +28,7 @@ class Post extends Model implements HasMedia
     }
 
     protected $fillable=[
-       'title','summary','content','status', 'tags', 'author','credit','index_status'
+       'title','summary','content','status', 'tags', 'author_id','credit','index_status'
     ];
 
     public function registerMediaCollections(): void
@@ -42,5 +42,9 @@ class Post extends Model implements HasMedia
                 $this->addMediaConversion('blog-thumb')
                     ->width(650);
             });
+    }
+
+    public function author(){
+        return $this->belongsTo(Author::class);
     }
 }

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('credit');
-            $table->string('author');
+            $table->bigInteger('author_id')->unsigned()->index();
             $table->mediumText('summary');
             $table->mediumText('tags');
             $table->longText('content');
