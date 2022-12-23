@@ -27,7 +27,8 @@ class PostResource extends JsonResource
             'tags'=>$this->tags,
             'credit'=>$this->credit,
             'postIcon'=> $this->getFirstMediaUrl('blogImage','blog-icon'),
-            'postImage'=>$this->getFirstMediaUrl('blogImage')
+            'postImage'=>$this->getFirstMediaUrl('blogImage'),
+            'author'=>new AuthorResource($this->author)
         ];
     }
 }

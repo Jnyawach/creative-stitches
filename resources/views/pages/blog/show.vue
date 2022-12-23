@@ -11,7 +11,7 @@
     </Teleport>
     <div class="my-10 px-3 md:px-36">
        <h1 class="text-4xl font-bold text-center">{{post.data.title}}</h1>
-        <p class="text-teal-700 text-sm text-center mt-2 font-bold">Published on {{ new Date(post.data.created_at).toDateString() }} by {{post.data.author}}</p>
+        <p class="text-teal-700 text-sm text-center mt-2 font-bold">Published on {{ new Date(post.data.created_at).toDateString() }} by {{post.data.author.name}} {{post.data.author.last_name}}</p>
         <img :src="post.data.postImage" class="mt-5 rounded-xl">
         <div class="flex justify-end mr-2">
             <small>Image credit: {{post.data.credit}}</small>
@@ -20,10 +20,10 @@
         <p><span class="text-teal-700 mr-2">Tags:</span>{{post.data.tags}}</p>
         <div class="flex mt-2 gap-3">
             <div>
-                <img :src="'/images/user-icon.png'" class="w-12">
+                <img :src="post.data.author.avatar" class="w-12 rounded-full">
             </div>
             <div class="self-center">
-                <p class="capitalize">{{post.data.author}}</p>
+                <p class="capitalize">{{post.data.author.name}} {{post.data.author.last_name}}</p>
                 <p class="text-xs text-teal-700 font-bold">{{ new Date(post.data.created_at).toDateString() }}</p>
             </div>
         </div>
@@ -53,6 +53,7 @@ let props=defineProps({
     post:Object,
     posts:Object
 })
+
 const jsonLd={
     "@context": "https://schema.org",
     "@type": "NewsArticle",
@@ -64,8 +65,8 @@ const jsonLd={
     "dateModified":  props.post.data.updated_at,
     "author": [{
         "@type": "Person",
-        "name": "Jane Doe",
-        "url": "https://example.com/profile/janedoe123"
+        "name": props.post.data.author.name + ' '+ props.post.data.author.last_name,
+        "url": props.post.data.author.profile
     }]
 }
 </script>

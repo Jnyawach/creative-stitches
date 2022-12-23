@@ -38,11 +38,12 @@
             <div>
                 <label class="creative-label">Author:</label>
 
-                <input type="text" class="creative-input" required placeholder="Enter Post Author"
-                       v-model="form.author">
-                <div>
-                    <small>Provide author full name. Example Joshua Nyawach</small>
-                </div>
+                <select required class="creative-input" v-model="form.author">
+                    <option selected value="">Select Author</option>
+                    <option v-for="author in authors.data" :value="author.id">
+                        {{ author.name }} {{ author.last_name }}
+                    </option>
+                </select>
                 <div v-if="form.errors.author" class="creative-error">
                     <span>{{ form.errors.author }}</span>
                 </div>
@@ -130,7 +131,9 @@ import Admin from "@/views/layouts/admin.vue";
 import TitleBlock from "@/views/components/title-block.vue";
 import {useForm} from "@inertiajs/inertia-vue3";
 import Editor from '@tinymce/tinymce-vue'
-
+defineProps({
+    authors:Object
+})
 let form=useForm({
     title:'',
     status:'',

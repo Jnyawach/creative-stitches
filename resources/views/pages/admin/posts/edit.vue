@@ -41,11 +41,12 @@
                     <div>
                         <label class="creative-label">Author:</label>
 
-                        <input type="text" class="creative-input" required placeholder="Enter Post Author"
-                               v-model="form.author">
-                        <div>
-                            <small>Provide author full name. Example Joshua Nyawach</small>
-                        </div>
+                        <select required class="creative-input" v-model="form.author">
+                            <option selected value="">Select Author</option>
+                            <option v-for="author in authors.data" :value="author.id">
+                                {{ author.name }} {{ author.last_name }}
+                            </option>
+                        </select>
                         <div v-if="form.errors.author" class="creative-error">
                             <span>{{ form.errors.author }}</span>
                         </div>
@@ -137,7 +138,8 @@ import {defineProps} from "vue";
 
 let props=defineProps({
     post:Object,
-    postImage:String
+    postImage:String,
+    authors:Object
 })
 
 let form=useForm({
@@ -146,7 +148,7 @@ let form=useForm({
     summary:props.post.summary,
     content:props.post.content,
     image:'',
-    author:props.post.author,
+    author:props.post.author_id,
     tags:props.post.tags,
     credit:props.post.credit
 })

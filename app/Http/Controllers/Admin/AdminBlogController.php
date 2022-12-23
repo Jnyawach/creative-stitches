@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AuthorResource;
 use App\Http\Resources\PostResource;
+use App\Models\Author;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -32,7 +34,8 @@ class AdminBlogController extends Controller
     public function create()
     {
         //
-        return  inertia::render('admin.posts.create');
+        $authors=AuthorResource::collection(Author::all());
+        return  inertia::render('admin.posts.create',compact('authors'));
     }
 
     /**
@@ -47,7 +50,7 @@ class AdminBlogController extends Controller
        $validated=$request->validate([
            'title'=>'required|min:10|string|max:120',
            'credit'=>'required|string|max:120',
-           'authors'=>'required|min:10|string|max:120',
+           'author'=>'required|integer',
            'summary'=>'required|min:10|string|max:850',
            'tags'=>'required|string',
            'content'=>'required',
@@ -61,7 +64,7 @@ class AdminBlogController extends Controller
             'summary'=>$validated['summary'],
             'content'=>$validated['content'],
             'credit'=>$validated['credit'],
-            'authors'=>$validated['authors'],
+            'author_id'=>$validated['author'],
             'tags'=>$validated['tags'],
 
         ]);
@@ -98,7 +101,8 @@ class AdminBlogController extends Controller
         //
         $post=Post::findOrFail($id);
         $postImage=$post->getFirstMediaUrl('blogImage','blog-icon');
-        return inertia::render('admin.posts.edit', compact('post', 'postImage'));
+        $authors=AuthorResource::collection(Author::all());
+        return inertia::render('admin.posts.edit', compact('post', 'postImage','authors'));
     }
 
     /**
@@ -114,7 +118,7 @@ class AdminBlogController extends Controller
         $validated=$request->validate([
             'title'=>'required|min:10|string|max:120',
             'credit'=>'required|string|max:120',
-            'authors'=>'required|min:10|string|max:120',
+            'author'=>'required|integer',
             'summary'=>'required|min:10|string|max:850',
             'tags'=>'required|string',
             'content'=>'required',
@@ -127,7 +131,7 @@ class AdminBlogController extends Controller
             'summary'=>$validated['summary'],
             'content'=>$validated['content'],
             'credit'=>$validated['credit'],
-            'authors'=>$validated['authors'],
+            'author_id'=>$validated['author'],
             'tags'=>$validated['tags'],
 
         ]);
