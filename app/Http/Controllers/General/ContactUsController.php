@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\General;
 
+use App\Events\ContactConfirmation;
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
 use Illuminate\Http\Request;
@@ -48,7 +49,7 @@ class ContactUsController extends Controller
         ]);
 
         if (!$request->last_name){
-            $mess=Contact::create([
+            $message=Contact::create([
                 'name'=>$validated['name'],
                 'subject'=>$validated['subject'],
                 'email'=>$validated['email'],
@@ -57,6 +58,7 @@ class ContactUsController extends Controller
             ]);
 
             //Send a confirmation email
+            event(new ContactConfirmation($message));
 
             return redirect()->back()
                 ->with('status','Thank you for contacting Creative Stitches. We will get back shortly');
