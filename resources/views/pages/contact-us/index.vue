@@ -53,7 +53,10 @@
                 </div>
 
                 <div class="mt-3 flex justify-end">
-                    <button type="submit" class="btn-primary btn-small">Send Message</button>
+                    <button type="submit" class="btn-primary btn-small" :disabled="form.processing">
+                        Send Message
+                        <span class="animate-ping" v-show="form.processing"><i class="fas fa-ellipsis-h"></i></span>
+                    </button>
                 </div>
                 <div class="mt-3" v-show="$page.props.status">
                     <p class="text-teal-700">{{$page.props.status}}</p>

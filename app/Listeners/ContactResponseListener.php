@@ -2,13 +2,13 @@
 
 namespace App\Listeners;
 
-use App\Events\ContactConfirmation;
-use App\Mail\ContactConfirmationEmail;
+use App\Events\ContactResponse;
+use App\Mail\ContactResponseEmail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 
-class SendConfirmationEmail
+class ContactResponseListener
 {
     /**
      * Create the event listener.
@@ -18,18 +18,17 @@ class SendConfirmationEmail
     public function __construct()
     {
         //
-
     }
 
     /**
      * Handle the event.
      *
-     * @param  \App\Events\ContactConfirmation  $event
+     * @param  \App\Events\ContactResponse  $event
      * @return void
      */
-    public function handle(ContactConfirmation $event)
+    public function handle(ContactResponse $event)
     {
         //
-        Mail::to($event->contact)->send(new ContactConfirmationEmail($event->contact));
+        Mail::to($event->contact)->send(new ContactResponseEmail($event->contact));
     }
 }

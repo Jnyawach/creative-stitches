@@ -49,7 +49,7 @@ class ContactUsController extends Controller
         ]);
 
         if (!$request->last_name){
-            $message=Contact::create([
+            $contact=Contact::create([
                 'name'=>$validated['name'],
                 'subject'=>$validated['subject'],
                 'email'=>$validated['email'],
@@ -58,7 +58,7 @@ class ContactUsController extends Controller
             ]);
 
             //Send a confirmation email
-            event(new ContactConfirmation($message));
+            event(new ContactConfirmation($contact));
 
             return redirect()->back()
                 ->with('status','Thank you for contacting Creative Stitches. We will get back shortly');

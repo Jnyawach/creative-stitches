@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\ContactResponse;
+use App\Listeners\ContactResponseListener;
 use App\Listeners\SendConfirmationEmail;
+use App\Mail\ContactResponseEmail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -23,6 +26,10 @@ class EventServiceProvider extends ServiceProvider
 
         ContactConfirmation::class => [
             SendConfirmationEmail::class,
+        ],
+
+        ContactResponse::class => [
+           ContactResponseListener::class,
         ],
     ];
 

@@ -9,8 +9,9 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Address;
 
-class ContactConfirmationEmail extends Mailable
+class ContactResponseEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -39,7 +40,12 @@ class ContactConfirmationEmail extends Mailable
     public function envelope()
     {
         return new Envelope(
+            replyTo: [
+                new Address('info@creativestitches.store','Maria'),
+            ],
             subject: $this->contact->subject,
+
+
         );
     }
 
@@ -51,7 +57,7 @@ class ContactConfirmationEmail extends Mailable
     public function content()
     {
         return new Content(
-            view: 'mailable.contact-confirmation',
+            view: 'mailable.contact-response',
         );
     }
 
