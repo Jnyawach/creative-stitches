@@ -48,4 +48,8 @@ class Admin extends Authenticatable
         return $this->hasMany(Contact::class, 'user_id');
     }
 
+    public function quote(){
+        return $this->hasMany(Quote::class, 'user_id');
+    }
+
 }

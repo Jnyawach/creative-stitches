@@ -1,4 +1,8 @@
 <template layout="main">
+    <Head>
+        <title>Contact Us</title>
+        <meta name="description" content="Contact us about embroidery designs, Customization, resizing, and conversion">
+    </Head>
 <div class="my-8 md:my-16">
  <h1 class="text-3xl font-bold text-center">Get in touch</h1>
     <p class="text-center text-teal-600 font-bold mt-3">Any questions or remarks? just write us a message</p>

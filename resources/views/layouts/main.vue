@@ -1,8 +1,5 @@
 <template>
-    <Head>
-        <title>Machine Embroidery designs: Embroidery Digitizing: Download Embroidery Files</title>
-        <meta name="description" content="Machine Embroidery design, Digitizing Services and Embroidery files download">
-    </Head>
+
     <header class="bg-white drop-shadow">
         <div class="bg-gray-800 py-3 text-center">
             <p class="uppercase text-white font-bold text-xs sm:text-sm">GRAB AN EXCLUSIVE OFFER! USE CODE -<span class="text-teal-500">EB78HD</span>  AND GET 10%-OFF!! OFFER ENDS IN 15:00:37</p>
@@ -150,14 +147,16 @@
                             <Link href="#" class="text-white hover:text-teal-500" title="Jobs">Jobs</Link>
                         </li>
                         <li class="py-1">
-                            <Link href="#" class="text-white hover:text-teal-500" title="Custom Embroidery">Custom Embroidery</Link>
+                            <Link :href="route('custom-embroidery.index')" class="text-white hover:text-teal-500" title="Custom Embroidery">Custom Embroidery</Link>
                         </li>
+                        <!--
                         <li class="py-1">
-                            <Link href="#" class="text-white hover:text-teal-500 " title="mbroidery file Conversion">Embroidery file Conversion</Link>
+                            <Link href="#" class="text-white hover:text-teal-500 " title="Embroidery file Conversion">Embroidery file Conversion</Link>
                         </li>
                         <li class="py-1">
                             <Link href="#" class="text-white hover:text-teal-500 " title="Embroidery resizing">Embroidery resizing</Link>
                         </li>
+                        -->
                     </ul>
                 </div>
             </div>

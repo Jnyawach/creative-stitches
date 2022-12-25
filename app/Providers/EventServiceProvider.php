@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\ContactResponse;
+use App\Events\QuoteRequestEvent;
 use App\Listeners\ContactResponseListener;
+use App\Listeners\QuoteRequestListener;
 use App\Listeners\SendConfirmationEmail;
 use App\Mail\ContactResponseEmail;
 use Illuminate\Auth\Events\Registered;
@@ -30,6 +32,10 @@ class EventServiceProvider extends ServiceProvider
 
         ContactResponse::class => [
            ContactResponseListener::class,
+        ],
+
+        QuoteRequestEvent::class => [
+            QuoteRequestListener::class,
         ],
     ];
 

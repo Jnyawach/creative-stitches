@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminFaqCategory;
 use App\Http\Controllers\Admin\AdminFaqsController;
 use App\Http\Controllers\Admin\AdminMainController;
 use App\Http\Controllers\Admin\AdminPermissionController;
+use App\Http\Controllers\Admin\AdminQuoteController;
 use App\Http\Controllers\Admin\AdminRolesController;
 use App\Http\Controllers\Admin\AdminCategoriesController;
 use App\Http\Controllers\Admin\AuthorController;
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware'=>['auth:admin']], function (){
+    Route::patch('admin/quote-request/mark-responded/{id}', [AdminQuoteController::class, 'markResponded'])->name('quote.responded');
+    Route::resource('admin/quote-request', AdminQuoteController::class);
     Route::patch('admin/contact/mark-read/{id}', [AdminContactController::class, 'markRead'])->name('contact.markRead');
     Route::resource('admin/contact', AdminContactController::class);
     Route::patch('post-status/{id}',[AdminBlogController::class,'postStatus'])->name('post-status');

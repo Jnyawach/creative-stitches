@@ -87,7 +87,7 @@
 import Admin from "@/views/layouts/admin.vue";
 import {Head} from "@inertiajs/inertia-vue3";
 import TitleBlock from "@/views/components/title-block.vue";
-import {reactive, ref, watch} from "vue";
+import {reactive, watch} from "vue";
 import {Link} from "@inertiajs/inertia-vue3";
 import {useTruncate} from "@/scripts/use/useTruncate";
 import _ from "lodash";

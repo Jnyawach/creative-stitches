@@ -36,8 +36,9 @@
                         <span>{{ form.errors.response }}</span>
                     </div>
                     <div class="mt-3 flex justify-end">
-                        <button type="submit" class="btn-primary">
+                        <button type="submit" class="btn-primary" :disabled="form.processing">
                             Send Response
+                            <span class="animate-ping" v-show="form.processing"><i class="fas fa-ellipsis-h"></i></span>
                         </button>
                     </div>
                 </form>
