@@ -213,18 +213,21 @@
                 <div class="mt-3">
                     <ul class="flex gap-5 font-medium text-sm">
                         <li>
-                            <Link href="#" class="text-white hover:text-teal-500" title="Terms and Conditions">Terms & Conditions</Link>
+                            <Link :href="route('terms.conditions')" class="text-white hover:text-teal-500" title="Terms and Conditions">Terms & Conditions</Link>
                         </li>
                         <li>
-                            <Link href="#" class="text-white hover:text-teal-500" title="Privacy Policy">Privacy Policy</Link>
+                            <Link :href="route('cookie.policy')" class="text-white hover:text-teal-500" title="Privacy Policy">Privacy Policy</Link>
                         </li>
                         <li>
-                            <Link href="#" class="text-white hover:text-teal-500" title="Cookie Policy">Cookie Policy</Link>
+                            <Link :href="route('cookie.policy')" class="text-white hover:text-teal-500" title="Cookie Policy">Cookie Policy</Link>
+                        </li>
+                        <li>
+                            <Link :href="route('copyright.guidelines')" class="text-white hover:text-teal-500" title="Copyright Guidelines">Copyright Guidelines</Link>
                         </li>
                     </ul>
                 </div>
 
-                <div class="flex justify-center text-white text-sm  font-medium py-3">
+                <div class="flex justify-center text-white text-sm  font-medium py-3 mt-5">
                     <p><span><i class="far fa-copyright"></i></span> Creative Stitches {{new Date().getFullYear()}}</p>
                 </div>
 

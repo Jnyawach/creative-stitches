@@ -9,11 +9,13 @@ use App\Http\Controllers\Admin\AdminPermissionController;
 use App\Http\Controllers\Admin\AdminQuoteController;
 use App\Http\Controllers\Admin\AdminRolesController;
 use App\Http\Controllers\Admin\AdminCategoriesController;
+use App\Http\Controllers\Admin\AdminTermsController;
 use App\Http\Controllers\Admin\AuthorController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware'=>['auth:admin']], function (){
+    Route::resource('admin/terms', AdminTermsController::class);
     Route::patch('admin/quote-request/mark-responded/{id}', [AdminQuoteController::class, 'markResponded'])->name('quote.responded');
     Route::resource('admin/quote-request', AdminQuoteController::class);
     Route::patch('admin/contact/mark-read/{id}', [AdminContactController::class, 'markRead'])->name('contact.markRead');

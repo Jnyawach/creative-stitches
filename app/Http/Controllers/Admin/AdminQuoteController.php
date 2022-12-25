@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\QuoteResource;
 use App\Models\Quote;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class AdminQuoteController extends Controller
@@ -66,6 +67,8 @@ class AdminQuoteController extends Controller
     public function show($id)
     {
         //
+        $quote=new QuoteResource(Quote::findOrFail($id));
+        return inertia::render('admin.quote-request.show', compact('quote'));
     }
 
     /**
@@ -89,6 +92,7 @@ class AdminQuoteController extends Controller
     public function update(Request $request, $id)
     {
         //
+
     }
 
     /**
@@ -100,9 +104,19 @@ class AdminQuoteController extends Controller
     public function destroy($id)
     {
         //
+        $quote=Quote::findOrFail($id);
+        $quote->delete();
+        return redirect()->route('quote-request.index')
+            ->with('status','Quote successfully deleted');
     }
 
     public function markResponded($id){
-
+      $quote=Quote::findOrFail($id);
+      $quote->update([
+          'status'=>2,
+          'user_id'=>Auth::id()
+      ]);
+      return redirect()->back()
+          ->with('status','Quote marked as responded');
     }
 }

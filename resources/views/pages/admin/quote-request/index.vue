@@ -53,7 +53,7 @@
             </Link>
             <div class="flex gap-2">
                 <Link v-if="!quote.status" :href="route('quote.responded',quote.id)" class="text-sm font-bold  text-start"  method="patch" as="button">
-                    <span class="mr-2"><i class="far fa-eye"></i></span>Mark read
+                    <span class="mr-2"><i class="far fa-eye"></i></span>Mark responded
                 </Link>
 
                 <Link :href="route('quote-request.destroy',quote.id)" class="text-sm font-bold  text-start"  method="delete" as="button">

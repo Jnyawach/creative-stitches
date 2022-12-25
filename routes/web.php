@@ -3,6 +3,7 @@
 use App\Http\Controllers\General\BlogController;
 use App\Http\Controllers\General\ContactUsController;
 use App\Http\Controllers\General\HelpCenterConroller;
+use App\Http\Controllers\General\PolicyController;
 use App\Http\Controllers\General\QuoteController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,10 @@ Route::group([], function (){
 });
 
 Route::group([],function(){
+    Route::get('copyright-guidelines', [PolicyController::class, 'copyrightGuideline'])->name('copyright.guidelines');
+    Route::get('cookie-policy', [PolicyController::class, 'cookiePolicy'])->name('cookie.policy');
+    Route::get('privacy-policy', [PolicyController::class, 'privacyPolicy'])->name('privacy.policy');
+    Route::get('terms-and-condition', [PolicyController::class, 'terms'])->name('terms.conditions');
     Route::resource('custom-embroidery', QuoteController::class);
     Route::resource('contact-us', ContactUsController::class);
     Route::resource('blog',BlogController::class);
