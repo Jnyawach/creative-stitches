@@ -52,4 +52,8 @@ class Admin extends Authenticatable
         return $this->hasMany(Quote::class, 'user_id');
     }
 
+    public function products(){
+        return $this->morphMany(Product::class, 'productable');
+    }
+
 }

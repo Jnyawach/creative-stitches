@@ -6,15 +6,19 @@ use App\Http\Controllers\Admin\AdminFaqCategory;
 use App\Http\Controllers\Admin\AdminFaqsController;
 use App\Http\Controllers\Admin\AdminMainController;
 use App\Http\Controllers\Admin\AdminPermissionController;
+use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminQuoteController;
 use App\Http\Controllers\Admin\AdminRolesController;
 use App\Http\Controllers\Admin\AdminCategoriesController;
+use App\Http\Controllers\Admin\AdminSizeController;
 use App\Http\Controllers\Admin\AdminTermsController;
 use App\Http\Controllers\Admin\AuthorController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware'=>['auth:admin']], function (){
+    Route::resource('admin/products', AdminProductController::class);
+    Route::resource('admin/sizing', AdminSizeController::class);
     Route::resource('admin/terms', AdminTermsController::class);
     Route::patch('admin/quote-request/mark-responded/{id}', [AdminQuoteController::class, 'markResponded'])->name('quote.responded');
     Route::resource('admin/quote-request', AdminQuoteController::class);
