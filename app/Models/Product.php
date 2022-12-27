@@ -29,7 +29,8 @@ class Product extends Model implements HasMedia
 
     protected $fillable=[
        'name','price', 'description','stock','sku', 'mpn','productable_id','productable_type',
-        'category_id','status','meta_description','keywords'
+        'category_id','status','meta_description','keywords','total_stitches','size_id','design_size_inches',
+        'design_size_mm'
     ];
 
     public function productable(){
@@ -38,6 +39,9 @@ class Product extends Model implements HasMedia
 
     public function category(){
         return $this->belongsTo(Category::class);
+    }
+    public function size(){
+        return $this->belongsTo(Size::class);
     }
 
     public function registerMediaCollections(): void

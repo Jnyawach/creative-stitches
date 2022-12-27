@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware'=>['auth:admin']], function (){
+    Route::get('admin/products/step-two', [AdminProductController::class, 'stepTwo'])->name('createProductStepTwo');
     Route::resource('admin/products', AdminProductController::class);
     Route::resource('admin/sizing', AdminSizeController::class);
     Route::resource('admin/terms', AdminTermsController::class);

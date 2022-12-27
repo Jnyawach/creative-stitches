@@ -16,6 +16,14 @@ return new class extends Migration
         Schema::create('embroideries', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('file_name');
+            $table->bigInteger('product_id')->unsigned()->index();
+            $table->bigInteger('format_id')->unsigned()->index();
+            $table->foreign('product_id')->references('id')
+                ->on('products')->cascadeOnDelete();
+            $table->foreign('format_id')->references('id')
+                ->on('formats')->cascadeOnDelete();
+
         });
     }
 

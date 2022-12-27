@@ -100,7 +100,7 @@
                     <small class="font-medium">Accepted file types PNG, JPG, JPEG. Maximum size of 2MB</small>
                 </div>
             </div>
-            <input type="file" @input="form.image=$event.target.files[0]" class="mt-4"  id="post_image" required>
+            <input type="file" @input="form.image=$event.target.files[0]" class="mt-4"  id="post_image" required accept="image/*">
             <div v-if="form.errors.image" class="creative-error">
                 <span class="text-xs">{{ form.errors.image}}</span>
             </div>

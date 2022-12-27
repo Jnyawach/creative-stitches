@@ -29,6 +29,10 @@ return new class extends Migration
             $table->integer('status')->default(0);
             $table->mediumText('meta_description');
             $table->mediumText('keywords');
+            $table->integer('total_stitches');
+            $table->bigInteger('size_id')->index()->unsigned();
+            $table->string('design_size_inches');
+            $table->string('design_size_mm');
         });
     }
 

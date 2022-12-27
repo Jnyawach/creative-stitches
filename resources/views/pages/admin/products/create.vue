@@ -4,7 +4,7 @@
         <title>Create Products</title>
     </Head>
     <title-block>
-        <h6 class="font-bold text-sm">Create Products</h6>
+        <h6 class="font-bold text-sm">Create Products Step 1 of 2</h6>
         <template #info >
             <p class="text-sm" v-if="$page.props.status"><span class="ml-2 text-teal-900"><i class="fas fa-info-circle"></i></span> {{$page.props.status}}</p>
             <p class="text-sm" v-else><span class="ml-2 mr-3 text-teal-900"><i class="fas fa-info-circle"></i></span>Create Embroidery design files</p>
@@ -53,6 +53,78 @@
                         <span>{{ form.errors.category_id}}</span>
                     </div>
                 </div>
+            </div>
+            <div class="mt-8">
+                <hr>
+                <h6 class="font-bold text-lg text-teal-700">Design information</h6>
+                <p>This section ill contact information related to embroidery file that
+                will be attached to thus product. Designs can only be attached after creating the product</p>
+                <div class="grid grid-cols-2 gap-3 mt-4">
+                    <div>
+                        <label class="creative-label">Total Stitches:</label>
+                        <div>
+                            <small>Enter the total stitches for the design e.g. 10020</small>
+                        </div>
+                        <input type="text" v-model="form.total_stitches" class="creative-input" required>
+
+                        <div v-if="form.errors.total_stitches" class="creative-error">
+                            <span>{{ form.errors.total_stitches }}</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="creative-label">Hoop Size:</label>
+                        <div>
+                            <small>Select hoop size. Design size mus be within hoop size</small>
+                        </div>
+                        <select class="creative-input" required v-model="form.size_id">
+                            <option selected value="">Select Hoop size</option>
+                            <option :value="size.id" v-for="size in sizes" :key="size.id">{{size.size_in_mm}} mm | {{size.size_in_inches}} inches</option>
+
+                        </select>
+                        <div v-if="form.errors.size_id" class="creative-error">
+                            <span>{{ form.errors.size_id }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3 mt-4">
+                    <div>
+                        <label class="creative-label">Design size in mm:</label>
+                        <div>
+                            <small>Example: 10.2 by 10.2 (Do not include units)</small>
+                        </div>
+                        <input type="text" v-model="form.design_size_mm" class="creative-input" required>
+
+                        <div v-if="form.errors.design_size_mm" class="creative-error">
+                            <span>{{ form.errors.design_size_mm }}</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="creative-label">Design size in inches:</label>
+                        <div>
+                            <small>Example: 10.2 by 10.2 (Do not include units)</small>
+                        </div>
+                        <input type="text" v-model="form.design_size_inches" class="creative-input" required>
+
+                        <div v-if="form.errors.design_size_inches" class="creative-error">
+                            <span>{{ form.errors.design_size_inches }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid mt-4">
+                    <div>
+                        <label class="creative-label">Color Chart:</label>
+                        <div>
+                            <small>Provide color chart to help in stitching. Accepted format PDF</small>
+                        </div>
+                        <input type="file" @input="form.color_chart=$event.target.files[0]" class="mt-3" required accept="application/pdf">
+
+                        <div v-if="form.errors.color_chart" class="creative-error">
+                            <span>{{ form.errors.color_chart }}</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div class="grid mt-4">
                 <div>
@@ -194,11 +266,18 @@ let form=useForm({
     main_image:'',
     second_image:'',
     third_image:'',
-    fourth_image:''
+    fourth_image:'',
+    total_stitches:'',
+    size_id:'',
+    color_chart:'',
+    design_size_mm:'',
+    design_size_inches:''
+
 })
 
 defineProps({
-    categories:Object
+    categories:Object,
+    sizes:Object
 })
 //Main Image
 const previewMainImage=ref(null)
