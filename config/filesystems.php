@@ -48,6 +48,12 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'artworks' => [
+            'driver' => 'local',
+            'root' => storage_path('app/artworks'),
+            'url' => env('APP_URL').'/storage',
+            'throw' => false,
+        ],
 
         's3' => [
             'driver' => 's3',
@@ -76,6 +82,7 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+        public_path('artworks') => storage_path('app/artworks'),
     ],
 
 ];

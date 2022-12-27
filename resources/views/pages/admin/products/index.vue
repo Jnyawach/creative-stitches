@@ -19,9 +19,9 @@
                 <th class="text-start py-3 px-4">Sku</th>
                 <th class="text-start py-3 px-4">Name</th>
                 <th class="text-start py-3 px-4">Price</th>
-                <th class="py-3 px-4 text-start">Category</th>
-                <th class="py-3 px-4 text-start">Status</th>
-                <th class="py-3 px-4 text-start">Action</th>
+                <th class="text-start py-3 px-4 text-start">Category</th>
+                <th class="text-start py-3 px-4 text-start">Status</th>
+                <th class="text-start py-3 px-4 text-start">Action</th>
 
 
             </tr>
@@ -32,6 +32,11 @@
                 <td class="py-3 px-4">{{product.sku }}</td>
                 <td class="py-3 px-4">{{product.name}}</td>
                 <td class="py-3 px-4">{{product.price}}</td>
+                <td class="py-3 px-4">{{product.category.name}}</td>
+                <td>
+                    <span v-if="product.status===1">Active</span>
+                    <span v-else class="text-red-700">Inactive</span>
+                </td>
                 <td class="py-3 px-4">
                     <dropdown placement="bottom">
                         <template #trigger="{ toggle }">
@@ -40,7 +45,12 @@
                             </button>
                         </template>
                         <div class="shadow w-36">
-                            <ul class="divide-y">
+                            <ul class="divide-y pt-2">
+                                <li class="hover:bg-gray-100 h-8">
+                                    <Link :href="route('attach.files',product.id)" class="text-sm font-bold btn-link  pt-3  text-start">
+                                        <span class="mr-2"><i class="far fa-file-plus"></i></span>Attach designs
+                                    </Link>
+                                </li>
                                 <li class="hover:bg-gray-100 h-8">
                                     <Link :href="route('products.show',product.slug)" class="text-sm font-bold btn-link  pt-3  text-start">
                                         <span class="mr-2"><i class="fa-light fa-bookmark"></i></span>View

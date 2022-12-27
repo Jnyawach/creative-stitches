@@ -12,4 +12,8 @@ class Embroidery extends Model
     protected $fillable=[
         'file_name','product_id','format_id'
     ];
+
+    public function format(){
+        return $this->belongsTo(Format::class);
+    }
 }

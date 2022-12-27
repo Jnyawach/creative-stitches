@@ -28,4 +28,8 @@ class Category extends Model
     }
 
     protected $fillable=['name','tags','description','status'];
+
+    public  function products(){
+        return $this->hasMany(Product::class);
+    }
 }

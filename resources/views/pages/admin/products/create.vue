@@ -238,7 +238,7 @@
             </div>
 
             <div class="mt-3 flex justify-end">
-                <button type="submit" class="btn-primary">Next Step <span class="ml-2"><i class="fa-regular fa-arrow-right-long"></i></span></button>
+                <button type="submit" class="btn-primary">Save Product <span class="ml-2"><i class="fa-regular fa-arrow-right-long"></i></span></button>
             </div>
         </form>
     </div>
