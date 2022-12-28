@@ -27,13 +27,13 @@
                         </div>
 
                     </header>
-                    <hr>
-                    <div class="p-3.5">
+
+                    <div class="p-3.5 ">
                         <slot>
                             Default body
                         </slot>
                     </div>
-                    <hr>
+
                     <footer class="p-3.5">
                         <slot name="footer">
 
