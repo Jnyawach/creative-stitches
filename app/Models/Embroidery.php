@@ -16,4 +16,9 @@ class Embroidery extends Model
     public function format(){
         return $this->belongsTo(Format::class);
     }
+
+    public function product(){
+        return $this->belongsTo(Product::class);
+    }
+
 }

@@ -19,20 +19,25 @@
                 <th class="text-start py-3 px-4">Sku</th>
                 <th class="text-start py-3 px-4">Name</th>
                 <th class="text-start py-3 px-4">Price</th>
-                <th class="text-start py-3 px-4 text-start">Category</th>
-                <th class="text-start py-3 px-4 text-start">Status</th>
-                <th class="text-start py-3 px-4 text-start">Action</th>
+                <th class="text-start py-3 px-4">Category</th>
+                <th class="text-start py-3 px-4">Designs</th>
+                <th class="text-start py-3 px-4">Status</th>
+                <th class="text-start py-3 px-4 ">Action</th>
 
 
             </tr>
             </thead>
             <tbody>
-            <tr class="border-b text-sm" v-if="products.data" v-for="product in products.data" :key="product.id">
-                <td class="py-3 px-4">{{ product.id }}</td>
-                <td class="py-3 px-4">{{product.sku }}</td>
-                <td class="py-3 px-4">{{product.name}}</td>
-                <td class="py-3 px-4">{{product.price}}</td>
-                <td class="py-3 px-4">{{product.category.name}}</td>
+            <tr class="border-b text-[12px] font-medium"  v-for="product in products.data" :key="product.id" :class="[!product.embroideries_count?'text-red-700':'']">
+                <td class="py-3 px-4 text-start">{{ product.id }}</td>
+                <td class="py-3 px-4 text-start">{{product.sku }}</td>
+                <td class="py-3 px-4 text-start">{{product.name}}</td>
+                <td class="py-3 px-4 text-start">{{product.price}}</td>
+                <td class="py-3 px-4 text-start">{{product.category.name}}</td>
+                <td class="py-3 px-4 text-start">
+                    <span v-if="product.embroideries_count">{{product.embroideries_count}}</span>
+                    <span v-else>Missing designs</span>
+                </td>
                 <td>
                     <span v-if="product.status===1">Active</span>
                     <span v-else class="text-red-700">Inactive</span>
@@ -87,10 +92,10 @@
                     class="text-sky-800">{{ products.last_page }}</span> Page(s)</h6>
             </div>
             <div class="flex">
-                <Link :href="products.links.prev" class="btn-primary text-xs m-1" v-if="products.links.prev"><span
+                <Link :href="products.prev_page_url" class="btn-primary text-xs m-1" v-if="products.prev_page_url"><span
                     class="mr-2"><i class="far fa-angle-left"></i></span>Prev
                 </Link>
-                <Link :href="products.links.next" class="btn-primary text-xs m-1" v-if="products.links.next">Next
+                <Link :href="products.next_page_url" class="btn-primary text-xs m-1" v-if="products.next_page_url">Next
                     <span class="ml-2"><i class="far fa-angle-right"></i></span></Link>
 
             </div>

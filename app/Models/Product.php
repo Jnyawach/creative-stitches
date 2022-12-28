@@ -38,10 +38,14 @@ class Product extends Model implements HasMedia
     }
 
     public function category(){
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class,);
     }
     public function size(){
         return $this->belongsTo(Size::class);
+    }
+
+    public function embroideries(){
+        return $this->hasMany(Embroidery::class,'product_id');
     }
 
     public function registerMediaCollections(): void

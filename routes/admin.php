@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware'=>['auth:admin']], function (){
     Route::post('admin/products/save-files', [AdminProductController::class, 'saveFiles'])->name('save.files');
+    Route::delete('admin/products/design-delete/{id}', [AdminProductController::class, 'adminDelete'])->name('admin.design.delete');
     Route::get('admin/products/design-download/{id}', [AdminProductController::class, 'adminDownload'])->name('admin.design.download');
     Route::get('admin/products/attach-files/{id}', [AdminProductController::class, 'attachFiles'])->name('attach.files');
     Route::resource('admin/products', AdminProductController::class);

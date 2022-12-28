@@ -26,11 +26,7 @@ class AdminProductController extends Controller
     {
         //
 
-        $products=Product::with('category')->select('id','name','slug','price','status','sku','category_id')->paginate(10);
-
-
-
-
+        $products=Product::select('id','name','slug','price','status','sku','category_id')->withCount('embroideries')->with('category')->paginate(10);
         return inertia::render('admin.products.index', compact('products'));
     }
 
@@ -126,6 +122,9 @@ class AdminProductController extends Controller
     public function show($id)
     {
         //
+        $product=Product::findBySlugOrFail($id)->load(['category','size','embroideries']);
+        $product=new ProductResource($product);
+        return inertia::render('admin.products.show', compact('product'));
     }
 
     /**
@@ -236,6 +235,10 @@ class AdminProductController extends Controller
     public function destroy($id)
     {
         //
+        $product=Product::findOrFail($id);
+        $product->delete();
+        return redirect()->route('products.index')
+            ->with('status', 'Product Successfully deleted');
     }
 
     public function attachFiles($id){
@@ -273,12 +276,27 @@ class AdminProductController extends Controller
 
     public function adminDownload($id){
       $embroidery=Embroidery::findOrFail($id);
-        if (Storage::exists('artworks/'.$embroidery->file_name)) {
-            return Storage::disk('artworks')->download($embroidery->file_name);
+        if (Storage::disk('artworks')->exists($embroidery->file_name)) {
+            $headers = [
+                'Content-Type' => 'application/pdf',
+            ];
+            return Storage::disk('artworks')->download($embroidery->file_name,$embroidery->file_name,$headers);
+
 
         }else{
             return redirect()->back()
                 ->with('status','File not found');
         }
+    }
+
+    public function adminDelete($id){
+     $embroidery=Embroidery::findOrFail($id);
+        if (Storage::disk('artworks')->exists($embroidery->file_name)) {
+            Storage::disk('artworks')->delete($embroidery->file_name);
+        }
+        $embroidery->delete();
+
+     return redirect()->back()
+         ->with('Design Successfully deleted');
     }
 }

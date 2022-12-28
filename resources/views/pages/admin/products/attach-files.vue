@@ -4,7 +4,7 @@
         <title>Create Products</title>
     </Head>
     <title-block>
-        <h6 class="font-bold text-sm">Create Products Step 2 of 2</h6>
+        <h6 class="font-bold text-sm">Attach Design to {{product.name}}</h6>
         <template #info >
             <p class="text-sm" v-if="$page.props.status"><span class="ml-2 text-teal-900"><i class="fas fa-info-circle"></i></span> {{$page.props.status}}</p>
             <p class="text-sm" v-else><span class="ml-2 mr-3 text-teal-900"><i class="fas fa-info-circle"></i></span>{{product.name}}</p>
@@ -60,9 +60,15 @@
                 <tbody >
                 <tr v-for="design in designs" :key="design.id" class="border-b text-sm">
                     <td>
-                      <Link class="text-teal-700" :href="route('admin.design.download',design.id)">{{design.file_name}}</Link>
+                      <a class="text-teal-700" :href="route('admin.design.download',design.id)">{{design.file_name}}<span class="ml-1"><i class="fas fa-download"></i></span></a>
                     </td>
                     <td class="py-3 px-4">{{design.format.name}}(.{{design.format.abbreviation}})</td>
+                <td>
+                    <Link :href="route('admin.design.delete',design.id)" class="text-red-700 text-sm font-bold p-2 w-full h-full text-start"  method="delete" as="button">
+                        <span class="mr-2"><i class="far fa-trash-alt"></i></span>Delete Artwork
+                    </Link>
+                </td>
+
                 </tr>
 
                 </tbody>
@@ -72,6 +78,11 @@
 
         </div>
     </div>
+    <template #sidebar>
+        <Sidelink :link="route('products.index')" >
+            Return to Products
+        </Sidelink>
+    </template>
 </admin>
 </template>
 
@@ -81,6 +92,7 @@ import {Head} from "@inertiajs/inertia-vue3";
 import TitleBlock from "@/views/components/title-block.vue";
 import {useForm} from "@inertiajs/inertia-vue3";
 import {Link} from "@inertiajs/inertia-vue3";
+import Sidelink from "@/views/components/sidelink.vue";
 
 let props=defineProps({
     product:Object,

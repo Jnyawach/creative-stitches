@@ -90,7 +90,7 @@
                     <div>
                         <label class="creative-label">Design size in mm:</label>
                         <div>
-                            <small>Example: 10.2 by 10.2 (Do not include units)</small>
+                            <small>Example: 92 by 128 (Do not include units)</small>
                         </div>
                         <input type="text" v-model="form.design_size_mm" class="creative-input" required>
 
@@ -172,7 +172,7 @@
             <div class="mt-4">
                 <h6>Product images:</h6>
                 <div>
-                    <small>Acceptable file types png, jpg, jpeg. All Images should be square</small>
+                    <small>Acceptable file types png, jpg, jpeg. All Images must be square and measure 1000px by 1000px</small>
                 </div>
                 <div class="grid mt-3 grid-cols-4">
 

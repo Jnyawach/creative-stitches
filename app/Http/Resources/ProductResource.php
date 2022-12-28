@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Embroidery;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductResource extends JsonResource
@@ -32,6 +33,7 @@ class ProductResource extends JsonResource
             'design_size_mm'=>$this->design_size_mm,
             'category'=>new CategoryResource($this->whenLoaded('category')),
             'size'=>new SizeResource($this->whenLoaded('size')),
+            'embroideries'=>EmbroideryResource::collection($this->whenLoaded('embroideries')),
             'colorChart'=>$this->getFirstMediaUrl('colorChart'),
             'mainImage'=>[
                 'full_image'=>$this->getFirstMediaUrl('mainImage'),
