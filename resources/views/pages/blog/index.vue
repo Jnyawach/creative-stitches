@@ -30,7 +30,7 @@
        </div>
         <div class="self-center">
             <div>
-                <small class="font-bold text-teal-700"> Published on {{new Date(latest.created_at).toDateString()}} by {{latest.author}}</small>
+                <small class="font-bold text-teal-700"> Published on {{new Date(latest.created_at).toDateString()}} by {{latest.author.first_name}} {{latest.author.last_name}}</small>
             </div>
         <h1 class="text-3xl font-bold">{{latest.title}}</h1>
             <p class="font-medium">{{useTruncate(latest.summary, 200)}}</p>

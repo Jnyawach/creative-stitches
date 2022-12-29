@@ -12,7 +12,7 @@
     <div class="my-10 px-3 md:px-36">
        <h1 class="text-4xl font-bold text-center">{{post.data.title}}</h1>
         <p class="text-teal-700 text-sm text-center mt-2 font-bold">Published on {{ new Date(post.data.created_at).toDateString() }} by {{post.data.author.name}} {{post.data.author.last_name}}</p>
-        <img :src="post.data.postImage" class="mt-5 rounded-xl">
+        <img :src="post.data.postImage" class="mt-5 rounded-xl" :alt="post.data.title">
         <div class="flex justify-end mr-2">
             <small>Image credit: {{post.data.credit}}</small>
         </div>

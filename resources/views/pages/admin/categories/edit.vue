@@ -11,7 +11,7 @@
 
         </title-block>
         <div class="mt-8 p-3">
-            <form @submit.prevent="form.patch(route('categories.update',category.id))">
+            <form @submit.prevent="form.post(route('categories.update',category.data.id))">
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="creative-label">Category Name:</label>
@@ -61,12 +61,30 @@
                         </div>
                     </div>
                 </div>
+                <div class="grid mt-5">
+                    <div>
+                        <label class="sumo-label" for="post_image">Category Image:</label>
+                        <div>
+                            <small class="font-medium">Accepted file types PNG, JPG, JPEG. Maximum size of 2MB. Must be square and 500 by 500px</small>
+                        </div>
+                    </div>
+                    <input type="file" @input="form.image=$event.target.files[0]" class="mt-4"  id="post_image" accept="image/*">
+                    <div v-if="form.errors.image" class="creative-error">
+                        <span class="text-xs">{{ form.errors.image}}</span>
+                    </div>
+                </div>
 
                 <div class="mt-4 flex justify-end">
                     <button type="submit" class="btn-primary">Update Category</button>
                 </div>
             </form>
         </div>
+        <template #sidebar>
+            <div>
+                <h6 class="font-bold">Category Image</h6>
+                <img :src="category.data.image">
+            </div>
+        </template>
     </admin>
 </template>
 
@@ -80,10 +98,12 @@ let props=defineProps({
     category:Object
 })
 let form=useForm({
-    name:props.category.name,
-    status:props.category.status,
-    tags:props.category.tags,
-    description:props.category.description,
+    name:props.category.data.name,
+    status:props.category.data.status,
+    tags:props.category.data.tags,
+    description:props.category.data.description,
+    image:'',
+    _method:'PATCH'
 
 })
 </script>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoryResource;
 use App\Http\Resources\PostResource;
 use App\Models\Category;
 use App\Models\Post;
@@ -13,8 +14,8 @@ class ApiController extends Controller
     //
 
     public function getCategories(){
-        $categories=Category::select('name','slug','id')->get();
-        return $categories;
+       return CategoryResource::collection(Category::all());
+
     }
 
     public function getPosts(){

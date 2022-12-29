@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\General;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductResource;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ShopController extends Controller
 {
@@ -48,6 +51,9 @@ class ShopController extends Controller
     public function show($id)
     {
         //
+        $product=Product::findBySlugOrFail($id)->load(['category','size','embroideries']);
+        $product=new ProductResource($product);
+        return inertia::render('shop.show', compact('product'));
     }
 
     /**

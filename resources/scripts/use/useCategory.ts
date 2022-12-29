@@ -10,8 +10,8 @@ export function useCategory(){
     axios.get(base_url)
         .then(function (response) {
             // handle success
-            categories.value = response.data;
-            console.log(response.data.categories)
+            categories.value = response.data.data;
+            //console.log(response.data.data)
 
         })
 

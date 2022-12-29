@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -51,7 +52,8 @@ class AdminCategoriesController extends Controller
            'name'=>'required|string|max:50',
             'tags'=>'required|string|max:500',
             'description'=>'required|min:3|max:1000',
-            'status'=>'required|integer|max:2'
+            'status'=>'required|integer|max:2',
+            'image'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:width=500,height=500',
         ]);
 
         $category=Category::create([
@@ -60,6 +62,10 @@ class AdminCategoriesController extends Controller
             'description'=>$validated['description'],
             'status'=>$validated['status']
         ]);
+
+        if($files=$request->image){
+            $category->addMedia($files)->toMediaCollection('categoryImage');
+        }
 
         return redirect()->route('categories.index');
     }
@@ -73,7 +79,7 @@ class AdminCategoriesController extends Controller
     public function show($id)
     {
         //
-        $category=Category::findBySlugOrFail($id)->only('name','id','description','slug','tags','status');
+        $category=new  CategoryResource(Category::findBySlugOrFail($id));
         return inertia::render('admin.categories.show', compact('category'));
     }
 
@@ -86,7 +92,7 @@ class AdminCategoriesController extends Controller
     public function edit($id)
     {
         //
-        $category=Category::findOrFail($id);
+        $category=new CategoryResource(Category::findOrFail($id));
         return inertia::render('admin.categories.edit', compact('category'));
     }
 
@@ -104,7 +110,8 @@ class AdminCategoriesController extends Controller
             'name'=>'required|string|max:50',
             'tags'=>'required|string|max:500',
             'description'=>'required|min:3|max:1000',
-            'status'=>'required|integer|max:2'
+            'status'=>'required|integer|max:2',
+            'image'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:width=500,height=500',
         ]);
 
         $category=Category::findOrFail($id);
@@ -114,6 +121,10 @@ class AdminCategoriesController extends Controller
             'description'=>$validated['description'],
             'status'=>$validated['status']
         ]);
+        if($files=$request->image){
+            $category->clearMediaCollection('categoryImage');
+            $category->addMedia($files)->toMediaCollection('categoryImage');
+        }
 
         return redirect()->route('categories.index');
     }

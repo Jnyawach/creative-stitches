@@ -30,9 +30,12 @@
 
                     <div class="p-3.5 ">
                         <div class="grid md:grid-cols-3 gap-2">
-                            <div class="md:col-span-1 grid justify-center ">
+                            <div class="md:col-span-1 grid justify-center text-center">
                                 <Link :href="route('shop.show',product.slug)" :title="product.name">
                                     <img :src="product.mainImage.icon" class="rounded-xl">
+                                </Link>
+                                <Link :href="route('shop.show',product.slug)" :title="product.name" class="font-bold hover:text-teal-700">
+                                    View Design
                                 </Link>
                             </div>
                             <div class="md:col-span-2">

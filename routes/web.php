@@ -5,6 +5,7 @@ use App\Http\Controllers\General\ContactUsController;
 use App\Http\Controllers\General\HelpCenterConroller;
 use App\Http\Controllers\General\PolicyController;
 use App\Http\Controllers\General\QuoteController;
+use App\Http\Controllers\General\ShopCategoryController;
 use App\Http\Controllers\General\ShopController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group([], function (){
+    Route::resource('shop-category', ShopCategoryController::class);
     Route::resource('shop', ShopController::class);
     Route::resource('/', MainController::class);
 });

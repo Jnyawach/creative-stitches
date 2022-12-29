@@ -1,16 +1,18 @@
 <template>
-    <div class="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-8 justify-center">
+    <div class="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3  justify-center">
         <div v-for="product in products" :key="product.id">
             <div class="relative">
-                <img :src="product.mainImage.icon" class="rounded-xl cursor-pointer w-full"
-                     :alt="product.name" :title="product.name" @click="triggerModal(product)">
+                <div class="overflow-hidden rounded-md ">
+                    <img :src="product.mainImage.icon" class="cursor-pointer hover:scale-110 duration-200 "
+                         :alt="product.name" :title="product.name" @click="triggerModal(product)">
+                </div>
                 <button type="button" title="Save to Wishlist" class="rounded-full text-white bg-teal-700
                     p-1 w-10 h-10 text-xl absolute top-2 right-2 hover:bg-teal-600">
                     <span><i class="far fa-heart"></i></span>
                 </button>
             </div>
             <div class="mt-2 font-semibold text-gray-800 px-2">
-                <h5 class="text-sm sm:text-md">{{product.name}}</h5>
+                <h5 class="text-sm ">{{useTruncate(product.name, 30)}}</h5>
                 <p class="text-sm sm:text-md">
                        <span class="text-teal-700 mr-2">
                             <span><i class="fas fa-star"></i></span>
@@ -35,6 +37,9 @@
 <script setup lang="ts">
 import Overview from "@/views/components/products/overview.vue";
 import {ref} from "vue";
+import {useTruncate} from "@/scripts/use/useTruncate";
+
+
 defineProps({
     products:Object
 })

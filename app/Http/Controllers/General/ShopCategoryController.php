@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\General;
 
-use App\Http\Resources\ProductResource;
-use App\Models\Category;
-use App\Models\Product;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 
-class MainController extends Controller
+class ShopCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +15,6 @@ class MainController extends Controller
     public function index()
     {
         //
-         $products=Product::with('embroideries')->latest()->limit(15)->get();
-         $products=ProductResource::collection($products);
-
-
-        return inertia::render('welcome', compact('products'));
     }
 
     /**

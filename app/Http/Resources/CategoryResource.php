@@ -20,7 +20,9 @@ class CategoryResource extends JsonResource
             'slug'=>$this->slug,
             'description'=>$this->description,
             'tags'=>$this->tags,
-            'products'=>ProductResource::collection($this->whenLoaded('products'))
+            'status'=>$this->status,
+            'products'=>ProductResource::collection($this->whenLoaded('products')),
+            'image'=>$this->getFirstMediaUrl('categoryImage','category-icon')
         ];
     }
 }

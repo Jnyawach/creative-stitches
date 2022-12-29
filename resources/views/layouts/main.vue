@@ -120,7 +120,7 @@
     <main>
      <slot/>
     </main>
-    <footer class="bg-gray-800">
+    <footer class="bg-black-100">
         <div class="grid grid-cols-2 md:grid-cols-3 gap-5 py-5 px-5 md:px-14">
             <div>
                 <h6 class="font-bold text-white">Shop</h6>

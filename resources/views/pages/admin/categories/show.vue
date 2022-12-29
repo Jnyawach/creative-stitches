@@ -14,6 +14,7 @@
 
     <div class="mt-10 px-3">
         <h1 class="text-xl font-bold">{{category.name}}</h1>
+        <img :src="category.image" class="rounded-lg">
         <div>
             <small class="font-bold"><span class="text-teal-900 mr-2">Status:</span>
                 <span v-if="category.status">Active </span>
@@ -45,9 +46,11 @@ import {Head} from "@inertiajs/inertia-vue3";
 import TitleBlock from "@/views/components/title-block.vue";
 import Sidelink from "@/views/components/sidelink.vue";
 import {Link} from "@inertiajs/inertia-vue3";
-defineProps({
+import {reactive} from "vue";
+let props=defineProps({
     category:Object
 })
+const category=reactive(props.category.data)
 </script>
 
 <style scoped>
