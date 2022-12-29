@@ -16,7 +16,6 @@
             <thead>
             <tr class="bg-gray-50 h-10 text-teal-900 font-bold text-sm">
                 <th class="text-start py-3 px-4">Id</th>
-                <th class="text-start py-3 px-4">Sku</th>
                 <th class="text-start py-3 px-4">Name</th>
                 <th class="text-start py-3 px-4">Price</th>
                 <th class="text-start py-3 px-4">Category</th>
@@ -30,7 +29,6 @@
             <tbody>
             <tr class="border-b text-[12px] font-medium"  v-for="product in products.data" :key="product.id" :class="[!product.embroideries_count?'text-red-700':'']">
                 <td class="py-3 px-4 text-start">{{ product.id }}</td>
-                <td class="py-3 px-4 text-start">{{product.sku }}</td>
                 <td class="py-3 px-4 text-start">{{product.name}}</td>
                 <td class="py-3 px-4 text-start">{{product.price}}</td>
                 <td class="py-3 px-4 text-start">{{product.category.name}}</td>

@@ -53,7 +53,9 @@ class ShopController extends Controller
         //
         $product=Product::findBySlugOrFail($id)->load(['category','size','embroideries']);
         $product=new ProductResource($product);
-        return inertia::render('shop.show', compact('product'));
+
+        $products=ProductResource::collection(Product::where('category_id', $product->category_id)->where('id','!=',$product->id)->with('embroideries')->latest()->limit(5)->get());
+        return inertia::render('shop.show', compact('product','products'));
     }
 
     /**
