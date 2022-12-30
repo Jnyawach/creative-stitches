@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminFaqsController;
 use App\Http\Controllers\Admin\AdminMainController;
 use App\Http\Controllers\Admin\AdminPermissionController;
 use App\Http\Controllers\Admin\AdminProductController;
+use App\Http\Controllers\Admin\AdminPromotionController;
 use App\Http\Controllers\Admin\AdminQuoteController;
 use App\Http\Controllers\Admin\AdminRolesController;
 use App\Http\Controllers\Admin\AdminCategoriesController;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware'=>['auth:admin']], function (){
+    Route::resource('admin/promotion', AdminPromotionController::class);
     Route::post('admin/products/save-files', [AdminProductController::class, 'saveFiles'])->name('save.files');
     Route::delete('admin/products/design-delete/{id}', [AdminProductController::class, 'adminDelete'])->name('admin.design.delete');
     Route::get('admin/products/design-download/{id}', [AdminProductController::class, 'adminDownload'])->name('admin.design.download');

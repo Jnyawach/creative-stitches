@@ -1,9 +1,10 @@
 <template>
-    <div class="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3  justify-center">
+    <div v-if="products.length">
+    <div class="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3  justify-center">
         <div v-for="product in products" :key="product.id">
             <div class="relative">
                 <div class="overflow-hidden rounded-md ">
-                    <img :src="product.mainImage.icon" class="cursor-pointer hover:scale-110 duration-200 "
+                    <img :src="product.mainImage.icon" class="cursor-pointer hover:scale-110 duration-200"
                          :alt="product.name" :title="product.name" @click="triggerModal(product)">
                 </div>
                 <button type="button" title="Save to Wishlist" class="rounded-full text-white bg-teal-700
@@ -22,7 +23,7 @@
                            <span><i class="fas fa-star-half-alt"></i></span>
                            (624)
                        </span>
-                    Available in {{product.embroideries.length}} format<span v-show="product.embroideries.length>1">s</span>
+                    {{product.embroideries.length}} format<span v-show="product.embroideries.length>1">s</span>
                 </p>
                 <p class="font-bold text-black-100 font-montserrat">USD {{product.price}}</p>
                 <button type="button" class="text-black-100 py-2 px-3 sm:px-5 border rounded-full
@@ -32,6 +33,10 @@
         </div>
     </div>
     <overview :product="preview" :show="showModal" @close="showModal=false"></overview>
+    </div>
+    <div v-else class="py-10">
+        <h5 class="text-center text-2xl">No Products found!</h5>
+    </div>
 </template>
 
 <script setup lang="ts">

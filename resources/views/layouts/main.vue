@@ -60,8 +60,11 @@
         </div>
         <div class="py-2 px-2 hidden md:block">
             <ul class="flex justify-center gap-3 md:gap-5 font-medium font-montserrat w-full text-sm">
+                <li>
+                    <Link :href="route('shop.index')" class="hover:text-teal-700" title="Shop all Embroidery Designs">Shop all</Link>
+                </li>
                 <li class="hover:text-teal-700" v-for="category in categories" :key="category.id">
-                    <Link href="#" :title="category.name">{{category.name}}</Link>
+                    <Link :href="route('shop.category',category.slug)" :title="category.name">{{category.name}}</Link>
                 </li>
 
 
@@ -71,53 +74,59 @@
         </div>
 
         <!--mobile menu-->
-        <div class="right-drawer"
-             :style="{
+        <Teleport to="body">
+            <div class="right-drawer"
+                 :style="{
              width: drawerVisible? '70vw' : '0',
              paddingLeft: drawerVisible? '10px' : '0',
              }"
-        >
-            <div class="mt-3">
-                <div class="flex justify-end mr-6">
-                    <button class="text-xl border rounded-full w-9 h-9 border-teal-700" @click="drawerVisible=false">
-                        <span><i class="fal fa-times"></i></span>
-                    </button>
-                </div>
-                <div class="px-2">
-                    <h1 class="font-bold text-lg">Menu</h1>
-                    <div>
-                        <ul class="font-medium font-montserrat text-lg">
-                            <li class="hover:text-teal-700 py-2" v-for="category in categories" :key="category.id">
-                                <Link href="#" :title="category.name">{{category.name}}</Link>
-                            </li>
-                            <li class="py-2">
-                                <Link href="#" title="cart" class=" hover:text-teal-700 relative">
-                                    <span><i class="far fa-shopping-bag"></i> Cart</span>
-
-                                </Link>
-                            </li>
-                            <li class="py-2">
-                                <Link href="#" title="cart" class="hover:text-teal-700 relative">
-                                    <span><i class="far fa-user-circle"></i> Sign in</span>
-
-                                </Link>
-                            </li>
-                        </ul>
+            >
+                <div class="mt-3">
+                    <div class="flex justify-end mr-6">
+                        <button class="text-xl border rounded-full w-9 h-9 border-teal-700" @click="drawerVisible=false">
+                            <span><i class="fal fa-times"></i></span>
+                        </button>
                     </div>
+                    <div class="px-2">
+                        <h1 class="font-bold text-lg">Menu</h1>
+                        <div>
+                            <ul class="font-medium font-montserrat text-lg">
+                                <li class="hover:text-teal-700 py-2">
+                                    <Link :href="route('shop.index')"  title="Shop all Embroidery Designs">Shop all</Link>
+                                </li>
+                                <li class="hover:text-teal-700 py-2" v-for="category in categories" :key="category.id">
+                                    <Link :href="route('shop.category',category.slug)" :title="category.name">{{category.name}}</Link>
+                                </li>
+                                <li class="py-2">
+                                    <Link href="#" title="cart" class=" hover:text-teal-700 relative">
+                                        <span><i class="far fa-shopping-bag"></i> Cart</span>
+
+                                    </Link>
+                                </li>
+                                <li class="py-2">
+                                    <Link href="#" title="cart" class="hover:text-teal-700 relative">
+                                        <span><i class="far fa-user-circle"></i> Sign in</span>
+
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
-
-        </div>
-        <div class="drawer-mask"
-             @click="drawerVisible = false"
-             :style="{
+            <div class="drawer-mask"
+                 @click="drawerVisible = false"
+                 :style="{
              width: drawerVisible ? '100vw' : '0',
              opacity: drawerVisible ? '0.6' : '0',
              }"
-        ></div>
+            ></div>
+        </Teleport>
+
     </header>
-    <main>
+    <main  class="z-10">
      <slot/>
     </main>
     <footer class="bg-black-100">
@@ -126,8 +135,11 @@
                 <h6 class="font-bold text-white">Shop</h6>
                 <div class="mt-3">
                     <ul class="text-[13px] font-medium">
+                        <li>
+                            <Link :href="route('shop.index')" class="text-white hover:text-teal-500" title="Shop all Embroidery Designs">Shop all</Link>
+                        </li>
                         <li class="py-1" v-for="category in categories" :key="category.id">
-                            <Link href="#" class="text-white hover:text-teal-500" :title="category.name">{{category.name}}</Link>
+                            <Link :href="route('shop.category',category.slug)" class="text-white hover:text-teal-500" :title="category.name">{{category.name}}</Link>
                         </li>
                     </ul>
                 </div>
@@ -250,17 +262,23 @@ const drawerVisible=ref(false)
 </script>
 
 <style scoped>
+header{
+    z-index: 1000;
+}
+main{
+    z-index: 1;
+}
 .right-drawer {
     position: absolute;
     top: 0;
     right: 0;
     width: 0; /* initially */
     overflow: hidden;
-    height: 100vh;
+    min-height: 100vh;
     padding-left: 0; /* initially */
     border-left: 1px solid whitesmoke;
     background: white;
-    z-index: 200;
+    z-index: 1000;
     transition: all 0.2s; /* for the animation */
 }
 

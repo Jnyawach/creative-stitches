@@ -26,16 +26,16 @@
                 <li itemprop="itemListElement" itemscope
                     itemtype="https://schema.org/ListItem" class="hover:text-teal-700 m-1 text-sm">
                     <Link itemscope itemtype="https://schema.org/WebPage"
-                       itemprop="item" :itemid="route('shop-category.show',product.category.slug)"
-                       :href="route('shop-category.show',product.category.slug)">
+                       itemprop="item" :itemid="route('shop.category',product.category.slug)"
+                       :href="route('shop.category',product.category.slug)">
                         <span itemprop="name">{{product.category.name}}</span></Link>
                     <meta itemprop="position" content="2" />
                 </li>
                 <li class="m-1">|</li>
                 <li itemprop="itemListElement" itemscope
                     itemtype="https://schema.org/ListItem" class="hover:text-teal-700 m-1 text-sm">
-                    <a itemprop="item" :href="route('shop.show', product.slug)">
-                        <span itemprop="name">{{product.name}}</span></a>
+                    <Link itemprop="item" :href="route('shop.show', product.slug)">
+                        <span itemprop="name">{{product.name}}</span></Link>
                     <meta itemprop="position" content="3" />
                 </li>
             </ol>
@@ -77,7 +77,7 @@
                     <h6  class="text-teal-700">Additional Details</h6>
                     <ul class="text-sm">
                         <li><span class="mr-2"><i class="far fa-cloud-download"></i></span>Digital Download</li>
-                        <li><span class="mr-2"><i class="far fa-shopping-basket"></i></span>Includes Zip file of the selected format, color Chart, and image</li>
+                        <li><span class="mr-2"><i class="far fa-shopping-basket"></i></span>Includes Zip file of the selected format of the design & color Chart</li>
                         <li><span class="mr-2"><i class="far fa-shipping-fast"></i></span>No returns Accepted</li>
                     </ul>
                 </div>

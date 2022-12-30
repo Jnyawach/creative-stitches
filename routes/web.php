@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group([], function (){
-    Route::resource('shop-category', ShopCategoryController::class);
+    Route::get('shop/category/{id}', [ShopController::class,'shopCategory'])->name('shop.category');
     Route::resource('shop', ShopController::class);
     Route::resource('/', MainController::class);
 });
