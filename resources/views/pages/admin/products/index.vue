@@ -10,8 +10,20 @@
             <p class="text-sm" v-else><span class="ml-2 mr-3 text-teal-900"><i class="fas fa-info-circle"></i></span>Embroidery design files</p>
         </template>
     </title-block>
+    <div class="flex justify-end mt-5">
 
-    <div class="mt-10">
+        <div class="">
+
+            <div class="relative">
+                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+                <input v-model="search" type="search" id="default-search" class="block p-2 pl-10 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-sky-600 focus:border-sky-600" placeholder="Search products..." required>
+
+            </div>
+        </div>
+    </div>
+    <div class="mt-3">
         <table class="table-auto w-full mt-3 border-t">
             <thead>
             <tr class="bg-gray-50 h-10 text-teal-900 font-bold text-sm">
@@ -116,10 +128,21 @@ import TitleBlock from "@/views/components/title-block.vue";
 import Sidelink from "@/views/components/sidelink.vue";
 import {Link} from "@inertiajs/inertia-vue3";
 import { Dropdown} from 'flowbite-vue'
-
+import {ref, watch} from "vue";
+import {Inertia} from "@inertiajs/inertia";
+import _ from "lodash"
 let props=defineProps({
-    products:Object
+    products:Object,
+    filters:Object
 })
+const search=ref(props.filters.search)
+
+watch(search, _.debounce(function (value:any) {
+    Inertia.get(route('products.index'),{
+        search:value
+    }, {preserveState:true, replace:true});
+}, 300))
+
 </script>
 
 <style scoped>

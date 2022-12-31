@@ -1,8 +1,14 @@
 <template>
 
     <header class="bg-white drop-shadow">
-        <div class="bg-gray-800 py-3 text-center">
-            <p class="uppercase text-white font-bold text-xs sm:text-sm">GRAB AN EXCLUSIVE OFFER! USE CODE -<span class="text-teal-500">EB78HD</span>  AND GET 10%-OFF!! OFFER ENDS IN 15:00:37</p>
+        <div class="bg-gray-800 py-3 text-center" v-show="coupon">
+            <p class="uppercase text-white font-bold text-xs sm:text-sm relative">GRAB AN EXCLUSIVE OFFER! USE CODE -<span class="text-teal-500">{{coupon.code}}</span>  AND GET {{coupon.discount}}%-OFF!! OFFER ENDS IN
+               <span class="px-3 absolute">
+                    <vue-countdown :time="new Date(coupon.expires)-new Date()" v-slot="{ days, hours, minutes, seconds }">
+                    {{ days }}:{{ hours }}:{{ minutes }}:{{ seconds }}
+                </vue-countdown>
+               </span>
+            </p>
         </div>
         <div class="flex py-4  px-3 gap-5 justify-between">
             <div class="flex md:w-3/4 gap-5 justify-between">
@@ -254,10 +260,14 @@
 import {InertiaProgress} from "@inertiajs/progress";
 InertiaProgress.init()
 import {Link} from "@inertiajs/inertia-vue3";
-import {Head} from "@inertiajs/inertia-vue3";
 import {ref} from "vue";
 import {useCategory} from "@/scripts/use/useCategory";
+import {useCoupon} from "@/scripts/use/useCoupon";
+import {useTimer} from "@/scripts/use/useTimer";
+import VueCountdown from '@chenfengyuan/vue-countdown';
 const {categories}=useCategory()
+const  {coupon}=useCoupon()
+
 const drawerVisible=ref(false)
 </script>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use MongoDB\Driver\Session;
 
 class Authenticate extends Middleware
 {
@@ -15,7 +16,12 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            return route('admin.login');
+           if ($request->is('admin/*')){
+               return route('admin.login');
+           }else{
+               request()->session()->flash('requireAuth', 'Auth is required');
+               return url()->previous();
+           }
         }
         /*
          *

@@ -15,6 +15,7 @@
         "vite-plugin-laravel": "^0.2.2"
     },
     "dependencies": {
+        "@chenfengyuan/vue-countdown": "^2.1.0",
         "@inertiajs/inertia": "^0.11.1",
         "@inertiajs/inertia-vue3": "^0.6.0",
         "@inertiajs/progress": "^0.2.7",
@@ -26,7 +27,7 @@
         "flowbite-vue": "^0.0.9",
         "lodash": "^4.17.21",
         "sweetalert2": "^11.4.8",
-        "vue": "^3.2.36",
+        "vue": "^3.2.45",
         "ziggy-js": "^1.5.0"
     }
 }

@@ -33,6 +33,7 @@ return new class extends Migration
             $table->bigInteger('size_id')->index()->unsigned();
             $table->string('design_size_inches');
             $table->string('design_size_mm');
+            $table->integer('promotion_id')->nullable();
         });
     }
 

@@ -31,8 +31,12 @@
                     <div class="p-3.5 ">
                         <div class="grid md:grid-cols-3 gap-2">
                             <div class="md:col-span-1 grid justify-center text-center">
-                                <Link :href="route('shop.show',product.slug)" :title="product.name">
+                                <Link :href="route('shop.show',product.slug)" :title="product.name" class="relative">
                                     <img :src="product.mainImage.icon" class="rounded-xl">
+                                    <button v-if="product.promotion" class="absolute top-2 left-2 bg-red-700 p-1
+                                    text-white text-[9px] font-montserrat font-semibold rounded-md">
+                                        <span>{{product.promotion.discount}}% off</span>
+                                    </button>
                                 </Link>
                                 <Link :href="route('shop.show',product.slug)" :title="product.name" class="font-bold hover:text-teal-700">
                                     View Design
@@ -56,7 +60,11 @@
                                             </p>
                                         </div>
                                         <div>
-                                            <p class="text-xl font-bold font-montserrat text-teal-700">USD {{product.price}}</p>
+                                            <p class="text-xl font-bold font-montserrat">
+                                                USD {{product.price}}
+                                                <span v-if="product.promotion" class="ml-1 text-teal-700 line-through text-xs">
+                                             USD {{Number(product.promotion.discount/100*product.price+product.price).toFixed(2)}}</span>
+                                            </p>
                                         </div>
                                     </div>
 

@@ -11,6 +11,10 @@
                     p-1 w-10 h-10 text-xl absolute top-2 right-2 hover:bg-teal-600">
                     <span><i class="far fa-heart"></i></span>
                 </button>
+                <button v-if="product.promotion" class="absolute top-2 left-2 bg-red-700 p-1
+                text-white text-[9px] font-montserrat font-semibold rounded-md">
+                    <span>{{product.promotion.discount}}% off</span>
+                </button>
             </div>
             <div class="mt-2 font-semibold text-gray-800 px-2">
                 <h5 class="text-sm ">{{useTruncate(product.name, 30)}}</h5>
@@ -25,7 +29,9 @@
                        </span>
                     {{product.embroideries.length}} format<span v-show="product.embroideries.length>1">s</span>
                 </p>
-                <p class="font-bold text-black-100 font-montserrat">USD {{product.price}}</p>
+                <p class="font-bold text-black-100 font-montserrat">USD {{product.price}}
+                    <span v-if="product.promotion" class="ml-1 text-teal-700 line-through text-xs">
+                        USD {{Number(product.promotion.discount/100*product.price+product.price).toFixed(2)}}</span></p>
                 <button type="button" class="text-black-100 py-2 px-3 sm:px-5 border rounded-full
                     mt-3 border-black-100 text-xs sm:text-sm hover:text-teal-700 hover:border-teal-700">
                     <span class="mr-3"><i class="far fa-plus"></i></span>Add to Basket</button>
@@ -43,6 +49,7 @@
 import Overview from "@/views/components/products/overview.vue";
 import {ref} from "vue";
 import {useTruncate} from "@/scripts/use/useTruncate";
+import {Button} from "flowbite-vue";
 
 
 defineProps({

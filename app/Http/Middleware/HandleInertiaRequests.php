@@ -57,6 +57,7 @@ class HandleInertiaRequests extends Middleware
 
             'auth' =>$auth,
             'status' => $request->session()->get('status')?$request->session()->get('status'):null,
+            'session'=>session()->only(['requireAuth']),
 
         ]);
     }

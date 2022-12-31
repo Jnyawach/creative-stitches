@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminBlogController;
 use App\Http\Controllers\Admin\AdminContactController;
+use App\Http\Controllers\Admin\AdminCouponController;
 use App\Http\Controllers\Admin\AdminFaqCategory;
 use App\Http\Controllers\Admin\AdminFaqsController;
 use App\Http\Controllers\Admin\AdminMainController;
@@ -18,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware'=>['auth:admin']], function (){
+    Route::resource('admin/coupons', AdminCouponController::class);
+    Route::post('admin/promotion/remove-product', [AdminPromotionController::class, 'removeProduct'])->name('remove-product');
+    Route::post('admin/promotion/save-product', [AdminPromotionController::class, 'saveProduct'])->name('save-product');
+    Route::get('admin/promotion/add-product/{id}', [AdminPromotionController::class, 'addProduct'])->name('add-product');
     Route::resource('admin/promotion', AdminPromotionController::class);
     Route::post('admin/products/save-files', [AdminProductController::class, 'saveFiles'])->name('save.files');
     Route::delete('admin/products/design-delete/{id}', [AdminProductController::class, 'adminDelete'])->name('admin.design.delete');

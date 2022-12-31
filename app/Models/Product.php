@@ -30,7 +30,7 @@ class Product extends Model implements HasMedia
     protected $fillable=[
        'name','price', 'description','stock','sku', 'mpn','productable_id','productable_type',
         'category_id','status','meta_description','keywords','total_stitches','size_id','design_size_inches',
-        'design_size_mm'
+        'design_size_mm','promotion_id'
     ];
 
     public function productable(){
@@ -48,9 +48,14 @@ class Product extends Model implements HasMedia
         return $this->hasMany(Embroidery::class,'product_id');
     }
 
-    public function promotions(){
-        return $this->belongsToMany(Product::class);
+    public function promotion(){
+        return $this->belongsTo(Promotion::class);
+
     }
+    public  function latestPromotion(){
+
+    }
+
 
     public function registerMediaCollections(): void
     {

@@ -23,12 +23,14 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group([], function (){
-    Route::get('shop/category/{id}', [ShopController::class,'shopCategory'])->name('shop.category');
-    Route::resource('shop', ShopController::class);
+
     Route::resource('/', MainController::class);
 });
 
 Route::group([],function(){
+    Route::get('shop/promotions/{id}', [ShopController::class,'shopPromotion'])->name('shop.promotion');
+    Route::get('shop/category/{id}', [ShopController::class,'shopCategory'])->name('shop.category');
+    Route::resource('shop', ShopController::class);
     Route::get('copyright-guidelines', [PolicyController::class, 'copyrightGuideline'])->name('copyright.guidelines');
     Route::get('cookie-policy', [PolicyController::class, 'cookiePolicy'])->name('cookie.policy');
     Route::get('privacy-policy', [PolicyController::class, 'privacyPolicy'])->name('privacy.policy');
@@ -44,3 +46,4 @@ Route::group([],function(){
 
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
+require __DIR__.'/user.php';

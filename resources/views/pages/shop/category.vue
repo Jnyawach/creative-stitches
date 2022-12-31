@@ -59,11 +59,11 @@
         <!--current filter-->
         <div class="flex gap-2" v-if="filters">
             <h6 >Filters:</h6>
-            <button class="bg-teal-700 text-sm text-white py-1 px-3 rounded-full font-semibold font-montserrat" v-if="filters.sort" @click="deleteSort()">
-                <span v-if="filters.sort=='most-popular'">Most Popular<span class="ml-4"><i class="fal fa-times"></i></span></span>
-                <span v-else-if="filters.sort=='top-rated'">Top Rated<span class="ml-4"><i class="fal fa-times"></i></span></span>
-                <span v-else-if="filters.sort=='low-to-high'">Price Low-High<span class="ml-4"><i class="fal fa-times"></i></span></span>
-                <span v-else-if="filters.sort=='high-to-low'">Price High-Low<span class="ml-4"><i class="fal fa-times"></i></span></span>
+            <button class="bg-teal-700 text-sm text-white py-1 px-3 rounded-full font-semibold font-montserrat" v-if="filters.range" @click="deleteRange()">
+                <span v-if="filters.range=='most-popular'">Most Popular<span class="ml-4"><i class="fal fa-times"></i></span></span>
+                <span v-else-if="filters.range=='top-rated'">Top Rated<span class="ml-4"><i class="fal fa-times"></i></span></span>
+                <span v-else-if="filters.range=='low-to-high'">Price Low-High<span class="ml-4"><i class="fal fa-times"></i></span></span>
+                <span v-else-if="filters.range=='high-to-low'">Price High-Low<span class="ml-4"><i class="fal fa-times"></i></span></span>
             </button>
             <button class="bg-teal-700 text-sm text-white py-1 px-3 rounded-full font-semibold font-montserrat" v-if="filters.price" @click="deletePrice()">
                 <span v-if="filters.price=='0-1'">Price: Below $ 1.00<span class="ml-4"><i class="fal fa-times"></i></span></span>
@@ -112,29 +112,29 @@
             <div>
                 <div class="grid sm:grid-cols-2 md:grid-cols-3">
                    <div>
-                       <h6 class="font-bold  text-teal-700">Sort By:</h6>
+                       <h6 class="font-bold  text-teal-700">range By:</h6>
                        <div class="mt-3">
                            <div>
                                <label class="creative-label">
-                                   <input type="radio" class="mr-2 checked:bg-teal-700 focus:outline-teal-600" v-model="filterForm.sort" name="sort" value="most-popular">
+                                   <input type="radio" class="mr-2 checked:bg-teal-700 focus:outline-teal-600" v-model="filterForm.range" name="range" value="most-popular">
                                    Most Popular
                                </label>
                            </div>
                            <div>
                                <label class="creative-label">
-                                   <input type="radio" class="mr-2 checked:bg-teal-700 focus:outline-teal-600" v-model="filterForm.sort" name="sort" value="top-rated">
+                                   <input type="radio" class="mr-2 checked:bg-teal-700 focus:outline-teal-600" v-model="filterForm.range" name="range" value="top-rated">
                                    Top Rated
                                </label>
                            </div>
                            <div>
                                <label class="creative-label">
-                                   <input type="radio" class="mr-2 checked:bg-teal-700 focus:outline-teal-600" v-model="filterForm.sort" name="sort" value="high-to-low">
+                                   <input type="radio" class="mr-2 checked:bg-teal-700 focus:outline-teal-600" v-model="filterForm.range" name="range" value="high-to-low">
                                    Price: High to Low
                                </label>
                            </div>
                            <div>
                                <label class="creative-label">
-                                   <input type="radio" class="mr-2 checked:bg-teal-700 focus:outline-teal-600" v-model="filterForm.sort" name="sort" value="low-to-high">
+                                   <input type="radio" class="mr-2 checked:bg-teal-700 focus:outline-teal-600" v-model="filterForm.range" name="range" value="low-to-high">
                                    Price: Low to High
                                </label>
                            </div>
@@ -222,20 +222,20 @@ const category=props.category.data;
 const filterModal=ref(false)
 
 let filterForm=reactive({
-    sort:props.filters.sort,
+    range:props.filters.range,
     price:props.filters.price,
     hoop:props.filters.hoop
 })
 
 const filterProduct=()=>{
     Inertia.get(route('shop.category',category.slug),{
-        sort:filterForm.sort, price:filterForm.price, hoop:filterForm.hoop
+        range:filterForm.range, price:filterForm.price, hoop:filterForm.hoop
     }, {preserveState:true, replace:true});
     filterModal.value=false;
 }
 
-function deleteSort(){
-   filterForm.sort=null;
+function deleteRange(){
+   filterForm.range=null;
    filterProduct();
 }
 

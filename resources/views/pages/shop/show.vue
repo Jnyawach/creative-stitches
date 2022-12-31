@@ -62,7 +62,12 @@
                   <button class="font-bold hover:text-teal-700">Report this Design</button>
               </div>
                 <h1 class="font-bold mt-2 text-xl">{{product.name}}</h1>
-                <h6 class="font-montserrat font-extrabold text-2xl mt-2">USD {{product.price}}</h6>
+                <h6 class="font-montserrat font-extrabold text-2xl mt-2">
+                    USD {{product.price}}
+                    <span v-if="product.promotion" class="ml-1 text-teal-700 line-through text-xs">
+                        USD {{Number(product.promotion.discount/100*product.price+product.price).toFixed(2)}}</span>
+                    <span class="text-sm ml-2">{{product.promotion.discount}}% off</span>
+                </h6>
                 <p class="text-sm mt-2"><span class="text-teal-700">Available Formats</span><span v-for="format in product.embroideries" :key="format.id" class="ml-1 font-semibold">.{{format.format.abbreviation}}</span></p>
                 <p class="text-sm mt-2">SKU: {{product.sku}}</p>
                 <div class="flex gap-3">
@@ -139,6 +144,12 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+    <!---design tags-->
+    <section>
+        <div class="px-3 md:px-10 bg-teal-50 py-10">
+            <h6>Design Tags: {{product.keywords}}</h6>
         </div>
     </section>
 </template>

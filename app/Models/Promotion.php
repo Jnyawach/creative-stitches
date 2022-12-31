@@ -33,7 +33,7 @@ class Promotion extends Model implements HasMedia
     ];
 
     public function products(){
-        return $this->belongsToMany(Product::class);
+        return $this->hasMany(Product::class);
     }
 
 

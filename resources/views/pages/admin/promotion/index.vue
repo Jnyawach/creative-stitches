@@ -38,8 +38,8 @@
                         </template>
                         <div class="shadow w-36">
                             <ul class="divide-y">
-                                <li class="hover:bg-gray-100">
-                                    <Link :href="route('promotion.show',promotion.id)" class="text-sm font-bold p-2 w-full h-full text-start"  method="delete" as="button">
+                                <li class="hover:bg-gray-100 py-2">
+                                    <Link :href="route('promotion.show',promotion.id)" class="text-sm font-bold p-2 w-full h-full text-start">
                                         <span class="mr-2"><i class="fal fa-bookmark"></i></span>View Promotion
                                     </Link>
                                 </li>

@@ -26,8 +26,13 @@ class AdminProductController extends Controller
     {
         //
 
-        $products=Product::select('id','name','slug','price','status','sku','category_id')->withCount('embroideries')->with('category')->paginate(10);
-        return inertia::render('admin.products.index', compact('products'));
+        $products=Product::query()
+            ->when(request('search'),function ($query,$search){
+                $query->where('name','like', '%'.$search.'%');
+            })->
+        select('id','name','slug','price','status','sku','category_id')->withCount('embroideries')->with('category')->paginate(10);
+        $filters=request()->only(['search']);
+        return inertia::render('admin.products.index', compact('products','filters'));
     }
 
     /**

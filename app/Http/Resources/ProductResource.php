@@ -24,6 +24,7 @@ class ProductResource extends JsonResource
             'mpn'=>$this->mpn,
             'category_id'=>$this->category_id,
             'size_id'=>$this->size_id,
+            'promotion_id'=>$this->promotion_id,
             'status'=>$this->status,
             'keywords'=>$this->keywords,
             'description'=>$this->description,
@@ -34,6 +35,7 @@ class ProductResource extends JsonResource
             'category'=>new CategoryResource($this->whenLoaded('category')),
             'size'=>new SizeResource($this->whenLoaded('size')),
             'embroideries'=>EmbroideryResource::collection($this->whenLoaded('embroideries')),
+            'promotion'=>new PromotionResource($this->whenLoaded('promotion')),
             'colorChart'=>$this->getFirstMediaUrl('colorChart'),
             'mainImage'=>[
                 'full_image'=>$this->getFirstMediaUrl('mainImage'),

@@ -5,7 +5,7 @@
     </Head>
     <!--Hero image based on running promotion-->
     <div class="grid">
-        <Link href="#" :title="promotion.data.name">
+        <Link :href="route('shop.promotion',promotion.data.slug)" :title="promotion.data.name">
             <div class="hidden sm:block">
                 <img :src="promotion.data.banner" :alt="promotion.data.name">
             </div>
