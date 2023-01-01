@@ -34,7 +34,7 @@
                         <button class="hover:text-gray-900 font-montserrat" @click="authModal=true">Sign in</button>
                     </li>
                     <li v-if="auth">
-                        <Link :href="route('account.index')" title="My wishlist" class="hover:text-teal-900">
+                        <Link :href="route('account.index')" title="My account" class="hover:text-teal-900">
                             <i class="far fa-user"></i>
                         </Link>
                     </li>
@@ -274,7 +274,7 @@
 import {InertiaProgress} from "@inertiajs/progress";
 InertiaProgress.init()
 import {Link} from "@inertiajs/inertia-vue3";
-import {ref} from "vue";
+import {ref, watch} from "vue";
 import {useCategory} from "@/scripts/use/useCategory";
 import {useCoupon} from "@/scripts/use/useCoupon";
 import VueCountdown from '@chenfengyuan/vue-countdown';
@@ -285,9 +285,20 @@ const  {coupon}=useCoupon()
 const drawerVisible=ref(false)
 
 const authModal=ref(false)
-defineProps({
-    auth:Object
+let props=defineProps({
+    auth:Object,
+    session:Object
 })
+
+watch(
+    () => props.session,
+    (session) => {
+       if (session.requireAuth){
+           authModal.value=true
+       }
+
+    },
+);
 </script>
 
 <style scoped>

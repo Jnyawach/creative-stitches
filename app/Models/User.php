@@ -50,4 +50,8 @@ class User extends Authenticatable
     public function verifiable(){
         return $this->morphMany(Verify::class, 'verifiable');
     }
+
+    public function address(){
+        return $this->hasOne(Address::class);
+    }
 }
