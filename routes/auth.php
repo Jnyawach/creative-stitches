@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\AuthenticatedUser;
 use Illuminate\Support\Facades\Route;
 use  \App\Http\Controllers\Admin\Auth\AdminAuthController;
 use  \App\Http\Controllers\Admin\Auth\AuthenticatedAdmin;
@@ -21,5 +22,12 @@ Route::group(['middleware'=>['auth:admin']], function (){
 //User/Client login
 
 Route::group([], function (){
-    //Route::get('/auth/login',[AuthController::class, 'login'])->name('login');
+    Route::post('/auth/update-password',[AuthController::class, 'updatePassword'])->name('update.password');
+    Route::post('/auth/request-reset',[AuthController::class, 'resetPassword'])->name('reset.password');
+    Route::post('register',[AuthController::class, 'register'])->name('save.user');
+    Route::post('/auth/authenticate',[AuthController::class, 'authenticate'])->name('user.authenticate');
+});
+
+Route::group(['middleware'=>['auth:web','guest:admin']], function (){
+    Route::post('/auth/logout',[AuthenticatedUser::class, 'destroy'])->name('user.logout');
 });

@@ -1,26 +1,26 @@
 <template>
     <!---Register form-->
-    <div v-show="register" class="mt-2 px-3 ">
+    <div v-if="register" class="mt-2 px-3 ">
         <div>
             <div class="font-bold text-black-100 text-xl text-center">
                 <h6>Please register a new account</h6>
             </div>
 
             <div class="w-full my-8 px-3">
-                <form class="w-full ">
+                <form class="w-full" @submit.prevent="submit">
                     <div class="grid grid-cols-2 gap-1">
                         <div class="mt-3">
                             <label for="first_name" class="creative-label"><span class="mr-2 text-teal-700"><i class="far fa-user-circle"></i></span>First Name:</label>
                             <input type="text" class="creative-input" id="first_name" placeholder="Enter your first name" required v-model="create.name"/>
                             <div v-if="create.errors.name" class="creative-error">
-                                <span><span><i class="fal fa-exclamation-circle"></i></span>{{ create.errors.name }}</span>
+                                <span>{{ create.errors.name }}</span>
                             </div>
                         </div>
                         <div class="mt-3">
                             <label for="last_name" class="creative-label"><span class="mr-2 text-teal-700"><i class="far fa-user-circle"></i></span>Last name:</label>
                             <input type="text" class="creative-input" id="last_name" placeholder="Enter your last name" required v-model="create.last_name"/>
                             <div v-if="create.errors.last_name" class="creative-error">
-                                <span><span><i class="fal fa-exclamation-circle"></i></span>{{ create.errors.last_name }}</span>
+                                <span>{{ create.errors.last_name }}</span>
                             </div>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                             <label for="create-email" class="creative-label"><span class="mr-2 text-teal-700"><i class="far fa-envelope"></i></span>Email:</label>
                             <input type="email" class="creative-input" id="create-email" placeholder="Enter your email" required v-model="create.email"/>
                             <div v-if="create.errors.email" class="creative-error">
-                                <span><span class="mr-2"><i class="fal fa-exclamation-circle"></i></span>{{ create.errors.email }}</span>
+                                <span>{{ create.errors.email }}</span>
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                             <label for="create-password" class="creative-label"><span class="mr-2 text-teal-700"><i class="fal fa-lock"></i></span>Password:</label>
                             <input type="password" class="creative-input" id="create-password" placeholder="Enter your password" required v-model="create.password"/>
                             <div v-if="create.errors.password" class="creative-error">
-                                <span><span class="mr-2"><i class="fal fa-exclamation-circle"></i></span>{{ create.errors.password}}</span>
+                                <span>{{ create.errors.password}}</span>
                             </div>
                         </div>
                         <div >
@@ -60,7 +60,7 @@
                     <div class="flex justify-center mt-5">
                         <p class="cursor-pointer ">
                             Have already an account?
-                            <span class="hover:text-teal-700 font-bold">Login here</span>
+                            <span class="hover:text-teal-700 font-bold" @click="$emit('showLogin')">Login here</span>
                         </p>
                     </div>
 
@@ -81,17 +81,31 @@
 import {useForm} from "@inertiajs/inertia-vue3";
 import {Link} from "@inertiajs/inertia-vue3";
 import {Input} from "flowbite-vue";
-defineProps({
+import {ref} from "vue";
+
+let props=defineProps({
     register:Boolean
 })
+const emits=defineEmits(['closeModal'])
 let create=useForm({
     name:'',
     last_name:'',
     email:'',
     password:'',
-    confirm_password:'',
+    password_confirmation:'',
     subscribe:true
 })
+
+const submit=()=>{
+    create.post(route('save.user'),{
+        onSuccess:()=>{
+          create.reset()
+          props.register=false;
+          emits('closeModal');
+        }
+    })
+
+}
 </script>
 
 <style scoped>

@@ -30,8 +30,13 @@
             </div>
             <div class="flex mr-5">
                 <ul class="flex self-center font-medium gap-6 text-lg">
-                    <li>
-                        <button class="hover:text-gray-900 font-montserrat">Sign in</button>
+                    <li v-if="!auth">
+                        <button class="hover:text-gray-900 font-montserrat" @click="authModal=true">Sign in</button>
+                    </li>
+                    <li v-if="auth">
+                        <Link :href="route('account.index')" title="My wishlist" class="hover:text-teal-900">
+                            <i class="far fa-user"></i>
+                        </Link>
                     </li>
                     <li>
                         <Link href="#" title="My wishlist" class="hover:text-teal-900">
@@ -44,6 +49,13 @@
                             <div class="absolute bg-teal-700 h-4 w-4 -top-2 -right-3 flex place-content-center rounded-full">
                                 <span class="self-center leading-none text-white text-[10px] font-bold text-xm">2</span>
                             </div>
+                        </Link>
+                    </li>
+
+                    <li v-if="auth">
+                        <Link :href="route('user.logout')" title="Logout"
+                              class="hover:text-teal-900" as="button" method="post">
+                            <i class="fas fa-sign-out-alt"></i>
                         </Link>
                     </li>
                 </ul>
@@ -135,7 +147,7 @@
     <main  class="z-10">
      <slot/>
         <!--login modal-->
-        <authentication :show="true" @close="false"></authentication>
+        <authentication :show="authModal" @close="authModal=false" :login="true"></authentication>
     </main>
     <footer class="bg-black-100">
         <div class="grid grid-cols-2 md:grid-cols-3 gap-5 py-5 px-5 md:px-14">
@@ -271,6 +283,11 @@ const {categories}=useCategory()
 const  {coupon}=useCoupon()
 
 const drawerVisible=ref(false)
+
+const authModal=ref(false)
+defineProps({
+    auth:Object
+})
 </script>
 
 <style scoped>

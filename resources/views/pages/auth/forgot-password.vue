@@ -6,13 +6,13 @@
             </div>
 
             <div class="w-full my-8 px-3">
-                <form class="w-full ">
+                <form class="w-full " @submit.prevent="submit">
                     <div class="grid mt-3">
                         <div>
-                            <label for="login-email" class="creative-label"><span class="mr-2 text-teal-700"><i class="far fa-envelope"></i></span>Email:</label>
-                            <input type="email" class="creative-input" id="login-email" placeholder="Enter your email" required v-model="form.email"/>
+                            <label for="forgot-email" class="creative-label"><span class="mr-2 text-teal-700"><i class="far fa-envelope"></i></span>Email:</label>
+                            <input type="email" class="creative-input" id="forgot-email" placeholder="Enter your email" required v-model="form.email"/>
                             <div v-if="form.errors.email" class="creative-error">
-                                <span><span class="mr-2"><i class="fal fa-exclamation-circle"></i></span>{{ form.errors.email }}</span>
+                                <span>{{ form.errors.email }}</span>
                             </div>
                         </div>
                     </div>
@@ -22,8 +22,8 @@
                     </div>
                     <div class="flex justify-center mt-5">
                         <p class="cursor-pointer font-bold">
-                            <span class="hover:text-teal-700">Login to your account</span> |
-                            <span class="hover:text-teal-700">Register new account</span>
+                            <span class="hover:text-teal-700" @click="$emit('showLogin')">Login to your account</span> |
+                            <span class="hover:text-teal-700" @click="$emit('registerAccount')">Register new account</span>
                         </p>
                     </div>
 
@@ -35,13 +35,25 @@
 
 <script setup lang="ts">
 import {useForm} from "@inertiajs/inertia-vue3";
-defineProps({
+let props=defineProps({
     forgot:Boolean
 })
 
 let form=useForm({
     email:''
 })
+const emits=defineEmits(['updateForm','forgotOff'])
+
+const submit=()=>{
+    form.post(route('reset.password'),{
+        onSuccess:()=>{
+            form.reset();
+            emits('updateForm')
+            emits('forgotOff')
+
+        }
+    })
+}
 </script>
 
 <style scoped>

@@ -22,15 +22,15 @@
 
                     </header>
                     <!--login form-->
-                    <login :login="login"></login>
+                    <login :login="login" @registerAccount="showRegister()" @forgotPassword="showForgot()" @closeModal="show=false"></login>
                     <!--End of login form-->
                     <!--register form-->
-                    <register :register="register"></register>
+                    <register :register="register" @showLogin="showLogin()" @closeModal="show=false"></register>
 
                     <!--forgot password-->
-                    <forgot-password :forgot="forgot"></forgot-password>
+                    <forgot-password :forgot="forgot" @showLogin="showLogin()" @registerAccount="showRegister()" @updateForm="update=true" @forgotOff="forgot=false"></forgot-password>
                     <!--update password form-->
-                    <update-password :update="update"></update-password>
+                    <update-password :update="update" @resendEmail="sendEmail()" @returnLogin="login=true" @closeUpdate="update=false"></update-password>
 
 
 
@@ -41,11 +41,8 @@
 </template>
 
 <script setup lang="ts">
-
-import {Button, Input} from "flowbite-vue";
-import {useForm} from "@inertiajs/inertia-vue3";
 import {ref} from "vue";
-import Login from "@/views/components/auth/login.vue";
+import Login from "@/views/pages/auth/login.vue";
 import Register from "@/views/pages/auth/register.vue";
 import ForgotPassword from "@/views/pages/auth/forgot-password.vue";
 import UpdatePassword from "@/views/pages/auth/update-password.vue";
@@ -54,19 +51,39 @@ const emits=defineEmits(['close'])
 emits("close")
 let props=defineProps({
     show:Boolean,
+    login:Boolean,
 })
 
-let form=useForm({
-    email:'',
-    password:''
-})
-
-
-
-const login=ref(false)
+const login=ref(props.login)
 const register=ref(false)
 const forgot=ref(false)
-const update=ref(true)
+const update=ref(false)
+ function showRegister(){
+    login.value=false;
+    forgot.value=false;
+    update.value=false;
+    register.value=true;
+ }
+function showForgot(){
+    login.value=false;
+    update.value=false;
+    register.value=false;
+    forgot.value=true;
+}
+
+function showLogin(){
+    update.value=false;
+    register.value=false;
+    forgot.value=false;
+    login.value=true;
+}
+
+function sendEmail(){
+    login.value=false;
+    update.value=false;
+    register.value=false;
+    forgot.value=true;
+}
 
 </script>
 
