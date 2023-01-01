@@ -22,7 +22,7 @@
                     <form>
                         <div class="relative">
 
-                            <input type="search" id="default-search" class="block p-2 pl-5 w-full text-sm text-black-100 font-bold bg-white rounded-full border-2 border-gray-300 focus:border-gray-900 ring-0 outline-0 placeholder-black-100" placeholder="Search for anything...">
+                            <input type="search" id="main-search" class="block p-2 pl-5 w-full text-sm text-black-100 font-bold bg-white rounded-full border-2 border-gray-300 focus:border-gray-900 ring-0 outline-0 placeholder-black-100" placeholder="Search for anything...">
 
                         </div>
                     </form>
@@ -134,6 +134,8 @@
     </header>
     <main  class="z-10">
      <slot/>
+        <!--login modal-->
+        <authentication :show="true" @close="false"></authentication>
     </main>
     <footer class="bg-black-100">
         <div class="grid grid-cols-2 md:grid-cols-3 gap-5 py-5 px-5 md:px-14">
@@ -263,8 +265,8 @@ import {Link} from "@inertiajs/inertia-vue3";
 import {ref} from "vue";
 import {useCategory} from "@/scripts/use/useCategory";
 import {useCoupon} from "@/scripts/use/useCoupon";
-import {useTimer} from "@/scripts/use/useTimer";
 import VueCountdown from '@chenfengyuan/vue-countdown';
+import Authentication from "@/views/pages/auth/authentication.vue";
 const {categories}=useCategory()
 const  {coupon}=useCoupon()
 

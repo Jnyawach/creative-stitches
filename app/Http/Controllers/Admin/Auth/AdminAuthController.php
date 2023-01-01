@@ -23,7 +23,7 @@ class AdminAuthController extends Controller
     }
 
     public function create(CreateUserRequest $request){
-        $user=Admin::create([
+       /* $user=Admin::create([
             'name'=>$request->name,
             'last_name'=>$request->last_name,
             'email'=>$request->email,
@@ -33,7 +33,8 @@ class AdminAuthController extends Controller
         $user->assignRole($role);
         Auth::login($user);
 
-        return redirect()->route('admin.index');
+        return redirect()->route('admin.index');*/
+        return redirect()->back();
     }
 
 

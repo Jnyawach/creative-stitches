@@ -30,7 +30,7 @@
 }
 
 .creative-input{
-    @apply w-full mt-3 rounded-lg border bg-gray-50 border border-gray-300 text-gray-900 focus:ring-gray-800 focus:border-gray-800 outline-0 block h-10 p-2
+    @apply w-full mt-3 rounded-full border bg-gray-50 border border-gray-300 text-gray-900 focus:ring-gray-800 focus:border-gray-800 outline-0 block h-10 p-2
 }
 
 .creative-text-input{
