@@ -4,7 +4,7 @@
     <meta name="description" content="Embroidery Design Wishlists">
 </Head>
     <account-menu></account-menu>
-    <div class="py-10 grid sm:grid-cols-2 ">
+    <div v-if="user.data.wishlist.length" class="py-10 grid sm:grid-cols-2 ">
        <div v-for="wishlist in user.data.wishlist" class="border rounded-xl overflow-hidden p-2 m-2">
            <Link :href="route('shop.show',wishlist.product.slug)" :title="wishlist.product.name">
 
@@ -86,6 +86,14 @@
                </div>
            </div>
            </Link>
+       </div>
+    </div>
+    <div v-else class="py-14 flex place-content-center">
+       <div class="text-center">
+           <h6 class="font-bold text-lg">You haven't saved products on the Wishlist!</h6>
+           <div class="my-3">
+               <Link :href="route('shop.index')" title="Shop all Products" class="btn-primary">Continue Shopping</Link>
+           </div>
        </div>
     </div>
 </template>
