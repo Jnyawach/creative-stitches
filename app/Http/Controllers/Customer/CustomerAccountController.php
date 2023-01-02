@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\Address;
+use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,8 @@ class CustomerAccountController extends Controller
     {
         //
         $user=new UserResource(User::findOrFail(Auth::id())->load('address'));
-        return inertia::render('account.index', compact('user'));
+        $subscription=Subscription::where('email',$user->email)->first();
+        return inertia::render('account.index', compact('user','subscription'));
     }
 
     /**
@@ -142,7 +144,7 @@ class CustomerAccountController extends Controller
             'zip'=>$validated['zip']
         ]);
         return redirect()->back()
-            ->with('status','Address Saved Successfully');
+            ->with('status','Address Updated Successfully');
     }
 
     public function passwordUpdate(Request $request, $id){
@@ -166,5 +168,23 @@ class CustomerAccountController extends Controller
 
         return redirect()->back()
             ->with('status','Password Updated Successfully');
+    }
+
+    public function subscriptionDelete($id){
+        $subscription=Subscription::findOrFail($id);
+        $subscription->delete();
+        return redirect()->back()
+            ->with('status','Subscription Successfully cancelled');
+    }
+
+    public function subscriptionCreate($id){
+        $user=User::findOrFail($id);
+        $subscription=Subscription::create([
+            'name'=>$user->name,
+            'email'=>$user->email,
+        ]);
+
+        return redirect()->back()
+            ->with('status','Subscription Successfully Created');
     }
 }

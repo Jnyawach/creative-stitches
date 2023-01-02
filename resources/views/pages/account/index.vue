@@ -5,11 +5,6 @@
 </Head>
     <!--account-menu-->
    <account-menu></account-menu>
-
-    <div class="bg-teal-50 py-3 px-3" v-if="$page.props.status">
-        <p><span class="mr-2 text-teal-700"><i class="far fa-info-circle"></i></span>{{$page.props.status}}</p>
-    </div>
-
     <div class="my-8 px-3 md:px-10">
         <!--profile management-->
         <h1 class="text-2xl font-bold">Your Profile</h1>
@@ -37,9 +32,12 @@
                             v-if="user.data.address">
                         <span class="mr-2"><i class="fal fa-pen"></i></span>Edit
                     </button>
+
+
+                </div>
+                <div v-if="user.data.address">
                     <address-edit :show="editAddress" @close="editAddress=false"
                                   :address="user.data.address"></address-edit>
-
                 </div>
                 <div class="mt-3">
                     <div v-if="user.data.address">
@@ -74,7 +72,48 @@
 
             </div>
             <div class="border rounded-xl p-3">
+                <div>
+                    <div class="flex justify-between">
+                        <h6 class="font-bold">Payment Information</h6>
+                        <button  class="text-teal-700 font-bold"><span class="mr-2"><i
+                            class="fal fa-pen"></i></span>Edit
+                        </button>
 
+                    </div>
+
+                    <div class="my-2">
+                        <button type="button"
+                                class="hover:text-teal-700 font-bold border py-2 px-8 rounded-full hover:border-teal-700">
+                            <span class="mr-2"><i class="fal fa-pen"></i></span> Add Payment
+                        </button>
+
+                    </div>
+
+                </div>
+                <hr class="my-3">
+                <div>
+                    <div class="flex justify-between">
+                        <h6 class="font-bold">Subscription</h6>
+
+                    </div>
+                    <div v-if="subscription" class="py-3">
+                        <p>Subscribed to News, projects, promotion, and sales</p>
+                        <div class="py-3">
+                            <Link as="button" method="delete" :href="route('subscription.cancel',subscription.id)" class="hover:text-red-700 font-bold text-sm
+                            border py-2 px-5 rounded-full hover:border-red-700">
+                                Cancel Subscription
+                            </Link>
+                        </div>
+                    </div>
+                    <div v-else class="py-3">
+                        <Link as="button" method="patch" :href="route('subscription.create',user.data.id)"
+                                class="hover:text-teal-700 font-bold border py-2 px-8 rounded-full hover:border-teal-700">
+                            <span class="mr-2"><i class="fal fa-envelope"></i></span> Subscribe to Newsletter
+                        </Link>
+
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
@@ -93,7 +132,8 @@ import UserEdit from "@/views/components/account/user-edit.vue";
 import PasswordEdit from "@/views/components/account/password-edit.vue";
 defineProps({
     user:Object,
-    status:Object
+    status:Object,
+    subscription:Object
 })
 
 const createAddress=ref(false)

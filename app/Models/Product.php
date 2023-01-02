@@ -52,8 +52,8 @@ class Product extends Model implements HasMedia
         return $this->belongsTo(Promotion::class);
 
     }
-    public  function latestPromotion(){
-
+    public function wishlist(){
+        return $this->hasMany(Wishlist::class);
     }
 
 

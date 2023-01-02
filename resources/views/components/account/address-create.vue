@@ -48,7 +48,7 @@
                                   <div>
                                       <label for="country_create" class="creative-label">Country<sup class="text-red-900 text-[9px]"><i class="fas fa-star-of-life"></i></sup></label>
                                       <select required class="creative-input" v-model="form.country_id" id="country_create">
-                                          <option selected value="">Select Status</option>
+                                          <option selected value="">Select Country</option>
                                           <option :value="country.id" v-for="country in countries" :key="country_id">{{country.name}}</option>
 
                                       </select>

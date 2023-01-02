@@ -26,7 +26,6 @@
         "flowbite": "^1.5.5",
         "flowbite-vue": "^0.0.9",
         "lodash": "^4.17.21",
-        "sweetalert2": "^11.4.8",
         "vue": "^3.2.45",
         "ziggy-js": "^1.5.0"
     }

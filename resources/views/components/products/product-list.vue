@@ -7,10 +7,17 @@
                     <img :src="product.mainImage.icon" class="cursor-pointer hover:scale-110 duration-200"
                          :alt="product.name" :title="product.name" @click="triggerModal(product)">
                 </div>
-                <button type="button" title="Save to Wishlist" class="rounded-full text-white bg-teal-700
+
+                <Link preserve-scroll v-if="$page.props.auth" :href="route('wishlist.update',product.id)" as="button" title="Save to Wishlist" method="patch"
+                      class="rounded-full text-white bg-teal-700
                     p-1 w-10 h-10 text-xl absolute top-2 right-2 hover:bg-teal-600">
                     <span><i class="far fa-heart"></i></span>
-                </button>
+                </Link>
+                <Link v-else @click="store.login=true" as="button" title="Save to Wishlist"
+                      class="rounded-full text-white bg-teal-700
+                    p-1 w-10 h-10 text-xl absolute top-2 right-2 hover:bg-teal-600">
+                    <span><i class="far fa-heart"></i></span>
+                </Link>
                 <button v-if="product.promotion" class="absolute top-2 left-2 bg-red-700 p-1
                 text-white text-[9px] font-montserrat font-semibold rounded-md">
                     <span>{{product.promotion.discount}}% off</span>
@@ -49,11 +56,13 @@
 import Overview from "@/views/components/products/overview.vue";
 import {ref} from "vue";
 import {useTruncate} from "@/scripts/use/useTruncate";
-import {Button} from "flowbite-vue";
+import {Link} from "@inertiajs/inertia-vue3";
+import {store} from "@/scripts/store/login";
 
 
 defineProps({
-    products:Object
+    products:Object,
+
 })
 
 const showModal=ref(false)
@@ -64,6 +73,7 @@ const triggerModal=(product:any)=>{
     showModal.value=true;
 
 }
+
 </script>
 
 <style scoped>

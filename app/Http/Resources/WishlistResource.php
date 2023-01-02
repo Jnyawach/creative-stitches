@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Wishlist;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class WishlistResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,11 +16,10 @@ class UserResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'name'=>$this->name,
-            'last_name'=>$this->last_name,
-            'email'=>$this->email,
-            'address'=>new AddressResource($this->whenLoaded('address')),
-            'wishlist'=>WishlistResource::collection($this->whenLoaded('wishlists'))
+            'user_id'=>$this->user_id,
+            'product_id'=>$this->product_id,
+            'product'=>new ProductResource($this->product)
+
         ];
     }
 }

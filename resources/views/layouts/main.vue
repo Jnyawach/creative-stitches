@@ -38,8 +38,11 @@
                             <i class="far fa-user"></i>
                         </Link>
                     </li>
-                    <li>
-                        <Link href="#" title="My wishlist" class="hover:text-teal-900">
+                    <li >
+                        <Link v-if="auth" :href="route('wishlist.index')" title="My wishlist" class="hover:text-teal-900">
+                            <span><i class="far fa-heart"></i></span>
+                        </Link>
+                        <Link v-else as="button" @click="authModal=true" title="My wishlist" class="hover:text-teal-900">
                             <span><i class="far fa-heart"></i></span>
                         </Link>
                     </li>
@@ -144,10 +147,11 @@
         </Teleport>
 
     </header>
-    <main  class="z-10">
-     <slot/>
+    <main  class="z-10" >
+     <toast :message="message" @remove="remove()"></toast>
+        <slot/>
         <!--login modal-->
-        <authentication :show="authModal" @close="authModal=false" :login="true"></authentication>
+        <authentication :show="authModal" @close="authModal=false" :login="true" :key="authKey"></authentication>
     </main>
     <footer class="bg-black-100">
         <div class="grid grid-cols-2 md:grid-cols-3 gap-5 py-5 px-5 md:px-14">
@@ -273,32 +277,55 @@
 <script setup lang="ts">
 import {InertiaProgress} from "@inertiajs/progress";
 InertiaProgress.init()
-import {Link} from "@inertiajs/inertia-vue3";
+import {Link, usePage} from "@inertiajs/inertia-vue3";
 import {ref, watch} from "vue";
 import {useCategory} from "@/scripts/use/useCategory";
 import {useCoupon} from "@/scripts/use/useCoupon";
 import VueCountdown from '@chenfengyuan/vue-countdown';
 import Authentication from "@/views/pages/auth/authentication.vue";
+import Toast from "@/views/components/toast.vue";
+import {Inertia} from "@inertiajs/inertia";
+import {store} from "@/scripts/store/login";
 const {categories}=useCategory()
 const  {coupon}=useCoupon()
 
 const drawerVisible=ref(false)
 
 const authModal=ref(false)
+const authKey=ref(new Date().getTime().toString())
 let props=defineProps({
     auth:Object,
     session:Object
 })
 
+
 watch(
     () => props.session,
     (session) => {
        if (session.requireAuth){
-           authModal.value=true
+           authModal.value=true;
+           authKey.value=new Date().getTime().toString();
        }
 
     },
 );
+
+const page=usePage()
+const message=ref('')
+let removeEventListener=Inertia.on("finish",()=>{
+    if (page.props.value.status){
+        message.value=page.props.value.status
+    }
+})
+function remove(){
+ message.value=null
+}
+watch(store,()=>{
+    if (store.login==true){
+        authModal.value=true;
+        store.login=false;
+    }
+})
 </script>
 
 <style scoped>
