@@ -148,7 +148,10 @@
 
     </header>
     <main  class="z-10" >
-     <toast :message="message" @remove="remove()"></toast>
+        <Teleport to="body">
+            <toast :message="message" @remove="remove()"></toast>
+        </Teleport>
+
         <slot/>
         <!--login modal-->
         <authentication :show="authModal" @close="authModal=false" :login="true" :key="authKey"></authentication>

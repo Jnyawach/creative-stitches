@@ -3,14 +3,11 @@
 namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
-use App\Models\User;
-use App\Models\Wishlist;
+use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Inertia\Inertia;
+use Jackiedo\Cart\Facades\Cart;
 
-class CustomerWishlistController extends Controller
+class CustomerCartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +17,6 @@ class CustomerWishlistController extends Controller
     public function index()
     {
         //
-        $user=new UserResource(User::findOrFail(Auth::id())->load('wishlists'));
-        return inertia::render('account.wishlist.index', compact('user'));
     }
 
     /**
@@ -77,16 +72,12 @@ class CustomerWishlistController extends Controller
     public function update(Request $request, $id)
     {
         //
-        if ($wishlist=Wishlist::where('user_id',Auth::id())->where('product_id',$id)->first()){
-            return  redirect()->back()
-                ->with('status', 'Product already in wishlist');
-        }
-        $wishlist=Wishlist::create([
-            'user_id'=>Auth::id(),
-            'product_id'=>$id,
+        $product=Product::findOrFail($id);
+
+        $cartItem = $product->addToCart('shopping', [
+            'quantity' => 1
         ]);
-        return  redirect()->back()
-            ->with('status', 'Product added to wishlist');
+        dd($cartItem);
     }
 
     /**
@@ -98,9 +89,5 @@ class CustomerWishlistController extends Controller
     public function destroy($id)
     {
         //
-        $wishlist=Wishlist::findOrFail($id);
-        $wishlist->delete();
-        return  redirect()->back()
-            ->with('status','Product removed from Wishlist');
     }
 }

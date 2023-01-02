@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Customer\CustomerCartController;
 use App\Http\Controllers\General\BlogController;
 use App\Http\Controllers\General\ContactUsController;
 use App\Http\Controllers\General\HelpCenterConroller;
@@ -28,6 +29,7 @@ Route::group([], function (){
 });
 
 Route::group([],function(){
+    Route::resource('cart', CustomerCartController::class);
     Route::get('shop/promotions/{id}', [ShopController::class,'shopPromotion'])->name('shop.promotion');
     Route::get('shop/category/{id}', [ShopController::class,'shopCategory'])->name('shop.category');
     Route::resource('shop', ShopController::class);

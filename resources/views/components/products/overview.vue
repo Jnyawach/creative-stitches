@@ -69,15 +69,19 @@
                                     </div>
 
                                     <div class="mt-3">
-                                        <button type="button" class="text-black-100 py-2 px-4 border rounded-full
-                    m-2 border-black-100 text-xs hover:text-teal-700 hover:border-teal-700 font-semibold">
+                                        <Link  v-if="$page.props.auth" :href="route('wishlist.update',product.id)" as="button" method="patch" class="text-black-100 py-2 px-4 border rounded-full
+                                         m-2 border-black-100 text-xs hover:text-teal-700 hover:border-teal-700 font-semibold">
                                             <span class="mr-2"><i class="far fa-heart"></i></span>Add to Wishlist
-                                        </button>
+                                        </Link>
+                                        <Link v-else  @click="store.login=true" as="button" class="text-black-100 py-2 px-4 border rounded-full
+                                         m-2 border-black-100 text-xs hover:text-teal-700 hover:border-teal-700 font-semibold">
+                                            <span class="mr-2"><i class="far fa-heart"></i></span>Add to Wishlist
+                                        </Link>
 
-                                        <button type="button" class="text-white bg-teal-700 py-2 px-4 border rounded-full
-                       m-1 border-teal-700 text-xs  hover:bg-teal-900 font-semibold">
+                                        <Link :href="route('cart.update',product.id)" method="patch" preserve-scroll as="button" class="text-white bg-teal-700 py-2 px-4 border rounded-full
+                                          m-1 border-teal-700 text-xs  hover:bg-teal-900 font-semibold">
                                             <span class="mr-2"><i class="far fa-plus"></i></span>Add to Basket
-                                        </button>
+                                        </Link>
                                     </div>
 
                                 </div>
@@ -109,6 +113,7 @@
 
 <script setup lang="ts">
 import {Link} from "@inertiajs/inertia-vue3";
+import {store} from "@/scripts/store/login";
 const emits=defineEmits(['close'])
 emits("close")
 let props=defineProps({

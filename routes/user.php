@@ -15,3 +15,5 @@ Route::group(['middleware'=>'auth:web'], function(){
     Route::post('account/address-store', [CustomerAccountController::class,'addressStore'])->name('address.store');
     Route::resource('account', CustomerAccountController::class);
 });
+
+

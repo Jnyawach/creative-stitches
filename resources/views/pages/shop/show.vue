@@ -71,11 +71,18 @@
                 <p class="text-sm mt-2"><span class="text-teal-700">Available Formats</span><span v-for="format in product.embroideries" :key="format.id" class="ml-1 font-semibold">.{{format.format.abbreviation}}</span></p>
                 <p class="text-sm mt-2">SKU: {{product.sku}}</p>
                 <div class="flex gap-3">
-                    <button type="button" class=" mt-3 text-white bg-teal-700 py-2 px-4 border rounded-full
+                    <Link :href="route('cart.update',product.id)" method="patch" preserve-scroll as="button" class=" mt-3 text-white bg-teal-700 py-2 px-4 border rounded-full
                        m-1 border-teal-700   hover:bg-teal-900 font-semibold">
                         <span class="mr-2"><i class="far fa-plus"></i></span>Add to Basket
-                    </button>
-                    <button class="hover:text-teal-700 font-semibold"><span class="mr-2"><i class="fal fa-heart"></i></span>Save to Wishlist</button>
+                    </Link>
+                    <Link  v-if="$page.props.auth" :href="route('wishlist.update',product.id)" as="button" method="patch" class="text-black-100
+                                         m-2  text-xs hover:text-teal-700  font-semibold">
+                        <span class="mr-2"><i class="far fa-heart"></i></span>Add to Wishlist
+                    </Link>
+                    <Link v-else  @click="store.login=true" as="button" class="text-black-100
+                                         m-2  text-xs hover:text-teal-700  font-semibold">
+                        <span class="mr-2"><i class="far fa-heart"></i></span>Add to Wishlist
+                    </Link>
                 </div>
 
                 <div class="mt-3">
@@ -160,7 +167,7 @@ import {Head} from "@inertiajs/inertia-vue3";
 import {Link} from "@inertiajs/inertia-vue3";
 import Carousel from "@/views/components/products/carousel.vue";
 import ProductList from "@/views/components/products/product-list.vue";
-import Sidelink from "@/views/components/sidelink.vue";
+import {store} from "@/scripts/store/login";
 
 let props=defineProps({
     product:Object,

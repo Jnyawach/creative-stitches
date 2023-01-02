@@ -6,9 +6,11 @@
     <account-menu></account-menu>
     <div class="py-10 grid sm:grid-cols-2 ">
        <div v-for="wishlist in user.data.wishlist" class="border rounded-xl overflow-hidden p-2 m-2">
+           <Link :href="route('shop.show',wishlist.product.slug)" :title="wishlist.product.name">
+
            <div class="grid grid-cols-4 gap-2  ">
              <div class="col-span-1">
-               <img :src="wishlist.product.mainImage.icon" class=" mx-auto rounded-xl">
+               <img :src="wishlist.product.mainImage.icon" class=" mx-auto rounded-xl" :alt="wishlist.product.name">
              </div>
                <div class="col-span-3">
                 <h6 class="font-bold text-xl">{{wishlist.product.name}}</h6>
@@ -83,6 +85,7 @@
 
                </div>
            </div>
+           </Link>
        </div>
     </div>
 </template>

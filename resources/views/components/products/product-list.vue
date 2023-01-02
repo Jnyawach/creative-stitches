@@ -60,6 +60,7 @@ import {Link} from "@inertiajs/inertia-vue3";
 import {store} from "@/scripts/store/login";
 
 
+
 defineProps({
     products:Object,
 
