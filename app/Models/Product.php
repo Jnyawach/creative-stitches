@@ -12,9 +12,9 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Product extends Model implements HasMedia, UseCartable
+class Product extends Model implements HasMedia
 {
-    use HasFactory, InteractsWithMedia, Sluggable, SluggableScopeHelpers,CanUseCart;
+    use HasFactory, InteractsWithMedia, Sluggable, SluggableScopeHelpers;
     /**
      * Return the sluggable configuration array for this model.
      *

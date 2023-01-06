@@ -10,10 +10,10 @@
     "require": {
         "php": "^8.0.2",
         "cviebrock/eloquent-sluggable": "^9.0",
+        "darryldecode/cart": "^4.2",
         "guzzlehttp/guzzle": "^7.2",
         "inertiajs/inertia-laravel": "^0.6.4",
         "innocenzi/laravel-vite": "0.2.*",
-        "jackiedo/cart": "^3.0",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",

@@ -20,6 +20,7 @@ class MainController extends Controller
     public function index()
     {
         //
+
          $products=Product::with('embroideries')->latest()->limit(15)->get();
          $products=ProductResource::collection($products);
          $promotion=new PromotionResource(Promotion::where('status',1)->latest()->first());

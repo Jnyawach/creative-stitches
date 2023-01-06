@@ -6,7 +6,7 @@ import {ref} from "vue";
 export function useCategory(){
     const categories=ref([])
     //get a task
-    axios.get('get/categories')
+    axios.get('api/get/categories')
         .then(function (response) {
             // handle success
             categories.value = response.data.data;

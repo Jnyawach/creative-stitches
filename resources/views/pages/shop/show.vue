@@ -71,7 +71,7 @@
                 <p class="text-sm mt-2"><span class="text-teal-700">Available Formats</span><span v-for="format in product.embroideries" :key="format.id" class="ml-1 font-semibold">.{{format.format.abbreviation}}</span></p>
                 <p class="text-sm mt-2">SKU: {{product.sku}}</p>
                 <div class="flex gap-3">
-                    <Link :href="route('cart.update',product.id)" method="patch" preserve-scroll as="button" class=" mt-3 text-white bg-teal-700 py-2 px-4 border rounded-full
+                    <Link :href="route('cart.update',product.id)" method="patch"  type="button" class=" mt-3 text-white bg-teal-700 py-2 px-4 border rounded-full
                        m-1 border-teal-700   hover:bg-teal-900 font-semibold">
                         <span class="mr-2"><i class="far fa-plus"></i></span>Add to Basket
                     </Link>
@@ -169,12 +169,14 @@ import Carousel from "@/views/components/products/carousel.vue";
 import ProductList from "@/views/components/products/product-list.vue";
 import {store} from "@/scripts/store/login";
 
+
 let props=defineProps({
     product:Object,
     products:Object
 })
 const product=reactive(props.product.data)
 const featured=props.products.data
+
 
 
 

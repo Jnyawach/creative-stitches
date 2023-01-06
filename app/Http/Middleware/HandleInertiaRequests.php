@@ -50,14 +50,15 @@ class HandleInertiaRequests extends Middleware
             $auth=null;
         }
         return array_merge(parent::share($request), [
-            'versions' => [
-            	'php' => PHP_VERSION,
-            	'laravel' => \Illuminate\Foundation\Application::VERSION
-            ],
-
             'auth' =>$auth,
             'status' => $request->session()->get('status')?$request->session()->get('status'):null,
             'session'=>session()->only(['requireAuth']),
+            'cart' => [
+                'items' => \Cart::getContent(),
+                'cartCount' => \Cart::getTotalQuantity(),
+                'cartSubTotal' => \Cart::getSubTotal(),
+                'cartTotal' => \Cart::getTotal(),
+                ],
 
         ]);
     }

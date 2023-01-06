@@ -29,6 +29,8 @@ Route::group([], function (){
 });
 
 Route::group([],function(){
+    Route::patch('move-wishlist/{id}', [CustomerCartController::class,'moveWishlist'])->name('move.wishlist');
+    Route::get('cart-get', [CustomerCartController::class,'cartContent']);
     Route::resource('cart', CustomerCartController::class);
     Route::get('shop/promotions/{id}', [ShopController::class,'shopPromotion'])->name('shop.promotion');
     Route::get('shop/category/{id}', [ShopController::class,'shopCategory'])->name('shop.category');

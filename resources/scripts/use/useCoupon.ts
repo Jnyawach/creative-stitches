@@ -3,7 +3,7 @@ import {ref} from "vue";
 export  function useCoupon() {
     const coupon=ref('')
 
-    axios.get('get/coupon')
+    axios.get('api/get/coupon')
         .then(function (response) {
             // handle success
             coupon.value = response.data;

@@ -47,12 +47,12 @@
                         </Link>
                     </li>
                     <li>
-                        <Link href="#" title="cart" class="hover:text-teal-900 relative">
+                        <button @click="cartModal=true" title="cart" class="hover:text-teal-900 relative">
                             <span><i class="far fa-shopping-bag"></i></span>
-                            <div class="absolute bg-teal-700 h-4 w-4 -top-2 -right-3 flex place-content-center rounded-full">
-                                <span class="self-center leading-none text-white text-[10px] font-bold text-xm">2</span>
+                            <div v-if="cart.cartCount" class="absolute bg-teal-700 h-4 w-4 -top-2 -right-3 flex place-content-center rounded-full">
+                                <span class="self-center leading-none text-white text-[10px] font-bold text-xm">{{cart.cartCount}}</span>
                             </div>
-                        </Link>
+                        </button>
                     </li>
 
                     <li v-if="auth">
@@ -155,6 +155,7 @@
         <slot/>
         <!--login modal-->
         <authentication :show="authModal" @close="authModal=false" :login="true" :key="authKey"></authentication>
+    <cart :show="cartModal" @close="cartModal=false" :cart="cart"></cart>
     </main>
     <footer class="bg-black-100">
         <div class="grid grid-cols-2 md:grid-cols-3 gap-5 py-5 px-5 md:px-14">
@@ -281,7 +282,7 @@
 import {InertiaProgress} from "@inertiajs/progress";
 InertiaProgress.init()
 import {Link, usePage} from "@inertiajs/inertia-vue3";
-import {ref, watch} from "vue";
+import {computed, ref, watch} from "vue";
 import {useCategory} from "@/scripts/use/useCategory";
 import {useCoupon} from "@/scripts/use/useCoupon";
 import VueCountdown from '@chenfengyuan/vue-countdown';
@@ -289,12 +290,16 @@ import Authentication from "@/views/pages/auth/authentication.vue";
 import Toast from "@/views/components/toast.vue";
 import {Inertia} from "@inertiajs/inertia";
 import {store} from "@/scripts/store/login";
+import {useCart} from "@/scripts/use/useCart";
+import Cart from "@/views/components/products/cart.vue";
 const {categories}=useCategory()
 const  {coupon}=useCoupon()
+const cart= computed(() => usePage().props.value.cart)
 
 const drawerVisible=ref(false)
 
 const authModal=ref(false)
+const  cartModal=ref(false)
 const authKey=ref(new Date().getTime().toString())
 let props=defineProps({
     auth:Object,
