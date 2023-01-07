@@ -17,7 +17,7 @@
                         </div>
                     </div>
                     <div class="p-2">
-                        <div v-if="cart">
+                        <div v-if="cart.cartCount">
                             <h6 class="text-center text-lg font-bold  text-sm">Available in Basket {{cart.cartCount}} Item(s)</h6>
                             <hr class="mt-2">
 

@@ -49,6 +49,20 @@ class HandleInertiaRequests extends Middleware
         }else{
             $auth=null;
         }
+        $cartConditions = \Cart::getConditions();
+        $conditions=array();
+        foreach($cartConditions as $condition)
+        {
+            $conditions=array([
+                'target'=>$condition->getTarget(),
+            'name'=>  $condition->getName(),
+            'type'=>$condition->getType(),
+            'amount'=>$condition->getValue(),
+            'order'=>$condition->getOrder(),
+            'attributes'=>$condition->getAttributes(),
+            ]);
+
+        }
         return array_merge(parent::share($request), [
             'auth' =>$auth,
             'status' => $request->session()->get('status')?$request->session()->get('status'):null,
@@ -58,6 +72,7 @@ class HandleInertiaRequests extends Middleware
                 'cartCount' => \Cart::getTotalQuantity(),
                 'cartSubTotal' => \Cart::getSubTotal(),
                 'cartTotal' => \Cart::getTotal(),
+                'conditions'=>$conditions,
                 ],
 
         ]);

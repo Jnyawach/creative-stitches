@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Coupon;
 use App\Models\Format;
 use App\Models\Product;
 use App\Models\Wishlist;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -142,6 +144,35 @@ class CustomerCartController extends Controller
         ]);
         return  redirect()->back()
             ->with('status', 'Product added to wishlist');
+
+    }
+
+    public function enterPromo(Request $request){
+
+        $validated=$request->validate([
+            'code'=>'required|string|max:6|exists:coupons'
+        ],[
+            'exists'=>'The code provided is incorrect. Please check and try again'
+        ]);
+
+        $coupon=Coupon::where('code', $validated['code'])->latest()->first();
+        if (Carbon::today()>$coupon->expires){
+           return redirect()->back()
+           ->withErrors([
+               'code'=>'The promo code is expired'
+           ])->onlyInput('code');
+        }
+
+        $condition = new \Darryldecode\Cart\CartCondition(array(
+            'name' => 'Coupon Code',
+            'type' => 'Sales',
+            'target' => 'total',
+            'value' => '-'.$coupon->discount.'%',
+        ));
+        \Cart::condition($condition);
+
+        return redirect()->back()
+            ->with('status','Promo Code applied Successfully');
 
     }
 
