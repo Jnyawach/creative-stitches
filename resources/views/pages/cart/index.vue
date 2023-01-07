@@ -1,6 +1,6 @@
 <template layout="main">
     <Head>
-        <title>Cart</title>
+        <title>Order Basket</title>
     </Head>
     <div v-if="cart.cartCount" class="my-10 px-3 lg:px-24 ">
         <div class="flex justify-between">
@@ -56,20 +56,23 @@
 
             <div class="md:col-span-2 m-1 grid gap-3">
                 <div class="w-full flex order-2 md:order-1">
-                    <Link class="bg-teal-700 w-full py-3 px-10 h-12 font-bold hover:bg-teal-800
-                text-white rounded-full text-center">Checkout <span class="ml-2"><i class="fal fa-long-arrow-right"></i></span>
+                    <Link v-if="$page.props.auth" class="bg-teal-700 w-full py-3 px-10 h-12 font-bold hover:bg-teal-800
+                      text-white rounded-full text-center">Checkout <span class="ml-2"><i class="fal fa-long-arrow-right"></i></span>
+                    </Link>
+                    <Link v-else :href="route('details.index')" title="Proceed to checkout" class="bg-teal-700 w-full py-3 px-10 h-12 font-bold hover:bg-teal-800
+                      text-white rounded-full text-center">Checkout <span class="ml-2"><i class="fal fa-long-arrow-right"></i></span>
                     </Link>
                 </div>
                 <div class="border rounded-lg p-2 mt-3 order-1 md:order-2">
                     <h6 class="font-bold mt-2">ORDER SUMMARY</h6>
                     <div class="px-2 mt-3 space-y-4">
-                        <p class="text-gray-800 flex justify-between"><span>{{ cart.cartCount }} Items(s)</span> <span>$ {{ cart.cartSubTotal }}</span>
+                        <p class="text-gray-800 flex justify-between"><span>{{ cart.cartCount }} Items(s)</span> <span>$ {{Number( cart.cartSubTotal ).toFixed(2)}}</span>
                         </p>
                         <p class="text-gray-800 flex justify-between"><span>Sales Tax</span> <span>-</span></p>
-                        <p class="text-gray-800 flex justify-between font-bold"><span>Sub Total</span> <span>$ {{cart.cartSubTotal}}</span></p>
+                        <p class="text-gray-800 flex justify-between font-bold"><span>Sub Total</span> <span>$ {{Number( cart.cartSubTotal ).toFixed(2)}}</span></p>
                         <p class="text-gray-800 flex justify-between" v-for="condition in cart.conditions"><span>{{condition.name}}</span> <span>{{condition.amount}}</span></p>
                         <p class="text-gray-800 flex justify-between font-bold"><span>Total</span>
-                            <span>$ {{ cart.cartTotal }}</span></p>
+                            <span>$ {{Number( cart.cartTotal).toFixed(2)}}</span></p>
 
                     </div>
 
@@ -77,7 +80,7 @@
                 <div class="order-3">
                     <div>
 
-                        <form v-if="promoForm" @submit.prevent="form.post(route('enter.promo'))">
+                        <form v-if="promoForm" @submit.prevent="submit">
                             <div class="grid grid-cols-3 gap-2">
                                 <div class="col-span-2">
                                     <input type="text" class="creative-input" v-model="form.code">
@@ -129,6 +132,14 @@ let form=useForm({
 })
 
 const promoForm=ref(false)
+const submit= ()=>{
+    form.post(route('enter.promo'),{
+        onSuccess:()=>{
+            form.reset();
+            promoForm.value=false
+        }
+    })
+}
 </script>
 
 <style scoped>

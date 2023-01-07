@@ -116,6 +116,9 @@ class CustomerCartController extends Controller
     {
         //
         \Cart::remove($id);
+        if(\Cart::isEmpty()){
+            \Cart::clearCartConditions();
+        }
         return redirect()->back()
             ->with('status','Item Successfully removed from the basket');
     }
@@ -175,5 +178,7 @@ class CustomerCartController extends Controller
             ->with('status','Promo Code applied Successfully');
 
     }
+
+
 
 }

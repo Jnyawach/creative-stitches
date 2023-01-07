@@ -34,7 +34,16 @@
                            <span><i class="fas fa-star-half-alt"></i></span>
                            (624)
                        </span>
-                    {{product.embroideries.length}} format<span v-show="product.embroideries.length>1">s</span>
+
+
+
+                </p>
+                <p class="text-black-100 text-xs font-bold">
+                     <span v-if="product.embroideries.length>1">
+                        <span  v-for="embroidery in product.embroideries">
+                            {{embroidery.format.abbreviation}},
+                        </span>
+                    </span>
                 </p>
                 <p class="font-bold text-black-100 font-montserrat">USD {{product.price}}
                     <span v-if="product.promotion" class="ml-1 text-teal-700 line-through text-xs">
