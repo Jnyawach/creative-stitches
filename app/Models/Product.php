@@ -58,6 +58,10 @@ class Product extends Model implements HasMedia
         return $this->hasMany(Wishlist::class);
     }
 
+    public function orders(){
+        return $this->belongsToMany(Order::class);
+    }
+
 
     public function registerMediaCollections(): void
     {

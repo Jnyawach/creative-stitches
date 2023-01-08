@@ -4,17 +4,16 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Cashier\Billable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable,HasRoles, HasPermissions;
+    use HasApiTokens, HasFactory, Notifiable,HasRoles, HasPermissions,Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -36,6 +35,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'stripe_id'
     ];
 
     /**
@@ -57,6 +57,10 @@ class User extends Authenticatable
 
     public function wishlists(){
         return $this->hasMany(Wishlist::class);
+    }
+
+    public function orders(){
+        return $this->hasMany(Order::class);
     }
 
 }

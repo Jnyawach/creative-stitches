@@ -132,6 +132,8 @@ class CustomerCartController extends Controller
             'cartSubTotal' => \Cart::getSubTotal(),
             'cartTotal' => \Cart::getTotal(),
         ]);
+
+
     }
 
     public function moveWishlist($id){

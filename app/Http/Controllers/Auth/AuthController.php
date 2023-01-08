@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\RegisterUSerRequest;
 use App\Mail\PasswordResetMail;
-use App\Models\Subscription;
+use App\Models\Newsletter;
 use App\Models\User;
 use App\Models\Verify;
 use Illuminate\Http\Request;
@@ -29,9 +29,10 @@ class AuthController extends Controller
         ]);
         $role=Role::find(2);
         $user->assignRole($role);
+        $stripeCustomer = $user->createAsStripeCustomer();
         if ($request->subscribe){
-            if (!$email=Subscription::where('email',$user->email)->first()){
-                $subscriber=Subscription::create([
+            if (!$email=Newsletter::where('email',$user->email)->first()){
+                $subscriber=Newsletter::create([
                     'email'=>$user->email,
                     'name'=>$user->name
                 ]);

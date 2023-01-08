@@ -48,7 +48,7 @@ Route::group([],function(){
     Route::resource('help-center',HelpCenterConroller::class);
 });
 
-
+Route::stripeWebhooks('stripe-webhook');
 
 
 require __DIR__.'/auth.php';

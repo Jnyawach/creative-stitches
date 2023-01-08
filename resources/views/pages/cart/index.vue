@@ -7,7 +7,7 @@
             <div>
                 <h1 class="text-2xl font-bold">You Basket</h1>
                 <p><span class="font-bold">Total:</span> {{ cart.cartCount }} items - <span
-                    class="text-teal-700 font-bold">USD {{ cart.cartTotal }}</span></p>
+                    class="text-teal-700 font-bold">USD {{Number( cart.cartTotal).toFixed(2)}}</span></p>
             </div>
             <div>
                 <button v-if="!$page.props.auth" @click="store.login=true"
@@ -56,7 +56,7 @@
 
             <div class="md:col-span-2 m-1 grid gap-3">
                 <div class="w-full flex order-2 md:order-1">
-                    <Link v-if="$page.props.auth" class="bg-teal-700 w-full py-3 px-10 h-12 font-bold hover:bg-teal-800
+                    <Link :href="route('payment.index')" v-if="$page.props.auth" class="bg-teal-700 w-full py-3 px-10 h-12 font-bold hover:bg-teal-800
                       text-white rounded-full text-center">Checkout <span class="ml-2"><i class="fal fa-long-arrow-right"></i></span>
                     </Link>
                     <Link v-else :href="route('details.index')" title="Proceed to checkout" class="bg-teal-700 w-full py-3 px-10 h-12 font-bold hover:bg-teal-800
