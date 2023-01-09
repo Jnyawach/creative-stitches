@@ -12,7 +12,7 @@
     </title-block>
     <div class="flex justify-end mt-5">
 
-        <div class="">
+        <div >
 
             <div class="relative">
                 <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">

@@ -5,13 +5,13 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\Address;
-use App\Models\Subscription;
+use App\Models\Newsletter;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
-use Inertia\Testing\Concerns\Has;
+
 
 class CustomerAccountController extends Controller
 {
@@ -24,7 +24,7 @@ class CustomerAccountController extends Controller
     {
         //
         $user=new UserResource(User::findOrFail(Auth::id())->load('address'));
-        $subscription=Subscription::where('email',$user->email)->first();
+        $subscription=Newsletter::where('email',$user->email)->first();
         return inertia::render('account.index', compact('user','subscription'));
     }
 

@@ -39,7 +39,7 @@
 
                 </p>
                 <p class="text-black-100 text-xs font-bold">
-                     <span v-if="product.embroideries.length>1">
+                     <span v-if="product.embroideries.length>0">
                         <span  v-for="embroidery in product.embroideries">
                             {{embroidery.format.abbreviation}},
                         </span>

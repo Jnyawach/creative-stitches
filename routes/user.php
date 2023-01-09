@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Customer\CustomerAccountController;
 use App\Http\Controllers\Customer\CustomerPaymentController;
+use App\Http\Controllers\Customer\CustomerReviewController;
 use App\Http\Controllers\Customer\CustomerWishlistController;
 use App\Http\Controllers\Customer\OrderController;
 use Illuminate\Support\Facades\Route;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 //All user routes that require authentication will be listed here
 
 Route::group(['middleware'=>'auth:web'], function(){
+    Route::resource('account/reviews', CustomerReviewController::class);
     Route::resource('account/orders', OrderController::class);
     Route::get('account/payment/unsuccessful', [CustomerPaymentController::class, 'paymentCancel'])->name('payment.cancel');
     Route::get('account/payment/success', [CustomerPaymentController::class, 'paymentSuccess'])->name('payment.success');

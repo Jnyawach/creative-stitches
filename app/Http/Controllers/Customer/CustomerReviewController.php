@@ -3,13 +3,9 @@
 namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\OrderResource;
-use App\Models\Order;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Inertia\Inertia;
 
-class OrderController extends Controller
+class CustomerReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,15 +15,6 @@ class OrderController extends Controller
     public function index()
     {
         //
-        $user=Auth::user();
-         $orders=OrderResource::collection(Order::where('user_id',$user->id)
-         ->where('status','paid')
-             ->when(request('search'),function ($query,$search){
-                 $query->where('order_code','like', '%'.$search.'%');
-             })
-             ->with('products.size','products.embroideries')->paginate(1));
-        $filters=request()->only(['search']);
-        return inertia::render('account.orders.index',compact('orders','filters'));
     }
 
     /**

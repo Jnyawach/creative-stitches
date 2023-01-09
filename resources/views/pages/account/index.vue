@@ -74,25 +74,6 @@
             <div class="border rounded-xl p-3">
                 <div>
                     <div class="flex justify-between">
-                        <h6 class="font-bold">Payment Information</h6>
-                        <button  class="text-teal-700 font-bold"><span class="mr-2"><i
-                            class="fal fa-pen"></i></span>Edit
-                        </button>
-
-                    </div>
-
-                    <div class="my-2">
-                        <button type="button"
-                                class="hover:text-teal-700 font-bold border py-2 px-8 rounded-full hover:border-teal-700">
-                            <span class="mr-2"><i class="fal fa-pen"></i></span> Add Payment
-                        </button>
-
-                    </div>
-
-                </div>
-                <hr class="my-3">
-                <div>
-                    <div class="flex justify-between">
                         <h6 class="font-bold">Subscription</h6>
 
                     </div>
