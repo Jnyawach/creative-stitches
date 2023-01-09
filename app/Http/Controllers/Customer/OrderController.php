@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\OrderResource;
+use App\Models\Embroidery;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class OrderController extends Controller
@@ -49,6 +51,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         //
+
     }
 
     /**
@@ -95,4 +98,28 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function downloadArtwork($embroidery,$order){
+        $order=Order::findOrFail($order);
+        if ($order->status==='Paid' && $order->user_id===Auth::id()){
+            $embroidery=Embroidery::findOrFail($embroidery);
+            if (Storage::disk('artworks')->exists($embroidery->file_name)) {
+                $headers = [
+                    'Content-Type' => 'application/pdf',
+                ];
+                return Storage::disk('artworks')->download($embroidery->file_name,$embroidery->file_name,$headers);
+
+
+            }else{
+                return redirect()->back()
+                    ->with('status','It seems like the file is missing, please contact support for assistance');
+            }
+
+        }else{
+            return redirect()->back()
+                ->with('status','Error Downloading file. Please contact support for assistance');
+        }
+    }
+
+
 }

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware'=>'auth:web'], function(){
     Route::resource('account/reviews', CustomerReviewController::class);
+    Route::get('account/orders/download/{embroidery}/{order}', [OrderController::class,'downloadArtwork'])->name('download.artwork');
     Route::resource('account/orders', OrderController::class);
     Route::get('account/payment/unsuccessful', [CustomerPaymentController::class, 'paymentCancel'])->name('payment.cancel');
     Route::get('account/payment/success', [CustomerPaymentController::class, 'paymentSuccess'])->name('payment.success');

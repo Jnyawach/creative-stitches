@@ -63,7 +63,7 @@
                                       <a :href="product.colorChart" class="text-white bg-teal-700 py-1 rounded-md px-2 font-semibold" title="Color Chart">Colors<span class="ml-2"><i class="fal fa-download"></i></span></a>
                                   </div>
                                   <div v-for="embroidery in product.embroideries">
-                                      <a href="#" class="text-white bg-teal-700  py-1 rounded-md px-2 font-semibold">{{embroidery.format.abbreviation}}<span class="ml-2"><i class="fal fa-download"></i></span></a>
+                                      <a  :href="route('download.artwork',[embroidery.id,order.id])"  @click="downloadOrder(embroidery.id,order.id)" class="w-full text-sm text-white bg-teal-700  py-1 rounded-md px-2 font-semibold">{{embroidery.format.abbreviation}}<span class="ml-2"><i class="fal fa-download"></i></span></a>
                                   </div>
 
 
@@ -75,9 +75,13 @@
                       </div>
                   </div>
                   <div class="sm:hidden">
-                      <div class="flex mt-3 gap-2">
-                          <a :href="product.colorChart" class="btn-primary btn-small" title="Color Chart">Colors<span class="ml-2"><i class="fal fa-download"></i></span></a>
-                          <Link href="#" title="Download Artworks" class="btn-primary btn-small">Download Artworks <span class="ml-2"><i class="fal fa-download"></i></span></Link>
+                      <div class="grid mt-3 gap-1 grid-cols-3">
+                          <div class="w-full grid">
+                              <a :href="product.colorChart" class="text-center w-full text-sm text-white bg-teal-700  py-1 rounded-md px-2 font-semibold" title="Color Chart">Colors<span class="ml-2"><i class="fal fa-download"></i></span></a>
+                          </div>
+                          <div v-for="embroidery in product.embroideries" class="w-full grid">
+                              <a :href="route('download.artwork',[embroidery.id,order.id])"  class="text-center w-full text-sm text-white bg-teal-700  py-1 rounded-md px-2 font-semibold">{{embroidery.format.abbreviation}}<span class="ml-2"><i class="fal fa-download"></i></span></a>
+                          </div>
                       </div>
                       <div class="flex justify-end mt-2">
                           <Link :href="route('reviews.edit',product.id)" title="Review this Product" class="text-teal-700 font-bold hover:text-teal-800">Review this Product</Link>
@@ -91,11 +95,11 @@
 </template>
 
 <script setup lang="ts">
-import {Head} from "@inertiajs/inertia-vue3";
-import {Link} from "@inertiajs/inertia-vue3";
+import {Link,useForm,Head} from "@inertiajs/inertia-vue3";
 import {defineProps, ref, watch} from "vue";
 import AccountMenu from "@/views/components/account-menu.vue";
 import {Inertia} from "@inertiajs/inertia";
+
 import _ from "lodash"
 
 
@@ -109,6 +113,8 @@ watch(search, _.debounce(function (value:any) {
         search:value
     }, {preserveState:true, replace:true});
 }, 300))
+
+
 </script>
 
 <style scoped>
