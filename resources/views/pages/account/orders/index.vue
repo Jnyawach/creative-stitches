@@ -69,7 +69,7 @@
 
                               </div>
                               <div class="flex justify-end mt-3">
-                                  <Link :href="route('reviews.edit',product.id)" title="Review this Product" class="text-teal-700 font-bold hover:text-teal-800">Review this Product</Link>
+                                  <Link :href="route('reviews.show',product.id)" title="Review this Product" class="text-teal-700 font-bold hover:text-teal-800">Review this Product</Link>
                               </div>
                           </div>
                       </div>
@@ -84,7 +84,7 @@
                           </div>
                       </div>
                       <div class="flex justify-end mt-2">
-                          <Link :href="route('reviews.edit',product.id)" title="Review this Product" class="text-teal-700 font-bold hover:text-teal-800">Review this Product</Link>
+                          <Link :href="route('reviews.show',product.id)" title="Review this Product" class="text-teal-700 font-bold hover:text-teal-800">Review this Product</Link>
                       </div>
                   </div>
               </div>
@@ -95,7 +95,7 @@
 </template>
 
 <script setup lang="ts">
-import {Link,useForm,Head} from "@inertiajs/inertia-vue3";
+import {Link,Head} from "@inertiajs/inertia-vue3";
 import {defineProps, ref, watch} from "vue";
 import AccountMenu from "@/views/components/account-menu.vue";
 import {Inertia} from "@inertiajs/inertia";

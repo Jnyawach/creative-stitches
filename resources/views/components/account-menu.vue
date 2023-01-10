@@ -16,6 +16,11 @@
                 <span class="mr-1"><i class="fal fa-shopping-bag"></i></span>Orders
             </Link>
         </li>
+        <li>
+            <Link :href="route('reviews.index')" class="hover:text-teal-500" :class="{ 'text-teal-500': $page.url.startsWith('/account/reviews') }">
+                <span class="mr-1"><i class="fal fa-shopping-bag"></i></span>Reviews
+            </Link>
+        </li>
     </ul>
 </div>
 

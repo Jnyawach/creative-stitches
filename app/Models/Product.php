@@ -49,7 +49,9 @@ class Product extends Model implements HasMedia
     public function embroideries(){
         return $this->hasMany(Embroidery::class,'product_id');
     }
-
+    public function reviews(){
+        return $this->hasMany(Review::class);
+    }
     public function promotion(){
         return $this->belongsTo(Promotion::class);
 
