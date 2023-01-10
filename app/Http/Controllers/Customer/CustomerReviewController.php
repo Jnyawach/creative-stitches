@@ -21,15 +21,15 @@ class CustomerReviewController extends Controller
     public function index()
     {
         //
-        $reviews=ReviewResource::collection(Review::where('user_id',Auth::id())->paginate(5));
+        $reviews=ReviewResource::collection(Review::where('user_id',Auth::id())->with('product')->paginate(5));
 
         return inertia::render('account.reviews.index', compact('reviews'));
     }
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+      *
+    * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -83,8 +83,8 @@ class CustomerReviewController extends Controller
     public function edit($id)
     {
         //
-        $product=new ProductResource(Product::findOrFail($id));
-        return inertia::render('account.reviews.edit');
+        $review=new ReviewResource(Review::with('product')->findOrFail($id));
+        return inertia::render('account.reviews.edit', compact('review'));
     }
 
     /**
@@ -97,6 +97,19 @@ class CustomerReviewController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $review=Review::findOrFail($id);
+        $validated=$request->validate([
+            'product_id'=>'integer|required',
+            'rating'=>'integer|min:1|max:5|required',
+            'comment'=>'nullable|max:1000'
+        ]);
+        $review->update([
+            'rating'=>$validated['rating'],
+            'comment'=>$validated['comment']
+        ]);
+        return  redirect()->route('reviews.index')
+            ->with('status', 'Thank you for submitting a review');
+
     }
 
     /**

@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="mt-5 space-y-3">
-         <div v-for="order in orders.data" class="rounded-lg overflow-hidden border">
+         <div v-for="order in orders.data" :key="order.id" class="rounded-lg overflow-hidden border">
              <div class="flex justify-between bg-gray-100 px-3 p-2 ">
                  <div>
                      <h6 class="font-bold text-teal-700 text-lg">Order #{{order.order_code}}</h6>
@@ -62,7 +62,7 @@
                                   <div>
                                       <a :href="product.colorChart" class="text-white bg-teal-700 py-1 rounded-md px-2 font-semibold" title="Color Chart">Colors<span class="ml-2"><i class="fal fa-download"></i></span></a>
                                   </div>
-                                  <div v-for="embroidery in product.embroideries">
+                                  <div v-for="embroidery in product.embroideries" :key="embroidery.id">
                                       <a  :href="route('download.artwork',[embroidery.id,order.id])"  @click="downloadOrder(embroidery.id,order.id)" class="w-full text-sm text-white bg-teal-700  py-1 rounded-md px-2 font-semibold">{{embroidery.format.abbreviation}}<span class="ml-2"><i class="fal fa-download"></i></span></a>
                                   </div>
 
@@ -79,7 +79,7 @@
                           <div class="w-full grid">
                               <a :href="product.colorChart" class="text-center w-full text-sm text-white bg-teal-700  py-1 rounded-md px-2 font-semibold" title="Color Chart">Colors<span class="ml-2"><i class="fal fa-download"></i></span></a>
                           </div>
-                          <div v-for="embroidery in product.embroideries" class="w-full grid">
+                          <div v-for="embroidery in product.embroideries" class="w-full grid" :key="embroidery.id">
                               <a :href="route('download.artwork',[embroidery.id,order.id])"  class="text-center w-full text-sm text-white bg-teal-700  py-1 rounded-md px-2 font-semibold">{{embroidery.format.abbreviation}}<span class="ml-2"><i class="fal fa-download"></i></span></a>
                           </div>
                       </div>
