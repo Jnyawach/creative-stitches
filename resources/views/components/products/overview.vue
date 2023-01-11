@@ -47,16 +47,10 @@
                                     <div class="sm:flex justify-between px-2">
                                         <div>
                                             <h6 class="font-bold">{{product.name}}</h6>
-                                            <p class="mt-1">
-                       <span class="text-teal-700 mr-2">
-                            <span><i class="fas fa-star"></i></span>
-                            <span><i class="fas fa-star"></i></span>
-                            <span><i class="fas fa-star"></i></span>
-                            <span><i class="fas fa-star"></i></span>
-                           <span><i class="fas fa-star-half-alt"></i></span>
-
-                       </span>
-                                                624 Reviews
+                                            <p v-if="product.rating" class="mt-1">
+                                                <span v-for="rating in product.rating" class="text-teal-700"><i class="fas fa-star"></i></span>
+                                                <span v-for="rating in 5-product.rating" class="text-teal-700"><i class="far fa-star"></i></span>
+                                                ({{product.totalRating}})
                                             </p>
                                         </div>
                                         <div>

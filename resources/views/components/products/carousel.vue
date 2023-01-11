@@ -1,6 +1,6 @@
 <template>
     <div class="grid md:grid-cols-5 gap-1">
-        <div class="flex md:grid gap-1  md:col-span-1 order-2 md:order-1 w-full">
+        <div class="flex justify-center md:grid gap-1  md:col-span-1 order-2 md:order-1 w-full">
             <div class="overflow-hidden" v-show="product.mainImage.icon">
                 <img @click="slideActive=0" :src="product.mainImage.icon" class="object-fit rounded-md cursor-pointer ">
             </div>

@@ -25,19 +25,12 @@
             </div>
             <div class="mt-2 font-semibold text-gray-800 px-2">
                 <h5 class="text-sm ">{{useTruncate(product.name, 30)}}</h5>
-                <p class="text-sm sm:text-md">
-                       <span class="text-teal-700 mr-2">
-                            <span><i class="fas fa-star"></i></span>
-                            <span><i class="fas fa-star"></i></span>
-                            <span><i class="fas fa-star"></i></span>
-                            <span><i class="fas fa-star"></i></span>
-                           <span><i class="fas fa-star-half-alt"></i></span>
-                           (624)
-                       </span>
-
-
-
+                <p v-if="product.rating" class="text-sm">
+                    <span v-for="rating in product.rating" class="text-teal-700"><i class="fas fa-star"></i></span>
+                    <span v-for="rating in 5-product.rating" class="text-teal-700"><i class="far fa-star"></i></span>
+                ({{product.totalRating}})
                 </p>
+
                 <p class="text-black-100 text-xs font-bold">
                      <span v-if="product.embroideries.length>0">
                         <span  v-for="embroidery in product.embroideries">

@@ -22,12 +22,14 @@ class OrderController extends Controller
     {
         //
         $user=Auth::user();
+
          $orders=OrderResource::collection(Order::where('user_id',$user->id)
-         ->where('status','paid')
+         ->where('status','Paid')
              ->when(request('search'),function ($query,$search){
                  $query->where('order_code','like', '%'.$search.'%');
              })
              ->with('products.size','products.embroideries')->paginate(1));
+
         $filters=request()->only(['search']);
         return inertia::render('account.orders.index',compact('orders','filters'));
     }

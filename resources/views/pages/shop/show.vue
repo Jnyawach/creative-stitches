@@ -49,15 +49,12 @@
             </div>
             <div class="md:col-span-3">
               <div class="flex justify-between">
-                  <h6 class="font-semibold">1283 Sales
-                      <span class="text-teal-700 mr-2">
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star-half-alt"></i></span>
-                        (624)
-                    </span>
+                  <h6 v-if="product.orders" class="font-semibold">{{product.orders}} Sales
+                      <span v-if="product.rating" class="text-sm">
+                          <span v-for="rating in product.rating" class="text-teal-700"><i class="fas fa-star"></i></span>
+                          <span v-for="rating in 5-product.rating" class="text-teal-700"><i class="far fa-star"></i></span>
+                          ({{product.totalRating}})
+                      </span>
                   </h6>
                   <button class="font-bold hover:text-teal-700">Report this Design</button>
               </div>
@@ -113,42 +110,48 @@
     </section>
     <!---product review-->
     <section>
-        <div class="px-3 md:px-10 my-10">
-            <h5 class="text-2xl font-bold">624 Reviews
-                <span class="text-teal-700 mr-2">
-                <span><i class="fas fa-star"></i></span>
-                <span><i class="fas fa-star"></i></span>
-                <span><i class="fas fa-star"></i></span>
-                <span><i class="fas fa-star"></i></span>
-                <span><i class="fas fa-star-half-alt"></i></span>
-         </span>
+        <div v-if="reviews.data.length" class="px-3 md:px-10 my-10">
+            <h5 class="text-2xl font-bold">{{product.totalRating}} Reviews
+                <span v-if="product.rating" class="mt-1">
+                    <span v-for="rating in product.rating" class="text-teal-700"><i class="fas fa-star"></i></span>
+                    <span v-for="rating in 5-product.rating" class="text-teal-700"><i class="far fa-star"></i></span>
+
+                </span>
             </h5>
             <hr class="mt-3">
-            <div class="mt-5">
+            <div v-for="review in reviews.data" class="mt-5">
                 <div>
-                    <p><span class="text-teal-700 mr-2">
-                <span><i class="fas fa-star"></i></span>
-                <span><i class="fas fa-star"></i></span>
-                <span><i class="fas fa-star"></i></span>
-                <span><i class="fas fa-star"></i></span>
-                <span><i class="fas fa-star-half-alt"></i></span>
-                  </span></p>
-                    <p class="mt-2">I went on a not-sober Xmas shopping spree and totally forgot
-                        I ordered this mug and a mini planter, so the wait time was no problem at all.
-                        When I received this in the mail it was a very pleasant surprise gift from past
-                        me to current me! I love them both!! Would order again sober.
-                        The packaging was also very secure and efficient!
-                        I love when there isn’t an excess of materials used.</p>
+                    <p v-if="review.rating" class="mt-1">
+                        <span v-for="rating in review.rating" class="text-teal-700"><i class="fas fa-star"></i></span>
+                        <span v-for="rating in 5-review.rating" class="text-teal-700"><i
+                            class="far fa-star"></i></span>
+
+                    </p>
+                    <p v-if="review.comment" class="mt-2">{{review.comment}}</p>
 
                     <div class="flex mt-3 gap-3">
                         <div>
                             <img :src="'/images/user-icon.png'" class="w-14 h-14">
                         </div>
                         <div class="self-center font-bold">
-                            <h6>Maria Bruno  02 Feb 2023</h6>
+                            <h6>{{review.user.name}} {{new Date(review.created_at).toDateString()}}</h6>
                             <p class="text-teal-700">Verified Purchase</p>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="flex justify-end mt-10">
+                <div class="self-center">
+                    <h6 class="font-medium">Showing <span class="text-sky-800">{{ reviews.meta.current_page }}</span> of <span
+                        class="text-sky-800">{{ reviews.meta.last_page }}</span> Page(s)</h6>
+                </div>
+                <div class="flex">
+                    <Link :href="reviews.links.prev" class="btn-primary text-xs m-1" v-if="reviews.links.prev"><span
+                        class="mr-2"><i class="far fa-angle-left"></i></span>Prev
+                    </Link>
+                    <Link :href="reviews.links.next" class="btn-primary text-xs m-1" v-if="reviews.links.next">Next
+                        <span class="ml-2"><i class="far fa-angle-right"></i></span></Link>
+
                 </div>
             </div>
         </div>
@@ -172,7 +175,8 @@ import {store} from "@/scripts/store/login";
 
 let props=defineProps({
     product:Object,
-    products:Object
+    products:Object,
+    reviews:Object
 })
 const product=reactive(props.product.data)
 const featured=props.products.data

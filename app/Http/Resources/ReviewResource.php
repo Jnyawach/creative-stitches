@@ -21,7 +21,8 @@ class ReviewResource extends JsonResource
             'product_id'=>$this->product_id,
             'rating'=>$this->rating,
             'comment'=>$this->comment,
-            'product'=>new ProductResource($this->whenLoaded('product'))
+            'product'=>new ProductResource($this->whenLoaded('product')),
+            'user'=>new UserResource($this->whenLoaded('user'))
         ];
     }
 }

@@ -5,7 +5,7 @@
     <!--account-menu-->
     <account-menu></account-menu>
     <div class="my-8 px-3 md:px-10">
-       <h1 class="text-2xl font-bold">Your Orders</h1>
+       <h1 class="text-2xl font-bold">Your Orders- {{orders.meta.total}} in total</h1>
         <div class="sm:flex justify-between mt-5">
             <div class="mt-3">
                 <div class="relative">

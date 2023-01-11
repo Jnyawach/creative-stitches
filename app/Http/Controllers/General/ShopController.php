@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\ProductResource;
 use App\Http\Resources\PromotionResource;
+use App\Http\Resources\ReviewResource;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Promotion;
+use App\Models\Review;
 use App\Models\Size;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -75,6 +77,7 @@ class ShopController extends Controller
         }else{
             $selectedCategory=null;
         }
+
         return inertia::render('shop.index',compact('categories','products','hoops','filters','selectedHoop','selectedCategory'));
     }
 
@@ -110,9 +113,9 @@ class ShopController extends Controller
         //
         $product=Product::findBySlugOrFail($id)->load(['category','size','embroideries','promotion']);
         $product=new ProductResource($product);
-
+        $reviews=ReviewResource::collection(Review::where('product_id',$product->id)->with('user')->paginate(10));
         $products=ProductResource::collection(Product::where('category_id', $product->category_id)->where('id','!=',$product->id)->with('embroideries','promotion:discount')->latest()->limit(5)->get());
-        return inertia::render('shop.show', compact('product','products'));
+        return inertia::render('shop.show', compact('product','products','reviews'));
     }
 
     /**

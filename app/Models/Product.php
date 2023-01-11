@@ -6,15 +6,14 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Jackiedo\Cart\Contracts\UseCartable;
-use Jackiedo\Cart\Traits\CanUseCart;
+use Laravel\Scout\Searchable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Product extends Model implements HasMedia
 {
-    use HasFactory, InteractsWithMedia, Sluggable, SluggableScopeHelpers;
+    use HasFactory, InteractsWithMedia, Sluggable, SluggableScopeHelpers,Searchable;
     /**
      * Return the sluggable configuration array for this model.
      *
@@ -62,6 +61,19 @@ class Product extends Model implements HasMedia
 
     public function orders(){
         return $this->belongsToMany(Order::class);
+    }
+
+    public function totalOrders()
+    {
+        return $this->orders()->where('status','Paid')->count();
+    }
+
+    public function rating()
+    {
+        return round($this->reviews()->avg('rating'),0);
+    }
+    public function totalRating(){
+        return $this->reviews()->count();
     }
 
 
