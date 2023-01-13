@@ -12,6 +12,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Spatie\WebhookClient\Models\WebhookCall;
 
@@ -36,16 +37,20 @@ class ChargeSucceeded implements ShouldQueue
     {
         $charge=$this->webhookCall->payload['data']['object'];
         $user=User::where('stripe_id',$charge['customer'])->firstOrFail();
+        Log::info('Hook Hit');
         if ($user){
+            Log::info('Hook Hit');
             $order=Order::where('payment_intent',$charge['payment_intent'])->firstOrFail();
             Payment::create([
                 'user_id'=>$user->id,
-                'sub_total'=>$charge['amount'],
-                'total'=>$charge['amount'],
+                'sub_total'=>$charge['amount']/100,
+                'total'=>$charge['amount']/100,
                 'stripe_id'=>$charge['id'],
-                'order_id'=>$order->id
+                'order_id'=>$order->id,
+
             ]);
-            $order->update(['status'=>'Paid']);
+            $order->update([
+                'status'=>'Paid']);
             Mail::to($user)->send(new OrderConfirmatonEmail($order));
         }
 

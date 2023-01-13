@@ -19,9 +19,9 @@ return new class extends Migration
             $table->bigInteger('user_id')->index()->unsigned();
             $table->bigInteger('order_id')->index()->unsigned();
             $table->string('stripe_id');
-            $table->integer('sub_total');
-            $table->integer('tax')->default(0);
-            $table->integer('total');
+            $table->float('sub_total',8,2);
+            $table->float('tax',8,2)->default(0);
+            $table->float('total',8,2);
             $table->foreign('user_id')->references('id')
                 ->on('users')->cascadeOnDelete();
             $table->foreign('order_id')->references('id')

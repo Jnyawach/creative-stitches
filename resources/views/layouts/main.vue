@@ -1,6 +1,7 @@
 <template>
 
-    <header class="bg-white drop-shadow">
+    <header class="bg-white drop-shadow z-[100000] relative">
+
         <div class="bg-gray-800 py-3 text-center" v-show="coupon">
             <p class="uppercase text-white font-bold text-xs sm:text-sm relative">GRAB AN EXCLUSIVE OFFER! USE CODE -<span class="text-teal-500">{{coupon.code}}</span>  AND GET {{coupon.discount}}%-OFF!! OFFER ENDS IN
                <span class="px-3 absolute">
@@ -19,13 +20,7 @@
                     </Link>
                 </div>
                 <div class="w-2/3 hidden md:block">
-                    <form>
-                        <div class="relative">
-
-                            <input type="search" id="main-search" class="block p-2 pl-5 w-full text-sm text-black-100 font-bold bg-white rounded-full border-2 border-gray-300 focus:border-gray-900 ring-0 outline-0 placeholder-black-100" placeholder="Search for anything...">
-
-                        </div>
-                    </form>
+                    <search></search>
                 </div>
             </div>
             <div class="flex mr-5">
@@ -67,16 +62,14 @@
 
 
         </div>
-        <div class="md:hidden flex gap-3 px-2 pb-4">
+        <div class="md:hidden flex gap-3 px-2 pb-4 ">
             <div class="self-center">
                 <button class="text-teal-700 text-2xl" @click="drawerVisible = !drawerVisible">
                     <span><i class="fas fa-bars"></i></span>
                 </button>
             </div>
-            <div class="w-full">
-                <form>
-                    <input type="search" id="default-search" class="block p-2 pl-5 w-full text-sm text-black-100 font-bold bg-white rounded-full border-2 border-gray-300 focus:border-gray-900 ring-0 outline-0 placeholder-black-100" placeholder="Search for anything...">
-                </form>
+            <div class="w-full ">
+                <search></search>
             </div>
         </div>
         <div class="py-2 px-2 hidden md:block">
@@ -147,12 +140,14 @@
         </Teleport>
 
     </header>
-    <main  class="z-10" >
+    <main  >
         <Teleport to="body">
             <toast :message="message" @remove="remove()"></toast>
         </Teleport>
+        <div class="-z-50">
+            <slot/>
+        </div>
 
-        <slot/>
         <!--login modal-->
         <authentication :show="authModal" @close="authModal=false" :login="true" :key="authKey"></authentication>
     <cart :show="cartModal" @close="cartModal=false" :cart="cart"></cart>
@@ -292,6 +287,8 @@ import {Inertia} from "@inertiajs/inertia";
 import {store} from "@/scripts/store/login";
 import {useCart} from "@/scripts/use/useCart";
 import Cart from "@/views/components/products/cart.vue";
+import Search from "@/views/components/search.vue";
+
 const {categories}=useCategory()
 const  {coupon}=useCoupon()
 const cart= computed(() => usePage().props.value.cart)

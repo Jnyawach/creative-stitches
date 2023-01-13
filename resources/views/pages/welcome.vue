@@ -28,7 +28,7 @@
             <h2 class="font-bold text-2xl">Shop by Category</h2>
             <div class="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center gap-2">
              <div v-for="category in categories" :key="category.id">
-                <Link :title="category.name" href="#">
+                <Link :title="category.name" :href="route('shop.category',category.slug)">
                     <div class="text-center relative overflow-hidden text-center rounded-md group">
                         <img :src="category.image" class="hover:scale-110 duration-200 relative" :alt="category.name">
                         <div class="absolute bottom-6 left-0 right-0 mx-auto">

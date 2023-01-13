@@ -24,12 +24,14 @@
         "@vue-stripe/vue-stripe": "^4.4.4",
         "@vueuse/components": "^9.7.0",
         "@vueuse/core": "^9.7.0",
+        "algoliasearch": "^4.14.3",
         "axios": "^1.2.1",
         "flowbite": "^1.5.5",
         "flowbite-vue": "^0.0.9",
         "lodash": "^4.17.21",
         "pinia": "^2.0.28",
         "vue": "^3.2.45",
+        "vue-instantsearch": "^4.7.2",
         "vue-star-rating": "^2.1.0",
         "ziggy-js": "^1.5.0"
     }

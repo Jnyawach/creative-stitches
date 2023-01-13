@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Customer\CustomerCartController;
 use App\Http\Controllers\Customer\CustomerDetailsController;
+use App\Http\Controllers\Customer\SearchController;
 use App\Http\Controllers\General\BlogController;
 use App\Http\Controllers\General\ContactUsController;
 use App\Http\Controllers\General\HelpCenterConroller;
@@ -30,6 +31,7 @@ Route::group([], function (){
 });
 
 Route::group([],function(){
+    Route::get('search-algolia', [SearchController::class,'index'])->name('search.algolia');
     Route::resource('details', CustomerDetailsController::class)->middleware('guest');
     Route::post('enter-promo', [CustomerCartController::class,'enterPromo'])->name('enter.promo');
     Route::patch('move-wishlist/{id}', [CustomerCartController::class,'moveWishlist'])->name('move.wishlist');

@@ -34,6 +34,23 @@ class Product extends Model implements HasMedia
         'design_size_mm','promotion_id'
     ];
 
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        $array2=[
+            'categories'=>$this->category()->pluck('name')->toArray(),
+            'thumbnail' => $this->getFirstMediaUrl('mainImage','mainImage-icon')
+
+        ];
+
+        return array_merge($array,$array2);
+    }
+
     public function productable(){
         return $this->morphTo();
     }
