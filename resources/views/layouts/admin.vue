@@ -85,7 +85,7 @@ defineProps({
                         </div>
                         <div class="mt-8 mx-4">
                             <h5 class="font-semibold text-lg text-primary-200">Links</h5>
-                            <ul>
+                            <ul class="overflow-auto">
                                 <li>
                                     <Link href="#">
                                         <div class="w-full rounded-md px-3 py-1">
@@ -200,6 +200,21 @@ defineProps({
                                         </div>
                                     </Link>
                                 </li>
+                                <li>
+                                    <Link :href="route('payments.index')">
+                                        <div class="w-full rounded-md px-3 py-1">
+                                            <p class="font-semibold hover:text-primary-200 text-sm text-gray-800"><span class="mr-2 text-primary-200"><i class="far fa-angle-right"></i></span>Payments</p>
+                                        </div>
+                                    </Link>
+                                </li>
+
+                                <li>
+                                    <Link :href="route('subscriptions.index')">
+                                        <div class="w-full rounded-md px-3 py-1">
+                                            <p class="font-semibold hover:text-primary-200 text-sm text-gray-800"><span class="mr-2 text-primary-200"><i class="far fa-angle-right"></i></span>Newsletter Subscriber</p>
+                                        </div>
+                                    </Link>
+                                </li>
 
 
 
@@ -234,7 +249,7 @@ defineProps({
 
             </div>
         </div>
-        <div class="bg-black-100 py-3 px-3">
+        <div class="bg-black-100 py-3 px-3 z-[10000] relative">
             <div class="">
                 <ul class="flex gap-2 text-white">
                     <li><p><span><i class="far fa-copyright"></i></span> Creative Stitches {{new Date().getFullYear()}}</p></li>

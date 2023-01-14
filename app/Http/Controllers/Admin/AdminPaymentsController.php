@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\OrderResource;
-use App\Models\Order;
+use App\Http\Resources\PaymentResource;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class AdminOrdersController extends Controller
+class AdminPaymentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,12 +18,8 @@ class AdminOrdersController extends Controller
     public function index()
     {
         //
-        $orders=OrderResource::collection(Order::query()
-            ->when(request('search'),function ($query,$search){
-                $query->where('order_code','like', '%'.$search.'%');
-            })->where('status','Paid')->with('user')->paginate(20));
-        $filters=request()->only(['search']);
-        return inertia::render('admin.purchases.index', compact('orders','filters'));
+        $payments=PaymentResource::collection(Payment::with('user','order')->paginate(10));
+        return inertia::render('admin.payments.index', compact('payments'));
     }
 
     /**
@@ -56,9 +52,6 @@ class AdminOrdersController extends Controller
     public function show($id)
     {
         //
-        $order=new OrderResource(Order::with('user','products','payment')->findOrFail($id));
-
-        return inertia::render('admin.purchases.show', compact('order'));
     }
 
     /**

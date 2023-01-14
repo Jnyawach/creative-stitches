@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminFaqCategory;
 use App\Http\Controllers\Admin\AdminFaqsController;
 use App\Http\Controllers\Admin\AdminMainController;
 use App\Http\Controllers\Admin\AdminOrdersController;
+use App\Http\Controllers\Admin\AdminPaymentsController;
 use App\Http\Controllers\Admin\AdminPermissionController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminPromotionController;
@@ -14,12 +15,16 @@ use App\Http\Controllers\Admin\AdminQuoteController;
 use App\Http\Controllers\Admin\AdminRolesController;
 use App\Http\Controllers\Admin\AdminCategoriesController;
 use App\Http\Controllers\Admin\AdminSizeController;
+use App\Http\Controllers\Admin\AdminSubscriptionController;
 use App\Http\Controllers\Admin\AdminTermsController;
 use App\Http\Controllers\Admin\AuthorController;
+use App\Http\Controllers\Admin\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware'=>['auth:admin']], function (){
+    Route::resource('admin/subscriptions', AdminSubscriptionController::class);
+    Route::resource('admin/payments', AdminPaymentsController::class);
     Route::resource('admin/purchases', AdminOrdersController::class);
     Route::resource('admin/coupons', AdminCouponController::class);
     Route::post('admin/promotion/remove-product', [AdminPromotionController::class, 'removeProduct'])->name('remove-product');

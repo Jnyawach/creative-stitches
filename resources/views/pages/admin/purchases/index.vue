@@ -9,57 +9,40 @@
         </template>
     </title-block>
     <div class="my-10">
+        <div class="flex justify-end">
+            <div>
+
+                <div class="relative">
+                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                        <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                    <input v-model="search" type="search" id="product-search" class="block p-2 pl-10 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-sky-600 focus:border-sky-600" placeholder="Search Order by Code..." required>
+
+                </div>
+            </div>
+        </div>
         <table class="table-auto w-full mt-3 border-t">
             <thead>
             <tr class="bg-gray-50 h-10 text-teal-900 font-bold text-sm">
                 <th class="text-start py-3 px-4">Id</th>
-                <th class="text-start py-3 px-4">Name</th>
-                <th class="text-start py-3 px-4">Products</th>
-                <th class="text-start py-3 px-4">Discount</th>
+                <th class="text-start py-3 px-4">Order Number</th>
+                <th class="text-start py-3 px-4">Customer</th>
+                <th class="text-start py-3 px-4">Amount</th>
                 <th class="py-3 px-4 text-start">Action</th>
 
 
             </tr>
             </thead>
             <tbody>
-            <tr class="border-b" v-if="promotions.data" v-for="promotion in promotions.data" :key="promotion.id">
-                <td class="py-3 px-4">{{ promotion.id }}</td>
-                <td class="py-3 px-4">{{ promotion.name }}</td>
-                <td class="py-3 px-4">{{ promotion.products_count }}</td>
-                <td class="py-3 px-4">{{ promotion.discount }}</td>
-                <td class="py-3 px-4">
-                    <dropdown placement="bottom">
-                        <template #trigger="{ toggle }">
-                            <Button @click="toggle" >
-                                Action <span class="self-center"><i class="far fa-ellipsis-v-alt"></i></span>
-                            </Button>
-                        </template>
-                        <div class="shadow w-36">
-                            <ul class="divide-y">
-                                <li class="hover:bg-gray-100 py-2">
-                                    <Link :href="route('promotion.show',promotion.id)" class="text-sm font-bold p-2 w-full h-full text-start">
-                                        <span class="mr-2"><i class="fal fa-bookmark"></i></span>View Promotion
-                                    </Link>
-                                </li>
-
-                                <li class="hover:bg-gray-100 py-2">
-                                    <Link :href="route('promotion.edit',promotion.id)" class="text-sm font-bold p-2 w-full h-full text-start" >
-                                        <span class="mr-2"><i class="fal fa-pen"></i></span>Edit Promotion
-                                    </Link>
-                                </li>
-
-                                <li class="hover:bg-gray-100">
-                                    <Link :href="route('promotion.destroy',promotion.id)" class="text-red-700 text-sm font-bold p-2 w-full h-full text-start"  method="delete" as="button">
-                                        <span class="mr-2"><i class="far fa-trash-alt"></i></span>Delete
-                                    </Link>
-                                </li>
-
-
-
-                            </ul>
-                        </div>
-                    </dropdown>
-
+            <tr class="border-b" v-if="orders.data" v-for="order in orders.data" :key="order.id">
+                <td class="py-2 px-4">{{order.id }}</td>
+                <td class="py-2 px-4">{{ order.order_code }}</td>
+                <td class="py-2 px-4">{{ order.user.name }} {{ order.user.last_name }}</td>
+                <td class="py-2 px-4">{{ order.amount }}</td>
+                <td class="py-2 px-4">
+                    <Link :href="route('purchases.show',order.id)" class="text-sm font-bold text-start">
+                        <span class="mr-2"><i class="fal fa-bookmark"></i></span>View details
+                    </Link>
                 </td>
 
             </tr>
@@ -68,6 +51,21 @@
             </tbody>
 
         </table>
+        <div class="bg-gray-50 p-3 flex justify-between">
+            <div class="self-center">
+                <h6 class="font-medium">Showing <span class="text-sky-800">{{ orders.meta.current_page }}</span> of <span
+                    class="text-sky-800">{{ orders.meta.last_page }}</span> Page(s)</h6>
+            </div>
+            <div class="flex">
+                <Link :href="orders.links.prev" class="btn-primary text-xs m-1" v-if="orders.links.prev"><span
+                    class="mr-2"><i class="far fa-angle-left"></i></span>Prev
+                </Link>
+                <Link :href="orders.links.next" class="btn-primary text-xs m-1" v-if="orders.links.next">Next
+                    <span class="ml-2"><i class="far fa-angle-right"></i></span></Link>
+
+            </div>
+
+        </div>
     </div>
 </admin>
 </template>
@@ -75,11 +73,21 @@
 <script setup lang="ts">
 
 import Admin from "@/views/layouts/admin.vue";
-import {Head} from "@inertiajs/inertia-vue3";
+import {Head,Link} from "@inertiajs/inertia-vue3";
 import TitleBlock from "@/views/components/title-block.vue";
-defineProps({
-    orders:Object
+import {ref, watch} from "vue";
+import {Inertia} from "@inertiajs/inertia";
+import _ from "lodash"
+let props=defineProps({
+    orders:Object,
+    filters:Object
 })
+const search=ref(props.filters.search)
+watch(search, _.debounce(function (value:any) {
+    Inertia.get(route('purchases.index'),{
+        search:value
+    }, {preserveState:true, replace:true});
+}, 300))
 </script>
 
 <style scoped>

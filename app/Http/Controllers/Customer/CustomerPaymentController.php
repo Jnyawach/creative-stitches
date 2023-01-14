@@ -24,6 +24,7 @@ class CustomerPaymentController extends Controller
         if(\Cart::isEmpty()){
             return redirect()->route('shop.index');
         }
+
         $order=Order::create([
             'user_id'=>Auth::id(),
             'order_code'=>'CS-'.Carbon::now()->timestamp,

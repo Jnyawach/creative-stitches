@@ -16,6 +16,7 @@ class PaymentResource extends JsonResource
     {
         return [
             'id'=>$this->id,
+            'created_at'=>$this->created_at,
             'sub_total'=>$this->sub_total,
             'total'=>$this->total,
             'user_id'=>$this->user_id,

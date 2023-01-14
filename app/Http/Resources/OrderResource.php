@@ -20,8 +20,9 @@ class OrderResource extends JsonResource
             'amount'=>$this->amount,
             'user_id'=>$this->user_id,
             'created_at'=>$this->created_at,
-            'products'=>ProductResource::collection($this->products),
-            'payment'=>new PaymentResource($this->whenLoaded('payment'))
+            'products'=>ProductResource::collection($this->whenLoaded('products')),
+            'payment'=>new PaymentResource($this->whenLoaded('payment')),
+            'user'=>new UserResource($this->whenLoaded('user')),
         ];
     }
 }

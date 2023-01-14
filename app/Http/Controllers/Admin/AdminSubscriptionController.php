@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\OrderResource;
-use App\Models\Order;
+use App\Models\Newsletter;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Stripe\Subscription;
 
-class AdminOrdersController extends Controller
+class AdminSubscriptionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,12 +18,9 @@ class AdminOrdersController extends Controller
     public function index()
     {
         //
-        $orders=OrderResource::collection(Order::query()
-            ->when(request('search'),function ($query,$search){
-                $query->where('order_code','like', '%'.$search.'%');
-            })->where('status','Paid')->with('user')->paginate(20));
-        $filters=request()->only(['search']);
-        return inertia::render('admin.purchases.index', compact('orders','filters'));
+        $subscriptions=Newsletter::paginate(10);
+
+        return inertia::render('admin.subscriptions.index', compact('subscriptions'));
     }
 
     /**
@@ -56,9 +53,6 @@ class AdminOrdersController extends Controller
     public function show($id)
     {
         //
-        $order=new OrderResource(Order::with('user','products','payment')->findOrFail($id));
-
-        return inertia::render('admin.purchases.show', compact('order'));
     }
 
     /**
@@ -93,5 +87,9 @@ class AdminOrdersController extends Controller
     public function destroy($id)
     {
         //
+        $subscription=Newsletter::findOrFail($id);
+        $subscription->delete();
+        return redirect()->back()
+            ->with('status','Subscription deleted Successfully');
     }
 }
