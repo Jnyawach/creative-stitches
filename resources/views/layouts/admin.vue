@@ -83,11 +83,11 @@ defineProps({
                                 </ul>
                             </div>
                         </div>
-                        <div class="mt-8 mx-4">
+                        <div class="mt-8 mx-4 ">
                             <h5 class="font-semibold text-lg text-primary-200">Links</h5>
-                            <ul class="overflow-auto">
+                            <ul class="side-link">
                                 <li>
-                                    <Link href="#">
+                                    <Link :href="route('users.index')">
                                         <div class="w-full rounded-md px-3 py-1">
                                             <p class="font-semibold hover:text-primary-200 text-sm text-gray-800"><span class="mr-2 text-primary-200"><i class="far fa-angle-right"></i></span>Users</p>
                                         </div>
@@ -260,3 +260,28 @@ defineProps({
 
 
 </template>
+<style scoped>
+.side-link{
+    height: 400px;
+    overflow-y: scroll;
+}
+.side-link::-webkit-scrollbar {
+    width: 3px;
+}
+
+/* Track */
+.side-link::-webkit-scrollbar-track {
+    background: #ebebeb;
+
+}
+
+/* Handle */
+.side-link::-webkit-scrollbar-thumb {
+    background: #0f766e;
+}
+
+/* Handle on hover */
+.side-link::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+</style>

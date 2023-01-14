@@ -21,7 +21,11 @@ class UserResource extends JsonResource
             'last_name'=>$this->last_name,
             'email'=>$this->email,
             'address'=>new AddressResource($this->whenLoaded('address')),
-            'wishlist'=>WishlistResource::collection($this->whenLoaded('wishlists'))
+            'wishlist'=>WishlistResource::collection($this->whenLoaded('wishlists')),
+            'orders'=>OrderResource::collection($this->whenLoaded('orders')),
+            'payments'=>PaymentResource::collection($this->whenLoaded('payments')),
+
+
         ];
     }
 }

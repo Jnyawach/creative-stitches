@@ -3,19 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Contact;
-use App\Models\Newsletter;
-use App\Models\Order;
-use App\Models\Payment;
-use App\Models\Product;
-use App\Models\Quote;
+use App\Http\Resources\UserResource;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
-class AdminMainController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,33 +18,9 @@ class AdminMainController extends Controller
     public function index()
     {
         //
+        $users=User::select('name','email','id','last_name')->withSum('payments','total')->withCount('orders')->paginate(15);
 
-        $users=User::count();
-        $subscribers=Newsletter::count();
-        $products=Product::count();
-        $quotes=Quote::where('status','!=',2)->count();
-        $messages=Contact::where('status','!=',2)->count();
-        $orders=Order::count();
-        $income=Payment::sum('total');
-
-        //income last four months
-        $chartData=Order::query()->where('created_at','>',Carbon::now()->subMonths(4))
-            ->select(DB::raw('count(*) as total, MONTHNAME(created_at) as month'))
-            ->groupByRaw('MONTHNAME(created_at)')
-            ->get();
-
-//        $chartData=array([
-//            'labels'=>$lastFour->pluck('month')->toArray(),
-//            'datasets'=>[
-//                'data'=>$lastFour->pluck('total')->toArray()
-//            ]
-//        ]);
-
-
-
-        return inertia::render('admin.index',
-        compact('users','subscribers','products','quotes',
-        'messages','orders','income','chartData'));
+        return inertia::render('admin.users.index', compact('users'));
     }
 
     /**
@@ -84,6 +53,8 @@ class AdminMainController extends Controller
     public function show($id)
     {
         //
+        $user=new UserResource(User::with(['orders'])->findOrFail($id));
+        return inertia::render('admin.users.show',compact('user'));
     }
 
     /**
@@ -118,5 +89,9 @@ class AdminMainController extends Controller
     public function destroy($id)
     {
         //
+        $user=User::findOrFail($id);
+        $user->delete();
+        return redirect()->route('users.index')
+            ->with('status','User Successfully Deleted');
     }
 }

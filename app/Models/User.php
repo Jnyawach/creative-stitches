@@ -62,8 +62,15 @@ class User extends Authenticatable
     public function orders(){
         return $this->hasMany(Order::class);
     }
+    public function payments(){
+        return $this->hasMany(Payment::class);
+    }
     public function reviews(){
         return $this->hasMany(Review::class);
+    }
+
+    public function totalSpent(){
+        return $this->payments()->sum('total');
     }
 
 }

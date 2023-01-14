@@ -10,7 +10,7 @@
     </title-block>
     <div class="my-10">
 
-        <table class="table-auto w-full mt-3 bsubscription-t">
+        <table class="table-auto w-full mt-3 border-t">
             <thead>
             <tr class="bg-gray-50 h-10 text-teal-900 font-bold text-sm">
                 <th class="text-start py-3 px-4">Id</th>

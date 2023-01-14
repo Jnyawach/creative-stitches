@@ -19,10 +19,12 @@ use App\Http\Controllers\Admin\AdminSubscriptionController;
 use App\Http\Controllers\Admin\AdminTermsController;
 use App\Http\Controllers\Admin\AuthorController;
 use App\Http\Controllers\Admin\SubscriptionController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware'=>['auth:admin']], function (){
+    Route::resource('admin/users', UserController::class);
     Route::resource('admin/subscriptions', AdminSubscriptionController::class);
     Route::resource('admin/payments', AdminPaymentsController::class);
     Route::resource('admin/purchases', AdminOrdersController::class);
