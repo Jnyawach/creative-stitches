@@ -4,13 +4,13 @@
             <div class="overflow-hidden" v-show="product.mainImage.icon">
                 <img @click="slideActive=0" :src="product.mainImage.icon" class="object-fit rounded-md cursor-pointer ">
             </div>
-            <div class="overflow-hidden" v-show="product.secondImage.icon">
+            <div class="overflow-hidden" v-if="product.secondImage.icon">
                 <img @click="slideActive=1" :src="product.secondImage.icon" class="object-fit rounded-md cursor-pointer ">
             </div>
-            <div class="overflow-hidden" v-show="product.thirdImage.icon">
+            <div class="overflow-hidden" v-if="product.thirdImage.icon">
                 <img @click="slideActive=2" :src="product.thirdImage.icon" class="object-fit rounded-md cursor-pointer ">
             </div>
-            <div class="overflow-hidden" v-show="product.fourthImage.icon">
+            <div class="overflow-hidden" v-if="product.fourthImage.icon">
                 <img @click="slideActive=3" :src="product.fourthImage.icon" class="object-fit rounded-md cursor-pointer ">
             </div>
         </div>

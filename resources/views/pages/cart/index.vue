@@ -5,7 +5,7 @@
     <div v-if="cart.cartCount" class="my-10 px-3 lg:px-24 ">
         <div class="flex justify-between">
             <div>
-                <h1 class="text-2xl font-bold">You Basket</h1>
+                <h1 class="text-2xl font-bold">Your Basket</h1>
                 <p><span class="font-bold">Total:</span> {{ cart.cartCount }} items - <span
                     class="text-teal-700 font-bold">USD {{Number( cart.cartTotal).toFixed(2)}}</span></p>
             </div>
@@ -19,11 +19,16 @@
         <div class="grid md:grid-cols-5 mt-5 gap-5 ">
             <div class="md:col-span-3 space-y-3 gap-2">
                 <div class="grid grid-cols-6 m-1 border p-2 rounded-lg gap-2" v-for="item in cart.items">
+                    <div class="col-span-6 sm:hidden grid grid-cols-6">
+                        <h6 class="col-span-5 justify-between text-sm text-lg font-bold "><span>{{ item.name }}</span>
+                            </h6>
+                        <h6 class="col-span-1"><span class="font-bold text-teal-700 ">$ {{ item.price }}</span></h6>
+                    </div>
                     <div class="col-span-1">
                         <img :src="item.attributes.image" class="rounded-lg">
                     </div>
                     <div class="col-span-4">
-                        <h6 class="flex justify-between text-sm lg:text-lg font-bold "><span>{{ item.name }}</span>
+                        <h6 class="hidden sm:flex justify-between text-sm lg:text-lg font-bold "><span>{{ item.name }}</span>
                             <span class="font-bold text-teal-700 text-2xl">$ {{ item.price }}</span></h6>
                         <p class="text-sm lg:text-md"><span class="text-teal-700">Formats:</span>
                             {{ item.attributes.format }}</p>

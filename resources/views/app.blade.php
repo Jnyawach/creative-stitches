@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="{{asset('images/creative-icon.png')}}" type="image/icon type">
         @routes
 		@vite
         <link href="https://fonts.cdnfonts.com/css/sansation" rel="stylesheet">

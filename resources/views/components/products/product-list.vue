@@ -38,9 +38,9 @@
                         </span>
                     </span>
                 </p>
-                <p class="font-bold text-black-100 font-montserrat">USD {{product.price}}
+                <p class="font-bold text-black-100 font-montserrat">$ {{Number(product.price).toFixed(2)}}
                     <span v-if="product.promotion" class="ml-1 text-teal-700 line-through text-xs">
-                        USD {{Number(product.promotion.discount/100*product.price+product.price).toFixed(2)}}</span></p>
+                       $ {{Number(product.promotion.discount/100*product.price+product.price).toFixed(2)}}</span></p>
                 <div class="py-3">
                     <Link preserve-scroll as="button" method="patch" :href="route('cart.update',product.id)" class="text-black-100 py-2 px-3 sm:px-5 border rounded-full
                      border-black-100 text-xs sm:text-sm hover:text-teal-700 hover:border-teal-700">

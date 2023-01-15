@@ -60,31 +60,31 @@
               </div>
                 <h1 class="font-bold mt-2 text-xl">{{product.name}}</h1>
                 <h6 class="font-montserrat font-extrabold text-2xl mt-2">
-                    USD {{product.price}}
+                    USD {{Number(product.price).toFixed(2)}}
                     <span v-if="product.promotion" class="ml-1 text-teal-700 line-through text-xs">
                         USD {{Number(product.promotion.discount/100*product.price+product.price).toFixed(2)}}</span>
                     <span class="text-sm ml-2">{{product.promotion.discount}}% off</span>
                 </h6>
                 <p class="text-sm mt-2"><span class="text-teal-700">Available Formats</span><span v-for="format in product.embroideries" :key="format.id" class="ml-1 font-semibold">.{{format.format.abbreviation}}</span></p>
                 <p class="text-sm mt-2">SKU: {{product.sku}}</p>
-                <div class="flex gap-3">
+                <div class="grid sm:grid-cols-2 gap-3">
                     <Link :href="route('cart.update',product.id)" method="patch"  type="button" class=" mt-3 text-white bg-teal-700 py-2 px-4 border rounded-full
-                       m-1 border-teal-700   hover:bg-teal-900 font-semibold">
+                       m-1 border-teal-700 text-center   hover:bg-teal-900 font-semibold">
                         <span class="mr-2"><i class="far fa-plus"></i></span>Add to Basket
                     </Link>
                     <Link  v-if="$page.props.auth" :href="route('wishlist.update',product.id)" as="button" method="patch" class="text-black-100
-                                         m-2  text-xs hover:text-teal-700  font-semibold">
+                                         m-2  text-sm hover:text-teal-700  font-semibold">
                         <span class="mr-2"><i class="far fa-heart"></i></span>Add to Wishlist
                     </Link>
                     <Link v-else  @click="store.login=true" as="button" class="text-black-100
-                                         m-2  text-xs hover:text-teal-700  font-semibold">
+                                         m-2  text-sm hover:text-teal-700  font-semibold">
                         <span class="mr-2"><i class="far fa-heart"></i></span>Add to Wishlist
                     </Link>
                 </div>
 
                 <div class="mt-3">
-                    <h6  class="text-teal-700">Additional Details</h6>
-                    <ul class="text-sm">
+                    <h6  class="text-teal-700 font-bold">Additional Details</h6>
+                    <ul class="text-sm mt-2">
                         <li><span class="mr-2"><i class="far fa-cloud-download"></i></span>Digital Download</li>
                         <li><span class="mr-2"><i class="far fa-shopping-basket"></i></span>Includes Zip file of the selected format of the design & color Chart</li>
                         <li><span class="mr-2"><i class="far fa-shipping-fast"></i></span>No returns Accepted</li>

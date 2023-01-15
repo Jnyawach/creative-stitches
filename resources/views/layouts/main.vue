@@ -1,10 +1,10 @@
 <template>
 
-    <header class="bg-white drop-shadow z-[100000] relative">
+    <header class="bg-white drop-shadow z-[1000] relative">
 
-        <div class="bg-gray-800 py-3 text-center" v-show="coupon">
+        <div class="bg-gray-800 px-1 py-3 text-center" v-show="coupon">
             <p class="uppercase text-white font-bold text-xs sm:text-sm relative">GRAB AN EXCLUSIVE OFFER! USE CODE -<span class="text-teal-500">{{coupon.code}}</span>  AND GET {{coupon.discount}}%-OFF!! OFFER ENDS IN
-               <span class="px-3 absolute">
+               <span class="px-3 text-center md:absolute">
                     <vue-countdown :time="new Date(coupon.expires)-new Date()" v-slot="{ days, hours, minutes, seconds }">
                     {{ days }}:{{ hours }}:{{ minutes }}:{{ seconds }}
                 </vue-countdown>
@@ -16,25 +16,25 @@
 
                 <div class="self-center">
                     <Link href="/" title="Creative Stitches home">
-                        <img :src="'/images/creative-stitches-logo.png'" alt="Creative stitches logo" class="w-40">
+                        <img :src="'/images/creative-stitches-logo.png'" alt="Creative stitches logo" class="w-36 sm:w-44">
                     </Link>
                 </div>
-                <div class="w-2/3 hidden md:block">
+                <div class="w-2/3 hidden lg:block">
                     <search></search>
                 </div>
             </div>
             <div class="flex mr-5">
                 <ul class="flex self-center font-medium gap-6 text-lg">
                     <li v-if="!auth">
-                        <button class="hover:text-gray-900 font-montserrat" @click="authModal=true">Sign in</button>
+                        <button class="hover:text-gray-900  text-lg" @click="authModal=true">Sign in</button>
                     </li>
                     <li v-if="auth">
-                        <Link :href="route('account.index')" title="My account" class="hover:text-teal-900">
+                        <Link :href="route('account.index')" title="My account" class="hover:text-teal-900  text-lg">
                             <i class="far fa-user"></i>
                         </Link>
                     </li>
                     <li >
-                        <Link v-if="auth" :href="route('wishlist.index')" title="My wishlist" class="hover:text-teal-900">
+                        <Link v-if="auth" :href="route('wishlist.index')" title="My wishlist" class="hover:text-teal-900  text-lg">
                             <span><i class="far fa-heart"></i></span>
                         </Link>
                         <Link v-else as="button" @click="authModal=true" title="My wishlist" class="hover:text-teal-900">
@@ -52,7 +52,7 @@
 
                     <li v-if="auth">
                         <Link :href="route('user.logout')" title="Logout"
-                              class="hover:text-teal-900" as="button" method="post">
+                              class="hover:text-teal-900  text-lg" as="button" method="post">
                             <i class="fas fa-sign-out-alt"></i>
                         </Link>
                     </li>
@@ -62,7 +62,7 @@
 
 
         </div>
-        <div class="md:hidden flex gap-3 px-2 pb-4 ">
+        <div class="lg:hidden flex gap-3 px-2 pb-4 ">
             <div class="self-center">
                 <button class="text-teal-700 text-2xl" @click="drawerVisible = !drawerVisible">
                     <span><i class="fas fa-bars"></i></span>
@@ -72,7 +72,7 @@
                 <search></search>
             </div>
         </div>
-        <div class="py-2 px-2 hidden md:block">
+        <div class="py-2 px-2 hidden lg:block">
             <ul class="flex justify-center gap-3 md:gap-5 font-medium font-montserrat w-full text-sm">
                 <li>
                     <Link :href="route('shop.index')" class="hover:text-teal-700" title="Shop all Embroidery Designs">Shop all</Link>
@@ -171,7 +171,7 @@
             <div>
                 <h6 class="font-bold text-white">About</h6>
                 <div class="mt-3">
-                    <ul class="text-[13px] font-medium">
+                    <ul class="sm:text-[13px] font-medium">
                         <li class="py-1">
                             <Link href="#" class="text-white hover:text-teal-500" title="About Us">About Us</Link>
                         </li>
@@ -196,19 +196,21 @@
                 </div>
             </div>
 
-            <div class="w-full">
+            <div class="w-full col-span-2">
                 <h6 class="font-bold text-white">Help Center</h6>
-                <div class="mt-3 flex justify-between w-full md:block gap-5">
-                    <ul class="text-[13px] font-medium">
-                        <li class="py-1">
-                            <Link :href="route('help-center.index')" class="text-white hover:text-teal-500" title="FAQs">FAQs</Link>
-                        </li>
-                        <li class="py-1">
-                            <Link :href="route('contact-us.index')" class="text-white hover:text-teal-500" title="Contact Us">Contact Us</Link>
-                        </li>
+                <div class="mt-3  flex justify-between">
+                    <div class="col-span-1">
+                        <ul class="sm:text-[13px] font-medium">
+                            <li class="py-1">
+                                <Link :href="route('help-center.index')" class="text-white hover:text-teal-500" title="FAQs">FAQs</Link>
+                            </li>
+                            <li class="py-1">
+                                <Link :href="route('contact-us.index')" class="text-white hover:text-teal-500" title="Contact Us">Contact Us</Link>
+                            </li>
 
-                    </ul>
-                    <div class="w-full">
+                        </ul>
+                    </div>
+                    <div class="self-end">
                         <ul class="flex gap-4">
                             <li >
                                 <Link href="#" class="text-white hover:text-teal-500" title="Pinterest">
@@ -246,7 +248,7 @@
                     </Link>
                 </div>
                 <div class="mt-3">
-                    <ul class="flex gap-5 font-medium text-sm">
+                    <ul class="grid grid-cols-2 sm:flex gap-5 font-medium text-sm">
                         <li>
                             <Link :href="route('terms.conditions')" class="text-white hover:text-teal-500" title="Terms and Conditions">Terms & Conditions</Link>
                         </li>

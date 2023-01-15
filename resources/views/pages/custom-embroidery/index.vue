@@ -59,8 +59,8 @@
                             </div>
                         </div>
 
-                        <div class="mt-3 flex justify-end">
-                            <button type="submit" class="btn-primary btn-small" :disabled="form.processing">
+                        <div class="mt-5 flex justify-start sm:justify-end">
+                            <button type="submit" class="btn-primary sm:btn-small" :disabled="form.processing">
                                 Request Quote
                                 <span class="animate-ping" v-show="form.processing"><i class="fas fa-ellipsis-h"></i></span>
                             </button>

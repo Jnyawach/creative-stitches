@@ -31,7 +31,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-2">
+                <div class="grid sm:grid-cols-2 gap-2">
                     <div class="mt-3">
                         <label for="details_name" class="creative-label">First Name <sup class="text-[8px]"><i class="fas fa-star-of-life"></i></sup></label>
                         <input type="text" class="creative-input" id="details_name" placeholder="Enter your first name" required v-model="form.name"/>

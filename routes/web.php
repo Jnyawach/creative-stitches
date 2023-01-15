@@ -32,7 +32,7 @@ Route::group([], function (){
 
 Route::group([],function(){
     Route::get('search-algolia', [SearchController::class,'index'])->name('search.algolia');
-    Route::resource('details', CustomerDetailsController::class)->middleware('guest');
+    Route::resource('details', CustomerDetailsController::class)->middleware('guest:web');
     Route::post('enter-promo', [CustomerCartController::class,'enterPromo'])->name('enter.promo');
     Route::patch('move-wishlist/{id}', [CustomerCartController::class,'moveWishlist'])->name('move.wishlist');
     Route::get('cart-get', [CustomerCartController::class,'cartContent']);

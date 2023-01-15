@@ -18,10 +18,10 @@
             </div>
             <div class="flex justify-between mt-3">
                 <div class="self-center">
-                    <h6 class="font-medium">Showing <span class="text-sky-800">{{ orders.meta.current_page }}</span> of <span
+                    <h6 class="font-medium text-sm sm:text-md">Showing <span class="text-sky-800">{{ orders.meta.current_page }}</span> of <span
                         class="text-sky-800">{{ orders.meta.last_page }}</span> Page(s)</h6>
                 </div>
-                <div class="flex">
+                <div class="flex justify-end">
                     <Link :href="orders.links.prev" class="btn-primary text-xs m-1" v-if="orders.links.prev"><span
                         class="mr-2"><i class="far fa-angle-left"></i></span>Prev
                     </Link>
@@ -39,14 +39,14 @@
                      <p class="text-sm">Placed on{{new Date(order.created_at).toDateString()}} | {{order.products.length}} Item(s)</p>
                  </div>
                  <div>
-                    <h6 class="text-lg font-bold">$ {{order.amount}}</h6>
+                    <h6 class="text-lg font-bold">$ {{Number(order.amount).toFixed(2)}}</h6>
                  </div>
              </div>
              <div class="p-3 grid md:grid-cols-2 gap-3">
               <div v-for="product in order.products" class="bg-gray-50 p-3 border rounded-lg">
-                  <div class="flex justify-between">
-                      <h6 class="font-bold">{{product.name}}</h6>
-                      <h6 class="font-bold">$ {{product.price}}</h6>
+                  <div class="grid grid-cols-6 justify-between">
+                      <h6 class="font-bold col-span-5">{{product.name}}</h6>
+                      <h6 class="font-bold col-span-1">$ {{Number(product.price).toFixed(2)}}</h6>
                   </div>
                   <div class="grid grid-cols-4 mt-3 gap-2">
                    <div class="col-span-1">

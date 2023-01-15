@@ -8,7 +8,7 @@
             leave-from-class="opacity-100 scale-100"
             leave-to-class="opacity-0 scale-125"
         >
-            <div v-if="show" class="inset-0 fixed bg-black-100 bg-opacity-70 z-50 grid place-items-center p-5" >
+            <div v-if="show" class="inset-0 fixed bg-black-100 bg-opacity-70 z-[10000] grid place-items-center p-5" >
                 <div class="bg-white lg:w-4/6 w-full rounded-xl">
                     <header class="p-3">
                         <div class="flex justify-between">
@@ -55,20 +55,20 @@
                                         </div>
                                         <div>
                                             <p class="text-xl font-bold font-montserrat">
-                                                USD {{product.price}}
+                                                $ {{Number(product.price).toFixed(2)}}
                                                 <span v-if="product.promotion" class="ml-1 text-teal-700 line-through text-xs">
-                                             USD {{Number(product.promotion.discount/100*product.price+product.price).toFixed(2)}}</span>
+                                             $ {{Number(product.promotion.discount/100*product.price+product.price).toFixed(2)}}</span>
                                             </p>
                                         </div>
                                     </div>
 
-                                    <div class="mt-3">
+                                    <div class="mt-3 grid sm:grid-cols-2">
                                         <Link  v-if="$page.props.auth" :href="route('wishlist.update',product.id)" as="button" method="patch" class="text-black-100 py-2 px-4 border rounded-full
-                                         m-2 border-black-100 text-xs hover:text-teal-700 hover:border-teal-700 font-semibold">
+                                         m-1 border-black-100 text-xs hover:text-teal-700 hover:border-teal-700 font-semibold">
                                             <span class="mr-2"><i class="far fa-heart"></i></span>Add to Wishlist
                                         </Link>
                                         <Link v-else  @click="store.login=true" as="button" class="text-black-100 py-2 px-4 border rounded-full
-                                         m-2 border-black-100 text-xs hover:text-teal-700 hover:border-teal-700 font-semibold">
+                                         m-1 border-black-100 text-xs hover:text-teal-700 hover:border-teal-700 font-semibold">
                                             <span class="mr-2"><i class="far fa-heart"></i></span>Add to Wishlist
                                         </Link>
 

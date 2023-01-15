@@ -8,7 +8,7 @@
 
             <div class="w-full my-8 px-3">
                 <form class="w-full" @submit.prevent="submit">
-                    <div class="grid grid-cols-2 gap-1">
+                    <div class="grid sm:grid-cols-2 gap-1">
                         <div class="mt-3">
                             <label for="first_name" class="creative-label"><span class="mr-2 text-teal-700"><i class="far fa-user-circle"></i></span>First Name:</label>
                             <input type="text" class="creative-input" id="first_name" placeholder="Enter your first name" required v-model="create.name"/>
@@ -33,7 +33,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="grid mt-5 grid-cols-2 gap-1">
+                    <div class="grid mt-5 sm:grid-cols-2 gap-1">
                         <div>
                             <label for="create-password" class="creative-label"><span class="mr-2 text-teal-700"><i class="fal fa-lock"></i></span>Password:</label>
                             <input type="password" class="creative-input" id="create-password" placeholder="Enter your password" required v-model="create.password"/>
