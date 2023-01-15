@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('size_in_inches');
-            $table->string('size_in_cm');
+            $table->string('size_in_mm');
             $table->string('stitching_area_mm');
             $table->string('stitching_area_inches');
         });
