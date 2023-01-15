@@ -99,8 +99,8 @@ let props=defineProps({
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 const  chartData=ref({
-    labels: [ props.chartData.map(month => month.month)  ],
-    datasets: [ { data: props.chartData.map(total=>total.total) } ]
+    labels: [ props.chartData.map((month: { month: any; }) => month.month)  ],
+    datasets: [ { data: props.chartData.map((total: { total: any; })=>total.total) } ]
 })
 
 

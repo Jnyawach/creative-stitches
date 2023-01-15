@@ -17,6 +17,8 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('clear:order')->weekly();
+        $schedule->command('backup:clean')->daily()->at('01:00')->withoutOverlapping()->onOneServer();
+        $schedule->command('backup:run')->daily()->at('01:30')->withoutOverlapping()->onOneServer();
     }
 
     /**
