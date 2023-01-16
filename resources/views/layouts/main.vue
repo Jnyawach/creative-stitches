@@ -88,56 +88,7 @@
         </div>
 
         <!--mobile menu-->
-        <Teleport to="body">
-            <div class="right-drawer"
-                 :style="{
-             width: drawerVisible? '70vw' : '0',
-             paddingLeft: drawerVisible? '10px' : '0',
-             }"
-            >
-                <div class="mt-3">
-                    <div class="flex justify-end mr-6">
-                        <button class="text-xl border rounded-full w-9 h-9 border-teal-700" @click="drawerVisible=false">
-                            <span><i class="fal fa-times"></i></span>
-                        </button>
-                    </div>
-                    <div class="px-2">
-                        <h1 class="font-bold text-lg">Menu</h1>
-                        <div>
-                            <ul class="font-medium font-montserrat text-lg">
-                                <li class="hover:text-teal-700 py-2">
-                                    <Link :href="route('shop.index')"  title="Shop all Embroidery Designs">Shop all</Link>
-                                </li>
-                                <li class="hover:text-teal-700 py-2" v-for="category in categories" :key="category.id">
-                                    <Link :href="route('shop.category',category.slug)" :title="category.name">{{category.name}}</Link>
-                                </li>
-                                <li class="py-2">
-                                    <Link href="#" title="cart" class=" hover:text-teal-700 relative">
-                                        <span><i class="far fa-shopping-bag"></i> Cart</span>
-
-                                    </Link>
-                                </li>
-                                <li class="py-2">
-                                    <Link href="#" title="cart" class="hover:text-teal-700 relative">
-                                        <span><i class="far fa-user-circle"></i> Sign in</span>
-
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-            <div class="drawer-mask"
-                 @click="drawerVisible = false"
-                 :style="{
-             width: drawerVisible ? '100vw' : '0',
-             opacity: drawerVisible ? '0.6' : '0',
-             }"
-            ></div>
-        </Teleport>
+        <drawer :show="drawerVisible" :categories="categories" @closeDrawer="drawerVisible=false"></drawer>
 
     </header>
     <main  >
@@ -196,7 +147,7 @@
                 </div>
             </div>
 
-            <div class="w-full col-span-2">
+            <div class="w-full col-span-2 sm:col-span-1">
                 <h6 class="font-bold text-white">Help Center</h6>
                 <div class="mt-3  flex justify-between">
                     <div class="col-span-1">
@@ -290,6 +241,7 @@ import {store} from "@/scripts/store/login";
 import {useCart} from "@/scripts/use/useCart";
 import Cart from "@/views/components/products/cart.vue";
 import Search from "@/views/components/search.vue";
+import Drawer from "@/views/components/drawer.vue";
 
 const {categories}=useCategory()
 const  {coupon}=useCoupon()
@@ -336,34 +288,6 @@ watch(store,()=>{
 </script>
 
 <style scoped>
-header{
-    z-index: 1000;
-}
-main{
-    z-index: 1;
-}
-.right-drawer {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 0; /* initially */
-    overflow: hidden;
-    min-height: 100vh;
-    padding-left: 0; /* initially */
-    border-left: 1px solid whitesmoke;
-    background: white;
-    z-index: 1000;
-    transition: all 0.2s; /* for the animation */
-}
 
-.drawer-mask {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 0; /* initially */
-    height: 100vh;
-    background: #000;
-    opacity: 0.3;
-    z-index: 199;
-}
+
 </style>

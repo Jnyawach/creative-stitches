@@ -120,6 +120,27 @@
             </h5>
             <hr class="mt-3">
             <div v-for="review in reviews.data" class="mt-5">
+                <!---review schema-->
+                <div>
+                    <div itemtype="https://schema.org/Product" itemscope>
+                        <meta itemprop="name" :content="product.name" />
+                        <meta itemprop="description" :content="product.meta_description" />
+                        <div itemprop="aggregateRating" itemtype="https://schema.org/AggregateRating" itemscope>
+                            <meta itemprop="reviewCount" :content="product.totalRating" />
+                            <meta itemprop="ratingValue" :content="product.rating" />
+                        </div>
+                        <div itemprop="review" itemtype="https://schema.org/Review" itemscope>
+                            <div itemprop="author" itemtype="https://schema.org/Person" itemscope>
+                                <meta itemprop="name" :content="review.user.name+' '+review.user.last_name" />
+                            </div>
+                            <div itemprop="reviewRating" itemtype="https://schema.org/Rating" itemscope>
+                                <meta itemprop="ratingValue" :content="review.rating" />
+                                <meta itemprop="bestRating" content="5" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End of Review Schema-->
                 <div>
                     <p v-if="review.rating" class="mt-1">
                         <span v-for="rating in review.rating" class="text-teal-700"><i class="fas fa-star"></i></span>
@@ -180,7 +201,29 @@ let props=defineProps({
 })
 const product=reactive(props.product.data)
 const featured=props.products.data
-
+const jsonLd={
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name":product.name,
+    "description":product.meta_description,
+    "review": {
+        "@type": "Review",
+        "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": product.rating,
+            "bestRating": "5"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "Fred Benson"
+        }
+    },
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": product.rating,
+        "reviewCount": product.totalRating
+    }
+}
 
 
 

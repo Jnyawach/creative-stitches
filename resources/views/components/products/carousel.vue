@@ -10,7 +10,7 @@
             <div class="overflow-hidden" v-if="product.thirdImage.icon">
                 <img @click="slideActive=2" :src="product.thirdImage.icon" class="object-fit rounded-md cursor-pointer ">
             </div>
-            <div class="overflow-hidden" v-if="product.fourthImage.icon">
+            <div class="overflow-hidden" v-if="product.fourthImage">
                 <img @click="slideActive=3" :src="product.fourthImage.icon" class="object-fit rounded-md cursor-pointer ">
             </div>
         </div>

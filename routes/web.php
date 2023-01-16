@@ -51,7 +51,7 @@ Route::group([],function(){
 });
 
 Route::stripeWebhooks('stripe-webhook');
-
+Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index'])->name('logs.index');
 
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';

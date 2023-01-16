@@ -9,7 +9,7 @@
             leave-to-class="opacity-0 scale-125"
         >
             <div v-if="show" class="inset-0 fixed bg-black-100 bg-opacity-70 z-[10000] grid place-items-center p-5" >
-                <div class="bg-white lg:w-4/6 w-full rounded-xl">
+                <div class="bg-white lg:w-4/6 w-full rounded-xl  h-[600px] sm:h-auto">
                     <header class="p-3">
                         <div class="flex justify-between">
 
@@ -28,8 +28,8 @@
 
                     </header>
 
-                    <div class="p-3.5 ">
-                        <div class="grid md:grid-cols-3 gap-2">
+                    <div class="p-3.5  overflow-y-auto h-[500px] sm:h-auto">
+                        <div class="grid md:grid-cols-3 gap-2 ">
                             <div class="md:col-span-1 grid justify-center text-center">
                                 <Link :href="route('shop.show',product.slug)" :title="product.name" class="relative">
                                     <img :src="product.mainImage.icon" class="rounded-xl">
@@ -93,11 +93,6 @@
                         </div>
                     </div>
 
-                    <footer class="p-3.5">
-                        <slot name="footer">
-
-                        </slot>
-                    </footer>
                 </div>
             </div>
         </Transition>
