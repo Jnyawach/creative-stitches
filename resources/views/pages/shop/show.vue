@@ -12,7 +12,8 @@
     <meta name="twitter:url" :content="route('shop.show',product.slug)">
     <meta name="twitter:card" :content="product.meta_description">
 </Head>
-    <section class="my-5 px-3">
+    <div class="max-w-[1280px] mx-auto">
+    <section class="my-5 px-3 ">
      <!-- Breadcrumbs-->
         <div>
             <ol itemscope itemtype="https://schema.org/BreadcrumbList" class="flex font-montserrat">
@@ -49,7 +50,7 @@
             </div>
             <div class="md:col-span-3">
               <div class="flex justify-between">
-                  <h6 v-if="product.orders" class="font-semibold">{{product.orders}} Sales
+                  <h6 v-if="product.orders" class="font-semibold">{{product.orders}} Sale(s)
                       <span v-if="product.rating" class="text-sm">
                           <span v-for="rating in product.rating" class="text-teal-700"><i class="fas fa-star"></i></span>
                           <span v-for="rating in 5-product.rating" class="text-teal-700"><i class="far fa-star"></i></span>
@@ -84,14 +85,14 @@
 
                 <div class="mt-3">
                     <h6  class="text-teal-700 font-bold">Additional Details</h6>
-                    <ul class="text-sm mt-2">
+                    <ul class="text-sm mt-2 space-y-2">
                         <li><span class="mr-2"><i class="far fa-cloud-download"></i></span>Digital Download</li>
                         <li><span class="mr-2"><i class="far fa-shopping-basket"></i></span>Includes Zip file of the selected format of the design & color Chart</li>
                         <li><span class="mr-2"><i class="far fa-shipping-fast"></i></span>No returns Accepted</li>
                     </ul>
                 </div>
 
-                <div v-html="product.description" class="mt-2"></div>
+                <div v-html="product.description" class="mt-2 text-sm leading-7"></div>
                 <!--
                 <div class="bg-teal-50 p-2 border-l-2 border-l-teal-700">
                     <p class="text-teal-500">You may embroider designs for personal use and items to sell.
@@ -177,6 +178,7 @@
             </div>
         </div>
     </section>
+    </div>
     <!---design tags-->
     <section>
         <div class="px-3 md:px-10 bg-teal-50 py-10">

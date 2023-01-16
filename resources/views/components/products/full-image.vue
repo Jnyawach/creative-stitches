@@ -8,16 +8,11 @@
             leave-from-class="opacity-100 scale-100"
             leave-to-class="opacity-0 scale-125"
         >
-            <div v-if="show" class="inset-0 fixed bg-black-100 bg-opacity-70 z-[10000] grid place-items-center p-5" >
-                <div class="bg-white lg:w-4/6 w-full rounded-xl">
+            <div @click="$emit('close')" v-if="show" class="inset-0 fixed bg-black-100 bg-opacity-70 z-[10000] grid place-items-center p-5" >
+                <div class="lg:w-4/6 w-full rounded-xl">
                     <header class="p-3">
-                        <div class="flex justify-between">
+                        <div class="flex justify-end">
 
-                            <slot name="header">
-                                <div class="font-bold text-black-100 text-lg">
-                                    <h6>Modal Header</h6>
-                                </div>
-                            </slot>
                             <div>
                                 <div class="text-end">
                                     <button class="bg-teal-900 rounded-full h-8 w-8" type="button" @click="$emit('close')"><span class="text-white text-lg"><i
@@ -34,11 +29,7 @@
                         </slot>
                     </div>
 
-                    <footer class="p-3.5">
-                        <slot name="footer">
 
-                        </slot>
-                    </footer>
                 </div>
             </div>
         </Transition>

@@ -13,6 +13,8 @@
 
         <div class="mt-10 px-3">
             <h1 class="font-bold text-xl">{{promotion.name}} at {{promotion.discount}}% Discount</h1>
+            <p><span class="text-teal-700">Promotion Title:</span> {{promotion.title}}</p>
+            <p><span class="text-teal-700">Promotion Description:</span> {{promotion.description}}</p>
 
             <hr class="mt-5">
             <div class="flex justify-between mt-5">

@@ -29,7 +29,7 @@ class Promotion extends Model implements HasMedia
     }
 
     protected  $fillable=[
-        'name','discount','status'
+        'name','discount','status', 'title','description'
     ];
 
     public function products(){

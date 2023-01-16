@@ -48,23 +48,24 @@ class AdminPromotionController extends Controller
         //
         $validated=$request->validate([
             'name'=>'required|string|max:255',
+            'description'=>'required|string|max:60',
+            'title'=>'required|string|max:60',
             'discount'=>'required|integer|max:20',
             'status'=>'required|integer',
-            'banner'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:width=1600,height=600',
-            'mobile'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:width=800,height=1000',
+            'photo'=>'required|image|mimes:png|max:2048|dimensions:ratio=1/1|dimensions:min_width=400,min_height=400',
         ]);
         $promotion=Promotion::create([
             'name'=>$validated['name'],
             'discount'=>$validated['discount'],
-            'status'=>$validated['status']
+            'status'=>$validated['status'],
+            'title'=>$validated['title'],
+            'description'=>$validated['description']
         ]);
 
-        if($files=$request->banner){
-            $promotion->addMedia($files)->toMediaCollection('banner');
+        if($files=$request->photo){
+            $promotion->addMedia($files)->toMediaCollection('photo');
         }
-        if($files=$request->mobile){
-            $promotion->addMedia($files)->toMediaCollection('mobile');
-        }
+
 
         return redirect()->route('promotion.index')
             ->with('status','Promotion created successfully');
@@ -80,7 +81,8 @@ class AdminPromotionController extends Controller
     public function show($id)
     {
         //
-        $promotion=Promotion::with('products')->select('name','id','discount')->findOrFail($id);
+        $promotion=Promotion::with('products')->select('name','id','discount','title','description')->findOrFail($id);
+
         $products=Product::query()
             ->when(request('search'),function ($query,$search){
                 $query->where('name','like', '%'.$search.'%');
@@ -114,26 +116,26 @@ class AdminPromotionController extends Controller
         //
         $validated=$request->validate([
             'name'=>'required|string|max:255',
+            'description'=>'required|string|max:60',
+            'title'=>'required|string|max:60',
             'discount'=>'required|integer|max:20',
             'status'=>'required|integer',
-            'banner'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:width=1600,height=600',
-            'mobile'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:width=800,height=1000',
+            'photo'=>'nullable|image|mimes:png|max:2048|dimensions:ratio=1/1|dimensions:min_width=400,min_height=400',
         ]);
         $promotion=Promotion::findOrFail($id);
         $promotion->update([
             'name'=>$validated['name'],
             'discount'=>$validated['discount'],
-            'status'=>$validated['status']
+            'status'=>$validated['status'],
+            'title'=>$validated['title'],
+            'description'=>$validated['description']
         ]);
 
-        if($files=$request->banner){
-            $promotion->clearMediaCollection('banner');
-            $promotion->addMedia($files)->toMediaCollection('banner');
+        if($files=$request->photo){
+            $promotion->clearMediaCollection('photo');
+            $promotion->addMedia($files)->toMediaCollection('photo');
         }
-        if($files=$request->mobile){
-            $promotion->clearMediaCollection('mobile');
-            $promotion->addMedia($files)->toMediaCollection('mobile');
-        }
+
 
         return redirect()->route('promotion.index')
             ->with('status','Promotion created successfully');

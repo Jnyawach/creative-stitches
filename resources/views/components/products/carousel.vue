@@ -28,14 +28,11 @@
             </button>
         </div>
 
-        <modal  :show="showModal" @close="showModal=false">
-            <template #header>
-                <h6>{{product.name}}</h6>
-            </template>
+        <full-image  :show="showModal" @close="showModal=false">
             <div class="flex justify-center">
              <img :src="currentImage">
             </div>
-        </modal>
+        </full-image>
 
     </div>
 </template>
@@ -43,7 +40,8 @@
 <script setup lang="ts">
 
 import {ref} from "vue";
-import Modal from "@/views/components/modal.vue";
+
+import FullImage from "@/views/components/products/full-image.vue";
 let props=defineProps({
     product:Object
 })

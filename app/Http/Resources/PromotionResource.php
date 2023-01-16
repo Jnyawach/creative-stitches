@@ -20,8 +20,9 @@ class PromotionResource extends JsonResource
             'slug'=>$this->slug,
             'discount'=>$this->discount,
             'status'=>$this->status,
-            'banner'=>$this->getFirstMediaUrl('banner'),
-            'mobile'=>$this->getFirstMediaUrl('mobile'),
+            'title'=>$this->title,
+            'description'=>$this->description,
+            'photo'=>$this->getFirstMediaUrl('photo'),
             'products'=>ProductResource::collection($this->whenLoaded('products'))
 
         ];

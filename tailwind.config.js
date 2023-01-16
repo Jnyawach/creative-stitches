@@ -9,8 +9,8 @@ module.exports = {
 	theme: {
 		extend: {
             fontFamily: {
-                'sansation': ['Sansation', 'sans-serif'],
-                'montserrat':['Montserrat', 'sans-serif'],
+                'raleway': ['Raleway', 'sans-serif'],
+
 
             },
             colors: {

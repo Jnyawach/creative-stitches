@@ -73,7 +73,7 @@
             </div>
         </div>
         <div class="py-2 px-2 hidden lg:block">
-            <ul class="flex justify-center gap-3 md:gap-5 font-medium font-montserrat w-full text-sm">
+            <ul class="flex justify-center gap-3 md:gap-5 font-bold  w-full text-sm">
                 <li>
                     <Link :href="route('shop.index')" class="hover:text-teal-700" title="Shop all Embroidery Designs">Shop all</Link>
                 </li>
@@ -104,6 +104,7 @@
     <cart :show="cartModal" @close="cartModal=false" :cart="cart"></cart>
     </main>
     <footer class="bg-black-100">
+        <div class="max-w-[1200px] mx-auto">
         <div class="grid grid-cols-2 md:grid-cols-3 gap-5 py-5 px-5 md:px-14">
             <div>
                 <h6 class="font-bold text-white">Shop</h6>
@@ -189,6 +190,7 @@
                 </div>
             </div>
 
+        </div>
         </div>
         <div class="pt-5">
             <hr>

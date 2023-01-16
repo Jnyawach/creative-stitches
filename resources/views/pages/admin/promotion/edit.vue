@@ -11,13 +11,10 @@
         </template>
     </title-block>
     <div class="grid grid-cols-4 gap-2">
-       <div class="col-span-1">
-           <img :src="promotion.mobile">
-           <h6 class="mt-3 font-bold">Mobile Banner</h6>
-       </div>
+
         <div class="col-span-3">
-            <img :src="promotion.banner">
-            <h6 class="mt-3 font-bold">Desktop Banner</h6>
+            <img :src="promotion.photo">
+            <h6 class="mt-3 font-bold">Promotion Photo</h6>
         </div>
     </div>
     <div class="mt-10 px-3">
@@ -53,32 +50,41 @@
                     </div>
                 </div>
             </div>
-            <div class="grid grid-cols-2 mt-3">
+            <div class="grid grid-cols-2 gap-2 mt-5">
+                <div>
+                    <label class="creative-label">Promotion Title (max 10 words):</label>
+                    <input type="text" class="creative-input" required placeholder="Enter Promotion Title"
+                           v-model="form.title" max="20">
+                    <div v-if="form.errors.title" class="creative-error">
+                        <span>{{ form.errors.title }}</span>
+                    </div>
+                </div>
+                <div>
+                    <label class="creative-label">Promotion Description (max 10words):</label>
+                    <input type="text" class="creative-input" required placeholder="Enter Promotion Description"
+                           v-model="form.description" max="20">
+                    <div v-if="form.errors.description" class="creative-error">
+                        <span>{{ form.errors.description }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 mt-5">
 
 
                 <div>
                     <label class="sumo-label" for="post_image">Banner Hero Image:</label>
                     <div>
-                        <small class="font-medium">Accepted file types PNG, JPG, JPEG. Maximum size of 2MB. Must be 1600px by 600px</small>
+                        <small class="font-medium">Accepted file type PNG. The photo must be have square aspect ratio</small>
                     </div>
-                    <input type="file" @input="form.banner=$event.target.files[0]" class="mt-4"  id="post_image" required accept="image/*">
-                    <div v-if="form.errors.banner" class="creative-error">
-                        <span class="text-xs">{{ form.errors.banner}}</span>
-                    </div>
-                </div>
-                <div>
-                    <label class="sumo-label" for="post_image">Mobile Hero Image:</label>
-                    <div>
-                        <small class="font-medium">Accepted file types PNG, JPG, JPEG. Maximum size of 2MB. Must be 800px by 1000px</small>
-                    </div>
-                    <input type="file" @input="form.mobile=$event.target.files[0]" class="mt-4"  id="post_image" required accept="image/*">
-                    <div v-if="form.errors.mobile" class="creative-error">
-                        <span class="text-xs">{{ form.errors.mobile}}</span>
+                    <input type="file" @input="form.photo=$event.target.files[0]" class="mt-4"  id="post_image" required accept="image/png">
+                    <div v-if="form.errors.photo" class="creative-error">
+                        <span class="text-xs">{{ form.errors.photo}}</span>
                     </div>
                 </div>
+
             </div>
-            <div class="mt-4 flex justify-end">
-                <button type="submit" class="btn-primary">Save Promotion</button>
+            <div class="mt-5 flex justify-end">
+                <button type="submit" class="btn-primary">Update Promotion</button>
             </div>
         </form>
     </div>
@@ -104,8 +110,9 @@ let form=useForm({
     name:promotion.name,
     status:promotion.status,
     discount:promotion.discount,
-    banner:'',
-    mobile:'',
+    photo:'',
+    title:'',
+    description:'',
     _method:'PATCH'
 })
 </script>

@@ -16,7 +16,7 @@
         <div class="flex justify-end mr-2">
             <small>Image credit: {{post.data.credit}}</small>
         </div>
-        <div class="mt-2 leading-7" v-html="post.data.content"/>
+        <div class="mt-2 leading-10" v-html="post.data.content"/>
         <p><span class="text-teal-700 mr-2">Tags:</span>{{post.data.tags}}</p>
         <div class="flex mt-2 gap-3">
             <div>
@@ -28,19 +28,21 @@
             </div>
         </div>
     </div>
-
-    <div class="px-3 md:px-8 my-5" v-if="posts.data">
-        <h2 class="font-bold text-2xl">Trending Stories</h2>
-        <div class="mt-5 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Link v-for="article in posts.data" :key="article.id" :title="article.title" :href="route('blog.show',article.slug)">
-                <div class="border rounded-2xl hover:shadow border-gray-200 overflow-hidden min-h-[350px]">
-                    <img :src="article.postIcon" class="w-full" :alt="article.title">
-                    <div class="p-2 py-3">
-                        <h6 class="font-bold text-sm">{{article.title}}</h6>
-                        <p>{{useTruncate(article.summary, 100) }}</p>
+    <div class="max-w-[1280px] mx-auto">
+        <div class="px-3 md:px-8 my-5" v-if="posts.data">
+            <h2 class="font-bold text-2xl">Trending Stories</h2>
+            <div class="mt-5 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <Link v-for="article in posts.data" :key="article.id" :title="article.title"
+                      :href="route('blog.show',article.slug)">
+                    <div class="border rounded-2xl hover:shadow border-gray-200 overflow-hidden min-h-[350px]">
+                        <img :src="article.postIcon" class="w-full" :alt="article.title">
+                        <div class="p-2 py-3">
+                            <h6 class="font-bold text-sm">{{ article.title }}</h6>
+                            <p>{{ useTruncate(article.summary, 100) }}</p>
+                        </div>
                     </div>
-                </div>
-            </Link>
+                </Link>
+            </div>
         </div>
     </div>
 </template>
