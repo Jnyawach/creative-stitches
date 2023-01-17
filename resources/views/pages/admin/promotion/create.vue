@@ -1,78 +1,88 @@
 <template>
-<admin>
-    <Head>
-        <title>Create Promotions</title>
-    </Head>
-    <title-block>
-        <h6 class="font-bold text-sm">Create Promotions</h6>
-        <template #info >
-            <p class="text-sm" v-if="$page.props.status"><span class="ml-2 text-teal-900"><i class="fas fa-info-circle"></i></span> {{$page.props.status}}</p>
-            <p class="text-sm" v-else><span class="ml-2 mr-3 text-teal-900"><i class="fas fa-info-circle"></i></span>Create and run promotions</p>
-        </template>
-    </title-block>
-    <div class="mt-10 px-3">
-        <form @submit.prevent="form.post(route('promotion.store'))">
-            <div class="grid grid-cols-3  gap-3">
-                <div>
-                    <label class="creative-label">Promotion Name:</label>
-                    <input type="text" class="creative-input" required placeholder="Enter Promotion Name"
-                           v-model="form.name">
-                    <div v-if="form.errors.name" class="creative-error">
-                        <span>{{ form.errors.name }}</span>
-                    </div>
-                </div>
+    <admin>
+        <Head>
+            <title>Edit Promotion</title>
+        </Head>
+        <title-block>
+            <h6 class="font-bold text-sm">Edit Promotions</h6>
+            <template #info >
+                <p class="text-sm" v-if="$page.props.status"><span class="ml-2 text-teal-900"><i class="fas fa-info-circle"></i></span> {{$page.props.status}}</p>
+                <p class="text-sm" v-else><span class="ml-2 mr-3 text-teal-900"><i class="fas fa-info-circle"></i></span>Create Promotions</p>
+            </template>
+        </title-block>
 
-                <div>
-                    <label class="creative-label">Select Status:</label>
-                    <select required class="creative-input" v-model="form.status">
-                        <option selected value="">Select Status</option>
-                        <option value="1">Active</option>
-                        <option value="0">Disabled</option>
-                    </select>
-
-                    <div v-if="form.errors.status" class="creative-error">
-                        <span>{{ form.errors.status }}</span>
-                    </div>
-                </div>
-                <div>
-                    <label class="creative-label">Promotion Discount:</label>
-                    <input type="number" class="creative-input" required placeholder="Enter Promotion Discount"
-                           v-model="form.discount" max="20">
-                    <div v-if="form.errors.discount" class="creative-error">
-                        <span>{{ form.errors.discount }}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="grid grid-cols-2 mt-3">
-
-
-                <div>
-                    <label class="sumo-label" for="post_image">Banner Hero Image:</label>
+        <div class="mt-10 px-3">
+            <form @submit.prevent="form.post(route('promotion.store'))">
+                <div class="grid grid-cols-3  gap-3">
                     <div>
-                        <small class="font-medium">Accepted file types PNG, JPG, JPEG. Maximum size of 2MB. Must be 1600px by 600px</small>
+                        <label class="creative-label">Promotion Name:</label>
+                        <input type="text" class="creative-input" required placeholder="Enter Promotion Name"
+                               v-model="form.name">
+                        <div v-if="form.errors.name" class="creative-error">
+                            <span>{{ form.errors.name }}</span>
+                        </div>
                     </div>
-                    <input type="file" @input="form.banner=$event.target.files[0]" class="mt-4"  id="post_image" required accept="image/*">
-                    <div v-if="form.errors.banner" class="creative-error">
-                        <span class="text-xs">{{ form.errors.banner}}</span>
-                    </div>
-                </div>
-                <div>
-                    <label class="sumo-label" for="post_image">Mobile Hero Image:</label>
+
                     <div>
-                        <small class="font-medium">Accepted file types PNG, JPG, JPEG. Maximum size of 2MB. Must be 800px by 1000px</small>
+                        <label class="creative-label">Select Status:</label>
+                        <select required class="creative-input" v-model="form.status">
+                            <option selected value="">Select Status</option>
+                            <option value="1">Active</option>
+                            <option value="0">Disabled</option>
+                        </select>
+
+                        <div v-if="form.errors.status" class="creative-error">
+                            <span>{{ form.errors.status }}</span>
+                        </div>
                     </div>
-                    <input type="file" @input="form.mobile=$event.target.files[0]" class="mt-4"  id="post_image" required accept="image/*">
-                    <div v-if="form.errors.mobile" class="creative-error">
-                        <span class="text-xs">{{ form.errors.mobile}}</span>
+                    <div>
+                        <label class="creative-label">Promotion Discount:</label>
+                        <input type="number" class="creative-input" required placeholder="Enter Promotion Discount"
+                               v-model="form.discount" max="20">
+                        <div v-if="form.errors.discount" class="creative-error">
+                            <span>{{ form.errors.discount }}</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="mt-4 flex justify-end">
-                <button type="submit" class="btn-primary">Save Promotion</button>
-            </div>
-        </form>
-    </div>
-</admin>
+                <div class="grid grid-cols-2 gap-2 mt-5">
+                    <div>
+                        <label class="creative-label">Promotion Title (max 10 words):</label>
+                        <input type="text" class="creative-input" required placeholder="Enter Promotion Title"
+                               v-model="form.title" max="20">
+                        <div v-if="form.errors.title" class="creative-error">
+                            <span>{{ form.errors.title }}</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="creative-label">Promotion Description (max 10words):</label>
+                        <input type="text" class="creative-input" required placeholder="Enter Promotion Description"
+                               v-model="form.description" max="20">
+                        <div v-if="form.errors.description" class="creative-error">
+                            <span>{{ form.errors.description }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 mt-5">
+
+
+                    <div>
+                        <label class="sumo-label" for="post_image">Banner Hero Image:</label>
+                        <div>
+                            <small class="font-medium">Accepted file type PNG. The photo must be have square aspect ratio</small>
+                        </div>
+                        <input type="file" @input="form.photo=$event.target.files[0]" class="mt-4"  id="post_image" required accept="image/png">
+                        <div v-if="form.errors.photo" class="creative-error">
+                            <span class="text-xs">{{ form.errors.photo}}</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mt-5 flex justify-end">
+                    <button type="submit" class="btn-primary">Save Promotion</button>
+                </div>
+            </form>
+        </div>
+    </admin>
 </template>
 
 <script setup lang="ts">
@@ -86,8 +96,10 @@ let form=useForm({
     name:'',
     status:'',
     discount:'',
-    banner:'',
-    mobile:''
+    photo:'',
+    title:'',
+    description:'',
+
 })
 </script>
 

@@ -4,16 +4,27 @@
         <meta name="description" content="Machine embroidery designs: Instant download: Smooth Stitching">
     </Head>
     <!--Hero image based on running promotion-->
-    <div class="grid">
-        <Link :href="route('shop.promotion',promotion.data.slug)" :title="promotion.data.name">
-            <div class="hidden sm:block">
-                <img :src="promotion.data.banner" :alt="promotion.data.name">
-            </div>
-            <div class="sm:hidden">
-                <img :src="promotion.data.mobile" :alt="promotion.data.name">
-            </div>
-        </Link>
+    <div class="bg-black-100 max-w-[1280px] mx-auto">
+        <div>
+            <div class="grid md:grid-cols-2 px-3 md:px-10 gap-4">
+                <div class="text-white md:py-16 order-2 md:order-1 text-center md:text-start">
+                    <h1 class="text-4xl lg:text-5xl font-extrabold lg:leading-[73px]">{{promotion.data.title}}</h1>
+                    <p class="mt-5 text-xl lg:text-3xl font-light">{{promotion.data.description}}</p>
+                   <div class="my-5 lg:my-10">
+                       <Link :href="route('shop.promotion',promotion.data.slug)" :title="promotion.data.name"
+                       class="bg-teal-700 rounded-full py-3 px-8 font-semibold">
+                          Get discount here <span class="ml-5"><i class="far fa-long-arrow-right"></i></span>
+                       </Link>
+                   </div>
+                </div>
+                <div class="order-1 md:order-2 p-2 flex justify-center md:block">
+                    <img :src="promotion.data.photo" :alt="promotion.data.name" >
 
+                </div>
+
+
+            </div>
+        </div>
     </div>
     <!---Recommended for you-->
     <div class="max-w-[1280px] mx-auto">

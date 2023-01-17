@@ -14,7 +14,7 @@
                 <img @click="slideActive=3" :src="product.fourthImage.icon" class="object-fit rounded-md cursor-pointer ">
             </div>
         </div>
-        <div class="relative col-span-4 order-1 md:order-2">
+        <div class="flex justify-center relative col-span-4 order-1 md:order-2">
             <div v-show="slideActive===index" v-for="(slide,index) in slides">
                 <img @click="triggerModal(slide)" :src="slide.thumb" class="object-fit rounded-md cursor-zoom-in" :alt="product.name">
             </div>

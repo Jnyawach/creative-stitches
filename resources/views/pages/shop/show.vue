@@ -42,6 +42,29 @@
             </ol>
 
         </div>
+        <!--product structured data-->
+        <div>
+            <div itemtype="https://schema.org/Product" itemscope>
+                <meta itemprop="mpn" :content="product.mpn" />
+                <meta itemprop="name" :content="product.name" />
+                <link itemprop="image" :href="product.mainImage.full_image" />
+                <meta itemprop="description" :content="product.meta_description" />
+                <div itemprop="offers" itemtype="https://schema.org/AggregateOffer" itemscope>
+                    <meta itemprop="lowPrice" :content="product.price" />
+                    <meta itemprop="highPrice" :content="product.price" />
+                    <meta itemprop="offerCount" content="16" />
+                    <meta itemprop="priceCurrency" content="USD" />
+                </div>
+                <div itemprop="aggregateRating" itemtype="https://schema.org/AggregateRating" itemscope>
+                    <meta itemprop="reviewCount" :content="product.totalRating" />
+                    <meta itemprop="ratingValue" :content="product.rating" />
+                </div>
+                <meta itemprop="sku" :content="product.sku" />
+                <div itemprop="brand" itemtype="https://schema.org/Brand" itemscope>
+                    <meta itemprop="name" content="Creative Stitches" />
+                </div>
+            </div>
+        </div>
         <!---Product Display-->
         <div class="grid md:grid-cols-6 gap-8 mt-4 px-3 md:px-18">
             <div class="md:col-span-3">
