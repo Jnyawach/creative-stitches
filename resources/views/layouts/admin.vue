@@ -257,7 +257,7 @@ defineProps({
 
             </div>
         </div>
-        <div class="bg-black-100 py-3 px-3 z-[10000] relative">
+        <div class="bg-black-100 py-3 px-3 z-[10000] relative mt-10">
             <div class="">
                 <ul class="flex gap-2 text-white">
                     <li><p><span><i class="far fa-copyright"></i></span> Creative Stitches {{new Date().getFullYear()}}</p></li>

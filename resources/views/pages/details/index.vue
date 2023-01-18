@@ -22,15 +22,7 @@
             <h1 class="font-bold text-3xl">Contact Details</h1>
             <p class="text-lg">We'll use these information to attach your order</p>
             <form @submit.prevent="form.post(route('details.store'))">
-                <div class="grid mt-3">
-                    <div class="w-full sm:w-1/2">
-                        <label for="details-email" class="creative-label">Email <sup class="text-[8px]"><i class="fas fa-star-of-life"></i></sup></label>
-                        <input type="email" class="creative-input" id="details-email" placeholder="Enter your email" required v-model="form.email"/>
-                        <div v-if="form.errors.email" class="creative-error">
-                            <span>{{ form.errors.email }}</span>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="grid sm:grid-cols-2 gap-2">
                     <div class="mt-3">
                         <label for="details_name" class="creative-label">First Name <sup class="text-[8px]"><i class="fas fa-star-of-life"></i></sup></label>
@@ -47,9 +39,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="grid mt-3">
-                    <div class="w-full sm:w-1/2">
-                        <label for="create-password" class="creative-label">Add a password for secure checkout</label>
+                <div class="grid mt-3 sm:grid-cols-2 gap-2">
+                    <div class="w-full">
+                        <label for="details-email" class="creative-label">Email <sup class="text-[8px]"><i class="fas fa-star-of-life"></i></sup></label>
+                        <input type="email" class="creative-input" id="details-email" placeholder="Enter your email" required v-model="form.email"/>
+                        <div v-if="form.errors.email" class="creative-error">
+                            <span>{{ form.errors.email }}</span>
+                        </div>
+                    </div>
+                    <div class="w-full ">
+                        <label for="create-password" class="creative-label">Add a password for secure checkout <sup class="text-[8px]"><i class="fas fa-star-of-life"></i></sup></label>
 
                         <input type="password" class="creative-input" id="create-password" placeholder="Enter your password" required v-model="form.password"/>
                         <div v-if="form.errors.password" class="creative-error">

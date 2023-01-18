@@ -73,7 +73,7 @@
             </div>
         </div>
         <div class="py-2 px-2 hidden lg:block">
-            <ul class="flex justify-center gap-3 md:gap-5 font-bold  w-full text-sm">
+            <ul class="flex justify-center gap-3 md:gap-5 font-semibold  w-full text-sm">
                 <li>
                     <Link :href="route('shop.index')" class="hover:text-teal-700" title="Shop all Embroidery Designs">Shop all</Link>
                 </li>
@@ -194,7 +194,7 @@
         </div>
         <div class="pt-5">
             <hr>
-            <div class="px-5 md:px-14 py-3">
+            <div class="px-5 md:px-14 py-3 max-w-[1280px] mx-auto">
                 <div>
                     <Link href="/" title="Creative Stitches">
                         <img :src="'/images/creative-stitches-white.png'" alt="Creative stitches logo" class="w-44">

@@ -4,8 +4,8 @@
         <meta name="description" content="Machine embroidery designs: Instant download: Smooth Stitching">
     </Head>
     <!--Hero image based on running promotion-->
-    <div class="bg-black-100 max-w-[1280px] mx-auto">
-        <div>
+    <div class="bg-black-100 ">
+        <div class="max-w-[1280px] mx-auto">
             <div class="grid md:grid-cols-2 px-3 md:px-10 gap-4">
                 <div class="text-white md:py-16 order-2 md:order-1 text-center md:text-start">
                     <h1 class="text-4xl lg:text-5xl font-extrabold lg:leading-[73px]">{{promotion.data.title}}</h1>

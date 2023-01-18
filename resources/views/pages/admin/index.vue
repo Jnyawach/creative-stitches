@@ -4,7 +4,7 @@
         <div class="my-10 px-3 ">
             <div class="grid grid-cols-4 gap-2">
                 <div class="border shadow rounded-lg p-2 hover:bg-gray-50">
-                  <Link :href="route('orders.index')" title="Orders">
+                  <Link :href="route('purchases.index')" title="Orders">
                       <div>
                           <h1 class="font-bold text-3xl">{{orders}}</h1>
                           <p class="mt-1 font-bold text-teal-700">Orders</p>

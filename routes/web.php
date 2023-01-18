@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group([], function (){
-
+    //Route::get('test-page',[MainController::class,'testPage']);
     Route::resource('/', MainController::class);
 });
 

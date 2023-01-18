@@ -94,4 +94,9 @@ class MainController extends Controller
     {
         //
     }
+
+    public function testPage(){
+        $status=404;
+        return inertia::render('test-page', compact('status'));
+    }
 }
