@@ -18,7 +18,8 @@
                     </div>
 
                     <div class="mt-10 flex justify-center w-full">
-                        <button type="submit" :disabled="form.processing" class="py-3 sm:w-1/2  px-10 bg-teal-700 rounded-full text-white font-semibold">Send reset email</button>
+                        <button type="submit" :disabled="form.processing" class="py-3 sm:w-1/2  px-10 bg-teal-700 rounded-full text-white font-semibold">
+                            Send reset email <span v-if="form.processing" class="animate-ping ml-2"><i class="far fa-ellipsis-h"></i></span></button>
                     </div>
                     <div class="flex justify-center mt-5">
                         <p class="cursor-pointer font-bold">

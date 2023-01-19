@@ -35,9 +35,10 @@ class ChargeSucceeded implements ShouldQueue
 
     public function handle()
     {
+        Log::info('Hook Hit');
         $charge=$this->webhookCall->payload['data']['object'];
         $user=User::where('stripe_id',$charge['customer'])->firstOrFail();
-        Log::info('Hook Hit');
+
         if ($user){
             Log::info('Hook Hit');
             $order=Order::where('payment_intent',$charge['payment_intent'])->firstOrFail();

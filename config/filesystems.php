@@ -35,11 +35,7 @@ return [
             'root' => storage_path('app'),
             'throw' => false,
         ],
-        'media' => [
-            'driver' => 'local',
-            'root'   => public_path('media'),
-            'url'    => env('APP_URL').'/media',
-            ],
+
 
         'public' => [
             'driver' => 'local',
@@ -65,6 +61,13 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
+        ],
+        'dropbox' => [
+            'driver' => 'dropbox',
+            'client_id' => env('DROPBOX_APP_KEY'),
+            'client_secret' => env('DROPBOX_APP_SECRET'),
+            'authorization_token' => env('DROPBOX_ACCESS_TOKEN'),
+            'refresh_token'=>env('DROPBOX_REFRESH_TOKEN'),
         ],
 
     ],

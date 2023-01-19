@@ -7,6 +7,7 @@ return [
      */
     'signing_secret' => env('STRIPE_WEBHOOK_SECRET'),
 
+
     /*
      * You can define a default job that should be run for all other Stripe event type
      * without a job defined in next configuration.

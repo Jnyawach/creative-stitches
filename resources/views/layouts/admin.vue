@@ -39,6 +39,7 @@ defineProps({
                                 </div>
                             </div>
                             <!--search-->
+                            <!---
                             <div class="mt-8 px-3">
                                 <form>
                                     <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
@@ -51,6 +52,7 @@ defineProps({
                                     </div>
                                 </form>
                             </div>
+                            --->
 
                             <div class="mt-7">
                                 <ul>
@@ -83,9 +85,9 @@ defineProps({
                                 </ul>
                             </div>
                         </div>
-                        <div class="mt-8 mx-4 ">
+                        <div class="my-8 mx-4 ">
                             <h5 class="font-semibold text-lg text-primary-200">Links</h5>
-                            <ul class="side-link">
+                            <ul class="side-link pt-3 pb-10">
                                 <li>
                                     <Link :href="route('users.index')">
                                         <div class="w-full rounded-md px-3 py-1">
@@ -257,7 +259,7 @@ defineProps({
 
             </div>
         </div>
-        <div class="bg-black-100 py-3 px-3 z-[10000] relative mt-10">
+        <div class="bg-black-100 py-3 px-3 z-[10000] relative">
             <div class="">
                 <ul class="flex gap-2 text-white">
                     <li><p><span><i class="far fa-copyright"></i></span> Creative Stitches {{new Date().getFullYear()}}</p></li>

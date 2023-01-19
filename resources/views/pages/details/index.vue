@@ -64,7 +64,8 @@
                 </div>
                 <div class="mt-10">
                     <button type="submit" :disabled="form.processing" class="py-3 sm:w-1/2  px-10 bg-teal-700 hover:bg-teal-800
-                    rounded-full text-white font-semibold">Review and Pay <span class="ml-3"><i class="fal fa-long-arrow-right"></i></span></button>
+                    rounded-full text-white font-semibold">Review and Pay <span class="ml-3"><i class="fal fa-long-arrow-right"></i></span>
+                        <span v-if="form.processing" class="animate-ping ml-2"><i class="far fa-ellipsis-h"></i></span></button>
                 </div>
             </form>
             <div>

@@ -5,8 +5,8 @@
     </Head>
     <!--Hero image based on running promotion-->
     <div class="bg-black-100 ">
-        <div class="max-w-[1280px] mx-auto">
-            <div class="grid md:grid-cols-2 px-3 md:px-10 gap-4">
+        <div class=" max-w-[1280px] mx-auto">
+            <div class="grid md:grid-cols-2 px-3 py-5 md:px-10 gap-4">
                 <div class="text-white md:py-16 order-2 md:order-1 text-center md:text-start">
                     <h1 class="text-4xl lg:text-5xl font-extrabold lg:leading-[73px]">{{promotion.data.title}}</h1>
                     <p class="mt-5 text-xl lg:text-3xl font-light">{{promotion.data.description}}</p>
@@ -17,7 +17,7 @@
                        </Link>
                    </div>
                 </div>
-                <div class="order-1 md:order-2 p-2 flex justify-center md:block">
+                <div class="order-1 md:order-2 p-2 flex justify-center md:justify-end">
                     <img :src="promotion.data.photo" :alt="promotion.data.name" >
 
                 </div>

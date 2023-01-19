@@ -36,7 +36,7 @@
                         </div>
                         <stripe-checkout
                             ref="checkoutRef"
-                            pk="pk_test_51HX90hC0Va703pdiBcTGZuThpF4g9V0rFq2E86yNXUhteHTFTYKRXAeu4SZsRyeAKfB1VzOCeqKQfVPM5STkZoLo00Saoi3gwm"
+                            :pk="pub_key"
                             :sessionId="checkout.id"
                         />
 
@@ -114,6 +114,8 @@ const submit = () => {
     loader.value=true
     checkoutRef.value.redirectToCheckout();
 }
+
+const pub_key=import.meta.env.VITE_STRIPE_API_KEY as string
 </script>
 
 <style scoped>
