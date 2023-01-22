@@ -13,7 +13,8 @@
         "postcss": "^8.4.19",
         "tailwindcss": "^3.2.4",
         "vite": "^3.2.4",
-        "vite-plugin-laravel": "^0.2.2"
+        "vite-plugin-laravel": "^0.2.2",
+        "vite-plugin-minify": "^1.5.2"
     },
     "dependencies": {
         "@chenfengyuan/vue-countdown": "^2.1.0",

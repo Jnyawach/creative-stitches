@@ -4,6 +4,9 @@ import autoprefixer from 'autoprefixer'
 import laravel from 'vite-plugin-laravel'
 import vue from '@vitejs/plugin-vue'
 import inertia from './resources/scripts/vite/inertia-layout'
+// @ts-ignore
+import { ViteMinifyPlugin } from 'vite-plugin-minify'
+
 
 export default defineConfig({
 	plugins: [
@@ -16,6 +19,7 @@ export default defineConfig({
 				autoprefixer(),
 			],
 		}),
+        ViteMinifyPlugin({}),
 	],
     resolve: {
         alias: {
