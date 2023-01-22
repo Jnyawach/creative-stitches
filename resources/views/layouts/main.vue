@@ -225,7 +225,13 @@
 
         </div>
 
+            <!--WhatsApp button-->
+            <a href="https://api.whatsapp.com/send?phone=254705813739" target="_blank" class="fixed bottom-5 right-5 bg-teal-800 rounded-full h-12 w-12 flex
+            place-content-center cursor-pointer " title="Chat with us directly">
+                <span class="text-white self-center text-2xl"><i class="fab fa-whatsapp"></i></span>
+            </a>
 
+        <subscribe :show="subscribeModal" @close="subscribeModal=false" @open="subscribeModal=true"></subscribe>
     </footer>
 </template>
 <script setup lang="ts">
@@ -240,10 +246,11 @@ import Authentication from "@/views/pages/auth/authentication.vue";
 import Toast from "@/views/components/toast.vue";
 import {Inertia} from "@inertiajs/inertia";
 import {store} from "@/scripts/store/login";
-import {useCart} from "@/scripts/use/useCart";
 import Cart from "@/views/components/products/cart.vue";
 import Search from "@/views/components/search.vue";
 import Drawer from "@/views/components/drawer.vue";
+import Subscribe from "@/views/components/user/subscribe.vue";
+import {Button} from "flowbite-vue";
 
 const {categories}=useCategory()
 const  {coupon}=useCoupon()
@@ -287,6 +294,7 @@ watch(store,()=>{
         store.login=false;
     }
 })
+const subscribeModal=ref(false)
 </script>
 
 <style scoped>

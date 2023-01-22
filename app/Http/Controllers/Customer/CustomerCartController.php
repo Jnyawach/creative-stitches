@@ -100,6 +100,7 @@ class CustomerCartController extends Controller
                 'size_inches'=>$product->design_size_inches,
                 'stitches'=>$product->total_stitches]]);
         }
+
         return redirect()->back()
             ->with('status','Item Successfully added to basket');
 

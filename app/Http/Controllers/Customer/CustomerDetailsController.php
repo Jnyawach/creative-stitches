@@ -120,4 +120,22 @@ class CustomerDetailsController extends Controller
     {
         //
     }
+
+    public function subscribe(Request $request){
+        $validated=$request->validate([
+            'name'=>'required|max:50|string',
+            'email'=>'required|email|string|max:60'
+        ]);
+        if (!$email=Newsletter::where('email',$validated['email'])->first()){
+            $subscriber=Newsletter::create([
+                'email'=>$validated['email'],
+                'name'=>$validated['name']
+            ]);
+
+            return redirect()->back()
+                ->with('status','You have successfully subscribed to our Newsletter');
+        }
+        return redirect()->back()
+            ->with('status','An active subscription exists under the same email');
+    }
 }

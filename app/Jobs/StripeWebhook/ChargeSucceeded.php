@@ -6,12 +6,14 @@ use App\Mail\OrderConfirmatonEmail;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Spatie\WebhookClient\Models\WebhookCall;
@@ -30,18 +32,27 @@ class ChargeSucceeded implements ShouldQueue
      */
     public function __construct(WebhookCall $webhookCall)
     {
+
         $this->webhookCall = $webhookCall;
     }
 
     public function handle()
     {
-        Log::info('Hook Hit');
+
         $charge=$this->webhookCall->payload['data']['object'];
         $user=User::where('stripe_id',$charge['customer'])->firstOrFail();
 
         if ($user){
-            Log::info('Hook Hit');
-            $order=Order::where('payment_intent',$charge['payment_intent'])->firstOrFail();
+            //Log::info($charge['metadata']);
+            $order=Order::create([
+                'user_id'=>$user->id,
+                'order_code'=>'CS-'.Carbon::now()->timestamp,
+                'status'=>'Paid',
+                'amount'=>$charge['amount']/100,
+                'payment_intent'=>$charge['payment_intent']
+            ]);
+
+            $order->products()->sync($charge['metadata']);
             Payment::create([
                 'user_id'=>$user->id,
                 'sub_total'=>$charge['amount']/100,
@@ -50,8 +61,7 @@ class ChargeSucceeded implements ShouldQueue
                 'order_id'=>$order->id,
 
             ]);
-            $order->update([
-                'status'=>'Paid']);
+
             Mail::to($user)->send(new OrderConfirmatonEmail($order));
         }
 

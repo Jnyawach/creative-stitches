@@ -11,7 +11,7 @@
                         <label for="form-input" class="sumo-label"><span class="mr-2 text-sky-800"><i class="fal fa-envelope"></i></span>Email:</label>
                         <input type="email" class="sumo-input" id="form-input" placeholder="Enter your email" required v-model="form.email"/>
                         <div v-if="form.errors.email" class="mt-3 text-red-800 text-sm">
-                            <span><span class="mr-2"><i class="fal fa-exclamation-circle"></i></span>{{ form.errors.email }}</span>
+                            <span>{{ form.errors.email }}</span>
                         </div>
                     </div>
 

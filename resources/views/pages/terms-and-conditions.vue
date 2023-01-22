@@ -3,7 +3,7 @@
 <title>Terms and Conditions</title>
     <meta name="description" content="Creative Stitches terms and conditions">
 </Head>
-    <div class="mt-5 px-3 py-3">
+    <div class="mt-5 px-3 py-3 md:px-16">
         <h1 class="text-lg font-bold text-center uppercase">Terms and Conditions</h1>
        <div class="px-3">
            <p class="mt-3">Last Updated <span class="text-teal-700">{{new Date(term.updated_at).toDateString()}}</span></p>

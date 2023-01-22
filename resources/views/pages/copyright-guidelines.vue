@@ -3,7 +3,7 @@
         <title>Copyright Guidelines</title>
         <meta name="description" content="Creative Stitches Copyright Guidelines">
     </Head>
-    <div class="mt-5 px-3 py-3">
+    <div class="mt-5 px-3 md:px-16 py-3">
         <h1 class="text-lg font-bold text-center uppercase">Copyright Guidelines</h1>
         <div class="px-3">
             <p class="mt-3">Last Updated <span class="text-teal-700">{{new Date(term.updated_at).toDateString()}}</span></p>

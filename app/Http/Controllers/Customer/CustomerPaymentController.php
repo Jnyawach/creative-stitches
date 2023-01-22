@@ -24,16 +24,24 @@ class CustomerPaymentController extends Controller
         if(\Cart::isEmpty()){
             return redirect()->route('shop.index');
         }
+        $order=Order::where('user_id',Auth::id())->count();
+        if ($order<1){
+            $condition = new \Darryldecode\Cart\CartCondition(array(
+                'name' => 'First Order Discount',
+                'type' => 'Sales',
+                'target' => 'total',
+                'value' => '-10%',
+            ));
 
-        $order=Order::create([
-            'user_id'=>Auth::id(),
-            'order_code'=>'CS-'.Carbon::now()->timestamp,
-            'status'=>'Pending',
-            'amount'=>\Cart::getTotal(),
-        ]);
-        foreach (\Cart::getContent() as $item){
-            $order->products()->attach($item->id);
+            \Cart::condition($condition);
         }
+
+
+        $products=array();
+        foreach (\Cart::getContent() as $item){
+            array_push($products, $item->id);
+        }
+
         //Submit Stripe request
         $stripe = new \Stripe\StripeClient(config('services.stripe.secret'));
         $checkout=$stripe->checkout->sessions->create([
@@ -45,7 +53,7 @@ class CustomerPaymentController extends Controller
                        'currency'=>'usd',
                        'unit_amount'=>number_format(\Cart::getTotal(),2)*100,
                        'product_data'=>[
-                          'name'=>'Order No.'.$order->order_code
+                          'name'=>'Machine Embroidery Design'
                        ],
                    ],
                     'quantity' => 1,
@@ -54,10 +62,13 @@ class CustomerPaymentController extends Controller
             ],
             'customer'=>Auth::user()->stripe_id,
             'mode' => 'payment',
+            'payment_intent_data'=>[
+               'metadata'=>$products
+            ]
 
         ]);
 
-        $order->update(['payment_intent'=>$checkout['payment_intent']]);
+       //return $checkout;
 
         return inertia::render('account.payment.index', compact('checkout'));
     }

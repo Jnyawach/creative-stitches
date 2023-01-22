@@ -115,7 +115,7 @@
                     </ul>
                 </div>
 
-                <div v-html="product.description" class="mt-2 text-sm leading-7"></div>
+                <div v-html="product.description" class="mt-2 text leading-7"></div>
                 <!--
                 <div class="bg-teal-50 p-2 border-l-2 border-l-teal-700">
                     <p class="text-teal-500">You may embroider designs for personal use and items to sell.

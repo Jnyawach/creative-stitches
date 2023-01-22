@@ -27,10 +27,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([], function (){
     //Route::get('test-page',[MainController::class,'testPage']);
-    Route::resource('/', MainController::class);
+    Route::get('/', [MainController::class, 'index']);
 });
 
 Route::group([],function(){
+    Route::post('details/subscribe', [CustomerDetailsController::class,'subscribe'])->name('subscribe');
     Route::get('search-algolia', [SearchController::class,'index'])->name('search.algolia');
     Route::resource('details', CustomerDetailsController::class)->middleware('guest:web');
     Route::post('enter-promo', [CustomerCartController::class,'enterPromo'])->name('enter.promo');

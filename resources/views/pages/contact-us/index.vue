@@ -14,8 +14,8 @@
                 <p>Fill the form out and our team will get back to you within 24hrs</p>
             </div>
             <div class="px-3 mt-5 hidden md:block">
-                <p class="text-sm"><span class="ml-3 text-teal-700"><i class="fa-regular fa-envelope"></i></span> info@creativestitchings.com</p>
-                <p class="mt-2 text-sm"><span class="ml-3 text-teal-700"><i class="fa-regular fa-mobile-notch"></i></span> +254717109280</p>
+                <p class="text-sm"><span class="ml-3 text-teal-700"><i class="fa-regular fa-envelope"></i></span> info@creativestitching.store</p>
+                <p class="mt-2 text-sm"><span class="ml-3 text-teal-700"><i class="fa-regular fa-mobile-notch"></i></span> +254705813739</p>
                 <ul class="flex gap-2 px-3 mt-3 text-xl">
                     <li><Link hre="#" title="Pinterest"><span><i class="fa-brands fa-pinterest"></i></span></Link></li>
                     <li><Link hre="#" title="Facebook"><span><i class="fa-brands fa-facebook"></i></span></Link></li>
@@ -68,8 +68,8 @@
             </form>
 
             <div class="px-3 mt-5  md:hidden text-center">
-                <p class="text-sm"><span class="ml-3 text-teal-700">Email:</span> info@creativestitchings.com</p>
-                <p class="mt-2 text-sm"><span class="ml-3 text-teal-700">Cellphone:</span> +254717109280</p>
+                <p class="text-sm"><span class="ml-3 text-teal-700">Email:</span> info@creativestitching.store</p>
+                <p class="mt-2 text-sm"><span class="ml-3 text-teal-700">Cellphone:</span> +254705813739</p>
                 <ul class="flex gap-3 px-3 mt-3 text-lg justify-center">
                     <li><Link hre="#" title="Pinterest"><span><i class="fa-brands fa-pinterest"></i></span></Link></li>
                     <li><Link hre="#" title="Facebook"><span><i class="fa-brands fa-facebook"></i></span></Link></li>
