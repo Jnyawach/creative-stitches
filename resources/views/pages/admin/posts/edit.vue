@@ -100,7 +100,7 @@
                     <div>
                         <label class="sumo-label" for="post_image">Post Image:</label>
                         <div>
-                            <small class="font-medium">Accepted file types PNG, JPG, JPEG. Maximum size of 2MB</small>
+                            <small class="font-medium">Accepted file types PNG, JPG, JPEG. Maximum size of 2MB. Size 1200px by 675px</small>
                         </div>
                     </div>
                     <input type="file" @input="form.image=$event.target.files[0]" class="mt-4"  id="post_image" >
