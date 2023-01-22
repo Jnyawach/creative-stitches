@@ -214,4 +214,35 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+    'debug_blacklist' => [
+        '_ENV' => [
+            'APP_KEY',
+            'DB_PASSWORD',
+            'REDIS_PASSWORD',
+            'MAIL_PASSWORD',
+            'PUSHER_APP_KEY',
+            'PUSHER_APP_SECRET',
+            'VITE_PUSHER_APP_KEY',
+            'VITE_STRIPE_API_KEY',
+            'STRIPE_KEY',
+            'STRIPE_SECRET',
+            'DB_USERNAME',
+            'STRIPE_WEBHOOK_SECRET',
+            'DROPBOX_REFRESH_TOKEN',
+            'DROPBOX_APP_KEY',
+            'DROPBOX_APP_SECRET'
+        ],
+        '_SERVER' => [
+            'APP_KEY',
+            'DB_PASSWORD',
+            'REDIS_PASSWORD',
+            'MAIL_PASSWORD',
+            'PUSHER_APP_KEY',
+            'PUSHER_APP_SECRET',
+        ],
+        '_POST' => [
+            'password',
+        ],
+    ],
+
 ];
