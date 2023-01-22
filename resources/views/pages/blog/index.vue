@@ -71,7 +71,10 @@
 
         <div class="px-3 md:px-8 my-5">
             <h2 class="font-bold text-2xl">Featured Designs</h2>
-            <p>Remember to plugin products here</p>
+            <div>
+                <!-- product listings -->
+                <product-list :products="products.data"></product-list>
+            </div>
         </div>
 
         <Suspense>
@@ -86,11 +89,13 @@ import {Head} from "@inertiajs/inertia-vue3";
 import {Link} from "@inertiajs/inertia-vue3";
 import {useTruncate} from "@/scripts/use/useTruncate";
 import Articles from "@/views/components/articles.vue";
+import ProductList from "@/views/components/products/product-list.vue";
 
 
 
 let props=defineProps({
-    posts:Object
+    posts:Object,
+    products:Object
 })
 
 

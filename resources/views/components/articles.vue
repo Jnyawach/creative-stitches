@@ -54,7 +54,7 @@ const getPostsOnScroll= async()=>{
 useIntersectionObserver (
     el,
     async ()=>{
-        console.log('Bottom hit!!!!')
+
       await getPostsOnScroll()
     },
     {

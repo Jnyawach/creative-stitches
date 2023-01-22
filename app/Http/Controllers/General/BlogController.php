@@ -4,7 +4,9 @@ namespace App\Http\Controllers\General;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PostResource;
+use App\Http\Resources\ProductResource;
 use App\Models\Post;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -23,11 +25,13 @@ class BlogController extends Controller
           return $posts;
         }
 
+        $products=ProductResource::collection(Product::inRandomOrder()->with('embroideries','promotion:discount')->latest()->limit(5)->get());
 
 
 
 
-        return  inertia::render('blog.index', compact('posts'));
+
+        return  inertia::render('blog.index', compact('posts','products'));
     }
 
     /**
