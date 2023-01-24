@@ -80,7 +80,7 @@
                           ({{product.totalRating}})
                       </span>
                   </h6>
-                  <button class="font-bold hover:text-teal-700">Report this Design</button>
+
               </div>
                 <h1 class="font-bold mt-2 text-xl">{{product.name}}</h1>
                 <h6 class="font-montserrat font-extrabold text-2xl mt-2">

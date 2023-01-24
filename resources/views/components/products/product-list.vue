@@ -42,7 +42,7 @@
                     <span v-if="product.promotion" class="ml-1 text-teal-700 line-through text-xs">
                        $ {{Number(product.promotion.discount/100*product.price+product.price).toFixed(2)}}</span></p>
                 <div class="py-3">
-                    <Link preserve-scroll as="button" method="patch" :href="route('cart.update',product.id)" class="text-black-100 py-2 px-3 sm:px-5 border rounded-full
+                    <Link preserve-scroll as="button" method="patch" :href="route('cart.update',product.id)" class="text-black-100 py-2 px-2 sm:px-5 border rounded-full
                      border-black-100 text-xs sm:text-sm hover:text-teal-700 hover:border-teal-700">
                         <span class="mr-3"><i class="far fa-plus"></i></span>Add to Basket</Link>
                 </div>

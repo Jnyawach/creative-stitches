@@ -33,7 +33,7 @@
             <!---Filter div-->
             <div class="flex justify-between py-3">
                 <div>
-                    <button @click="filterModal=true" class="border rounded-full px-8 py-1 border-black-100
+                    <button @click="filterModal=true" class="border rounded-full px-3 sm:px-5 py-1 border-black-100
                 font-semibold hover:bg-teal-700 hover:text-white hover:border-teal-700">
                         <span class="mr-2"><i class="far fa-sliders-h"></i></span>
                         Filter
@@ -45,13 +45,13 @@
                             {{ products.meta.last_page }}</p>
                     </div>
                     <div class="flex gap-1">
-                        <Link :href="products.links.prev" class="bg-teal-700 text-white rounded-full py-1 px-5"
+                        <Link :href="products.links.prev" class=" bg-teal-700 text-white rounded-full py-1 px-3 sm:px-5"
                               :class="[products.links.prev?'cursor-pointer':'cursor-not-allowed']"
                               :disabled="!products.links.prev">
                             <span class="mr-2"><i class="far fa-angle-left"></i></span>
                             PREV
                         </Link>
-                        <Link :href="products.links.next" class="bg-teal-700 text-white rounded-full py-1 px-5 "
+                        <Link :href="products.links.next" class=" bg-teal-700 text-white rounded-full py-1 px-3 sm:px-5 "
                               :disabled="!products.links.next"
                               :class="[products.links.next?'cursor-pointer':'cursor-not-allowed']">
                             NEXT <span class="ml-2"><i class="far fa-angle-right"></i></span>
@@ -108,7 +108,7 @@
             <!--Secondary Pagination-->
             <div class="py-3 flex justify-center mt-5">
                 <div>
-                    <div class="flex gap-2">
+                    <div class="flex gap-2 ">
                         <Link :href="products.links.prev" class="bg-teal-700 text-white rounded-full py-1 px-5"
                               :class="[products.links.prev?'cursor-pointer':'cursor-not-allowed']"
                               :disabled="!products.links.prev">

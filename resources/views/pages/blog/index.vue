@@ -53,7 +53,7 @@
             </div>
         </div>
 
-        <div class="px-3 md:px-8 my-5" v-if="trends">
+        <div class="px-3 md:px-8 my-5" v-if="trends.length">
             <h2 class="font-bold text-2xl">Trending Stories</h2>
             <div class="mt-5 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <Link v-for="trend in trends" :key="trend.id" :title="trend.title"

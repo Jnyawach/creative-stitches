@@ -26,7 +26,7 @@
             <div class="flex mr-5">
                 <ul class="flex self-center font-medium gap-6 text-lg">
                     <li v-if="!auth">
-                        <button class="hover:text-gray-900  text-lg" @click="authModal=true">Sign in</button>
+                        <button class="hover:text-gray-900 " @click="authModal=true"><span class="mr-1 sm:hidden"><i class="far fa-user"></i></span><span class="hidden sm:block">Sign in</span></button>
                     </li>
                     <li v-if="auth">
                         <Link :href="route('account.index')" title="My account" class="hover:text-teal-900  text-lg">
