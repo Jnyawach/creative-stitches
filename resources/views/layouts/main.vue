@@ -124,14 +124,12 @@
                 <h6 class="font-bold text-white">About</h6>
                 <div class="mt-3">
                     <ul class="sm:text-[13px] font-medium">
-                        <li class="py-1">
-                            <Link href="#" class="text-white hover:text-teal-500" title="About Us">About Us</Link>
-                        </li>
+
                         <li class="py-1">
                             <Link :href="route('blog.index')" class="text-white hover:text-teal-500" title="Blog">Blog</Link>
                         </li>
                         <li class="py-1">
-                            <Link href="#" class="text-white hover:text-teal-500" title="Jobs">Jobs</Link>
+                            <Link href="https://careermove.co.ke/hiring/creative-stitches" class="text-white hover:text-teal-500" title="Jobs">Jobs</Link>
                         </li>
                         <li class="py-1">
                             <Link :href="route('custom-embroidery.index')" class="text-white hover:text-teal-500" title="Custom Embroidery">Custom Embroidery</Link>

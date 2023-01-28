@@ -6,6 +6,7 @@ return [
      * webhook configuration settings: https://dashboard.stripe.com/account/webhooks.
      */
     'signing_secret' => env('STRIPE_WEBHOOK_SECRET'),
+    'webhook_guard'=>env('WEBHOOK_GUARD'),
 
 
     /*
