@@ -11,6 +11,8 @@ use App\Http\Controllers\General\QuoteController;
 use App\Http\Controllers\General\ShopCategoryController;
 use App\Http\Controllers\General\ShopController;
 use App\Http\Controllers\MainController;
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,7 +28,10 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group([], function (){
-    //Route::get('test-page',[MainController::class,'testPage']);
+    Route::get('check-queue',function(){
+        Mail::to('nyawach41@gmail.com')->send(new TestMail());
+        return "working";
+    });
     Route::get('/', [MainController::class, 'index']);
 });
 
