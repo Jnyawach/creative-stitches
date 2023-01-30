@@ -42,7 +42,7 @@
             <tr class="border-b text-[12px] font-medium"  v-for="product in products.data" :key="product.id" :class="[!product.embroideries_count?'text-red-700':'']">
                 <td class="py-3 px-4 text-start">{{ product.id }}</td>
                 <td class="py-3 px-4 text-start">{{product.name}}</td>
-                <td class="py-3 px-4 text-start">{{product.price}}</td>
+                <td class="py-3 px-4 text-start">{{Number(product.price).toFixed(2)}}</td>
                 <td class="py-3 px-4 text-start">{{product.category.name}}</td>
                 <td class="py-3 px-4 text-start">
                     <span v-if="product.embroideries_count">{{product.embroideries_count}}</span>

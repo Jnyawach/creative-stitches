@@ -38,7 +38,7 @@
                 <div class="border shadow rounded-lg p-2 hover:bg-gray-50">
                     <Link :href="route('payments.index')" title="Messages">
                         <div>
-                            <h1 class="font-bold text-3xl">$. {{income}}</h1>
+                            <h1 class="font-bold text-3xl">$. {{Number(income).toFixed(2)}}</h1>
                             <p class="mt-1 font-bold text-teal-700">Total Income</p>
                         </div>
                     </Link>

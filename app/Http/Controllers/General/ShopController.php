@@ -57,7 +57,7 @@ class ShopController extends Controller
             })
             ->when(request('category'),function ($query,$category){
                 $query->where('category_id',$category);
-            })->with('embroideries','promotion:discount')->paginate(20);
+            })->with('embroideries','promotion')->inRandomOrder()->paginate(20);
 
         $products=ProductResource::collection($products);
 
@@ -114,7 +114,7 @@ class ShopController extends Controller
         $product=Product::findBySlugOrFail($id)->load(['category','size','embroideries','promotion']);
         $product=new ProductResource($product);
         $reviews=ReviewResource::collection(Review::where('product_id',$product->id)->with('user')->paginate(10));
-        $products=ProductResource::collection(Product::where('category_id', $product->category_id)->where('id','!=',$product->id)->with('embroideries','promotion:discount')->latest()->limit(5)->get());
+        $products=ProductResource::collection(Product::where('category_id', $product->category_id)->where('id','!=',$product->id)->with('embroideries','promotion')->latest()->limit(5)->get());
         return inertia::render('shop.show', compact('product','products','reviews'));
     }
 
@@ -186,7 +186,7 @@ class ShopController extends Controller
             })
             ->when(request('hoop'),function ($query,$hoop){
                 $query->where('size_id',$hoop);
-            })->where('category_id', $category->id)->with('embroideries','promotion:discount')->paginate(20);
+            })->where('category_id', $category->id)->with('embroideries','promotion')->inRandomOrder()->paginate(20);
         $products=ProductResource::collection($products);
         $hoops=Size::select('id','size_in_mm','size_in_inches')->get();
         $filters=request()->only(['price','hoop','range']);

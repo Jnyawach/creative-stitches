@@ -18,6 +18,7 @@
                     p-1 w-10 h-10 text-xl absolute top-2 right-2 hover:bg-teal-600">
                     <span><i class="far fa-heart"></i></span>
                 </Link>
+
                 <button v-if="product.promotion" class="absolute top-2 left-2 bg-red-700 p-1
                 text-white text-[9px] font-montserrat font-semibold rounded-md">
                     <span>{{product.promotion.discount}}% off</span>
@@ -38,7 +39,7 @@
                         </span>
                     </span>
                 </p>
-                <p class="font-bold text-black-100 font-montserrat">$ {{Number(product.price).toFixed(2)}}
+               <p class="font-bold text-black-100 font-montserrat">$ {{Number(product.price).toFixed(2)}}
                     <span v-if="product.promotion" class="ml-1 text-teal-700 line-through text-xs">
                        $ {{Number(product.promotion.discount/100*product.price+product.price).toFixed(2)}}</span></p>
                 <div class="py-3">

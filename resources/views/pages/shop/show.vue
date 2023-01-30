@@ -83,11 +83,13 @@
 
               </div>
                 <h1 class="font-bold mt-2 text-xl">{{product.name}}</h1>
-                <h6 class="font-montserrat font-extrabold text-2xl mt-2">
+                <h6 class="font-extrabold text-2xl mt-2">
                     USD {{Number(product.price).toFixed(2)}}
-                    <span v-if="product.promotion" class="ml-1 text-teal-700 line-through text-xs">
-                        USD {{Number(product.promotion.discount/100*product.price+product.price).toFixed(2)}}</span>
+                    <span v-if="product.promotion_id" class="ml-1 text-teal-700 line-through text-xs">
+                        USD {{Number(product.promotion.discount/100*product.price+product.price).toFixed(2)}}
                     <span class="text-sm ml-2">{{product.promotion.discount}}% off</span>
+                    </span>
+
                 </h6>
                 <p class="text-sm mt-2"><span class="text-teal-700">Available Formats</span><span v-for="format in product.embroideries" :key="format.id" class="ml-1 font-semibold">.{{format.format.abbreviation}}</span></p>
                 <p class="text-sm mt-2">SKU: {{product.sku}}</p>
@@ -226,31 +228,6 @@ let props=defineProps({
 })
 const product=reactive(props.product.data)
 const featured=props.products.data
-const jsonLd={
-    "@context": "https://schema.org/",
-    "@type": "Product",
-    "name":product.name,
-    "description":product.meta_description,
-    "review": {
-        "@type": "Review",
-        "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": product.rating,
-            "bestRating": "5"
-        },
-        "author": {
-            "@type": "Person",
-            "name": "Fred Benson"
-        }
-    },
-    "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": product.rating,
-        "reviewCount": product.totalRating
-    }
-}
-
-
 
 </script>
 

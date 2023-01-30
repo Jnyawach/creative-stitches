@@ -33,7 +33,7 @@
                 <td class="py-3 px-4 text-start">{{ product.id }}</td>
                 <td class="py-3 px-4 text-start">{{product.sku }}</td>
                 <td class="py-3 px-4 text-start">{{product.mpn }}</td>
-                <td class="py-3 px-4 text-start">{{product.price}}</td>
+                <td class="py-3 px-4 text-start">{{Number(product.price).toFixed(2)}}</td>
                 <td class="py-3 px-4 text-start">{{product.category.name}}</td>
                 <td class="py-3 px-4 text-start">{{product.total_stitches}}</td>
                 <td class="py-3 px-4 text-start">{{product.design_size_mm}}</td>
