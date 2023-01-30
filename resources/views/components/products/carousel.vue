@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="flex justify-center relative col-span-4 order-1 md:order-2">
-            <div v-show="slideActive===index" v-for="(slide,index) in slides">
+            <div v-show="slideActive===index && slide.thumb" v-for="(slide,index) in slides">
                 <img @click="triggerModal(slide)" :src="slide.thumb" class="object-fit rounded-md cursor-zoom-in" :alt="product.name">
             </div>
             <button @click="slidePrevious()" class="absolute rounded-full bg-teal-700/30
@@ -46,19 +46,19 @@ import {elements} from "chart.js";
 let props=defineProps({
     product:Object
 })
-const images=
+const slides=ref(
     [
         props.product.mainImage,
         props.product.secondImage,
         props.product.thirdImage?props.product.thirdImage:'',
         props.product.fourthImage?props.product.fourthImage:'',
 
-    ]
+    ])
 
-const slides=images.filter(Boolean);
+
 const slideActive=ref(0)
 function slideNext(){
-    if (slideActive.value<slides.length-1){
+    if (slideActive.value<slides.value.length-1){
         slideActive.value++
     }else{
         slideActive.value=0
@@ -69,7 +69,7 @@ function slidePrevious(){
     if (slideActive.value){
         slideActive.value--
     }else{
-        slideActive.value=slides.length-1
+        slideActive.value=slides.value.length-1
     }
 
 }
