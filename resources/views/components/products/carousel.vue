@@ -10,7 +10,7 @@
             <div class="overflow-hidden" v-if="product.thirdImage.icon">
                 <img @click="slideActive=2" :src="product.thirdImage.icon" class="object-fit rounded-md cursor-pointer ">
             </div>
-            <div class="overflow-hidden" v-if="product.fourthImage">
+            <div class="overflow-hidden" v-if="product.fourthImage.icon">
                 <img @click="slideActive=3" :src="product.fourthImage.icon" class="object-fit rounded-md cursor-pointer ">
             </div>
         </div>
@@ -42,10 +42,11 @@
 import {ref} from "vue";
 
 import FullImage from "@/views/components/products/full-image.vue";
+import {elements} from "chart.js";
 let props=defineProps({
     product:Object
 })
-const slides=ref(
+const images=ref(
     [
         props.product.mainImage,
         props.product.secondImage,
@@ -54,9 +55,10 @@ const slides=ref(
 
     ]
 )
+const slides=images.value.filter(Boolean);
 const slideActive=ref(0)
 function slideNext(){
-    if (slideActive.value<slides.value.length-1){
+    if (slideActive.value<slides.length-1){
         slideActive.value++
     }else{
         slideActive.value=0
@@ -67,7 +69,7 @@ function slidePrevious(){
     if (slideActive.value){
         slideActive.value--
     }else{
-        slideActive.value=slides.value.length-1
+        slideActive.value=slides.length-1
     }
 
 }
