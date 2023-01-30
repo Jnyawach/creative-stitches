@@ -50,8 +50,8 @@ const images=
     [
         props.product.mainImage,
         props.product.secondImage,
-        props.product.thirdImage,
-        props.product.fourthImage,
+        props.product.thirdImage?props.product.thirdImage:'',
+        props.product.fourthImage?props.product.fourthImage:'',
 
     ]
 
