@@ -128,7 +128,7 @@
         </div>
     </section>
     <!--related products-->
-    <section>
+    <section v-if="featured.length">
         <div class="my-14 px-3 md:px-10">
             <h2 class="font-bold text-2xl">Related Designs</h2>
             <product-list :products="featured"></product-list>
