@@ -46,7 +46,7 @@ import {elements} from "chart.js";
 let props=defineProps({
     product:Object
 })
-const images=ref(
+const images=
     [
         props.product.mainImage,
         props.product.secondImage,
@@ -54,8 +54,8 @@ const images=ref(
         props.product.fourthImage,
 
     ]
-)
-const slides=images.value.filter(Boolean);
+
+const slides=images.filter(Boolean);
 const slideActive=ref(0)
 function slideNext(){
     if (slideActive.value<slides.length-1){
