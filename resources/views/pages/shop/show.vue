@@ -91,8 +91,16 @@
                     </span>
 
                 </h6>
-                <p class="text-sm mt-2"><span class="text-teal-700">Available Formats</span><span v-for="format in product.embroideries" :key="format.id" class="ml-1 font-semibold">.{{format.format.abbreviation}}</span></p>
-                <p class="text-sm mt-2">SKU: {{product.sku}}</p>
+                <p class="text-sm mt-2">
+                    <span class="inline-block mr-3">
+                        <span class="text-teal-700">Available Formats</span><span v-for="format in product.embroideries" :key="format.id" class="ml-1 font-semibold">.{{format.format.abbreviation}}</span>
+                    </span>
+                    <span class="inline-block mr-3"><span class="text-teal-700">Total Stitches:</span> {{product.total_stitches}}</span>
+                    <span class="inline-block mr-3"><span class="text-teal-700">Size:</span> {{product.design_size_mm}}mm | {{product.design_size_inches}}"</span>
+
+                </p>
+                <p class="text-sm mt-2 font-bold">SKU: {{product.sku}}</p>
+
                 <div class="grid sm:grid-cols-2 gap-3">
                     <Link :href="route('cart.update',product.id)" method="patch"  type="button" class=" mt-3 text-white bg-teal-700 py-2 px-4 border rounded-full
                        m-1 border-teal-700 text-center   hover:bg-teal-900 font-semibold">
@@ -111,6 +119,7 @@
                 <div class="mt-3">
                     <h6  class="text-teal-700 font-bold">Additional Details</h6>
                     <ul class="text-sm mt-2 space-y-2">
+                        <li><span class="mr-2"><i class="far fa-ruler-vertical"></i></span>{{product.design_size_mm}}mm | {{product.design_size_inches}}"</li>
                         <li><span class="mr-2"><i class="far fa-cloud-download"></i></span>Digital Download</li>
                         <li><span class="mr-2"><i class="far fa-shopping-basket"></i></span>Includes Zip file of the selected format of the design & color Chart</li>
                         <li><span class="mr-2"><i class="far fa-shipping-fast"></i></span>No returns Accepted</li>
@@ -118,12 +127,7 @@
                 </div>
 
                 <div v-html="product.description" class="mt-2 text leading-7"></div>
-                <!--
-                <div class="bg-teal-50 p-2 border-l-2 border-l-teal-700">
-                    <p class="text-teal-500">You may embroider designs for personal use and items to sell.
-                        Do not resell the digitized file.
-                        You can embroider it onto you project and sell this like a finish work.</p>
-                </div-->
+
             </div>
         </div>
     </section>
