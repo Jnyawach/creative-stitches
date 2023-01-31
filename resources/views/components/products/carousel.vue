@@ -15,8 +15,8 @@
             </div>
         </div>
         <div class="flex justify-center relative col-span-4 order-1 md:order-2">
-            <div v-show="slideActive===index && slide.thumb" v-for="(slide,index) in slides">
-                <img @click="triggerModal(slide)" :src="slide.thumb" class="object-fit rounded-md cursor-zoom-in" :alt="product.name">
+            <div v-show="slideActive===index" v-for="(slide,index) in images">
+                <img @click="triggerModal(slide)" :src="slide" class="object-fit rounded-md cursor-zoom-in" :alt="product.name">
             </div>
             <button @click="slidePrevious()" class="absolute rounded-full bg-teal-700/30
                             top-0 bottom-0 left-1 my-auto p-2 h-10 w-10 text-white hover:bg-teal-700/50">
@@ -48,17 +48,18 @@ let props=defineProps({
 })
 const slides=ref(
     [
-        props.product.mainImage,
-        props.product.secondImage,
-        props.product.thirdImage?props.product.thirdImage: props.product.mainImage,
-        props.product.fourthImage?props.product.fourthImage:props.product.secondImage,
+        props.product.mainImage.thumb,
+        props.product.secondImage.thumb,
+        props.product.thirdImage.thumb,
+        props.product.fourthImage.thumb,
 
     ])
 
+const images=slides.value.filter(Boolean)
 
 const slideActive=ref(0)
 function slideNext(){
-    if (slideActive.value<slides.value.length-1){
+    if (slideActive.value<images.length-1){
         slideActive.value++
     }else{
         slideActive.value=0
@@ -69,7 +70,7 @@ function slidePrevious(){
     if (slideActive.value){
         slideActive.value--
     }else{
-        slideActive.value=slides.value.length-1
+        slideActive.value=images.length-1
     }
 
 }
@@ -80,6 +81,17 @@ function triggerModal(slide:any){
     currentImage.value=slide.full_image;
     showModal.value=true
 }
+
+const removeEmpty = (obj: any[]) => {
+    Object.keys(obj).forEach(k =>
+        (obj[k] && typeof obj[k] === 'object') && removeEmpty(obj[k]) ||
+        (!obj[k] && obj[k] !== undefined) && delete obj[k]
+    );
+    return obj;
+};
+
+
+
 </script>
 
 <style scoped>
