@@ -35,9 +35,9 @@
                                     item.name
                                 }}</span>
                                 <span class="font-bold text-teal-700 text-2xl">$ {{ item.price }}</span></h6>
-                            <p class="text-sm lg:text-md"><span class="text-teal-700">Formats:</span>
-                                {{ item.attributes.format }}</p>
-                            <p class="text-sm lg:text-md"><span class="text-teal-700">Total Stitches:</span>
+                            <p class="text-sm lg:text-md break-words"><span class="text-teal-700">Formats:</span>
+                                <span class="break-words">{{ item.attributes.format }}</span></p>
+                            <p class="text-sm lg:text-md "><span class="text-teal-700">Total Stitches:</span>
                                 {{ item.attributes.stitches }}</p>
                             <p class="text-sm lg:text-md"><span class="text-teal-700">Size:</span>
                                 {{ item.attributes.size_mm }} mm | {{ item.attributes.size_inches }} inches</p>

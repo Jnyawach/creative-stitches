@@ -8,7 +8,7 @@
             leave-from-class="opacity-100 scale-100"
             leave-to-class="opacity-0 scale-125"
         >
-            <div v-if="show" class="inset-0 fixed bg-black-100 bg-opacity-70 z-[10000] grid place-items-center p-5" >
+            <div @click.self="$emit('close')" v-if="show" class="inset-0 fixed bg-black-100 bg-opacity-70 z-[10000] grid place-items-center p-5" >
                 <div class="bg-white lg:w-2/6 w-full rounded-xl p-3">
                     <div>
                         <div class="text-end">

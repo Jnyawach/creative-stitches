@@ -8,7 +8,7 @@
             leave-from-class="opacity-100 scale-100"
             leave-to-class="opacity-0 scale-125"
         >
-            <div v-if="show" class="inset-0 fixed bg-black-100 bg-opacity-70 z-[10000] grid place-items-center p-5" >
+            <div @click.self="$emit('close')" v-if="show" class="inset-0 fixed bg-black-100 bg-opacity-70 z-[10000] grid place-items-center p-5" >
                 <div class="bg-white lg:w-1/2 w-full rounded-xl   h-[600px] sm:h-auto">
                     <header class="p-3">
                         <div class="flex justify-between">
@@ -83,7 +83,7 @@
                                     <h5 class="font-bold">Overview</h5>
                                     <div class="mt-2">
                                         <p class="text-sm"><span class="text-teal-700">Size (W/H):</span> {{product.design_size_mm}}mm | {{product.design_size_inches}}"</p>
-                                        <p class="text-sm"><span class="text-teal-700">Formats:</span> <span class="mr-2 font-bold" v-for="format in product.embroideries" :key="format.id">{{format.format.abbreviation}}</span> </p>
+                                        <p class="text-sm"><span class="text-teal-700">Formats:</span> <span class="mr-2 font-bold inline-block" v-for="format in product.embroideries" :key="format.id">{{format.format.abbreviation}}</span> </p>
                                         <p class="text-sm"><span class="text-teal-700">Total Stitches:</span> {{product.total_stitches}}</p>
                                         <p class="text-sm"><span class="text-teal-700">SKU:</span> {{product.sku}}</p>
 
