@@ -58,15 +58,9 @@
                           <p><span class="text-teal-700 mr-1">Hoop size:</span>{{product.size.size_in_mm}} mm | {{product.size.size_in_inches}} inches</p>
                           <p><span class="text-teal-700 mr-1">Stitch Count:</span>{{product.total_stitches}}</p>
                           <div class="hidden sm:block">
-                              <div class="flex mt-3 gap-2">
-                                  <div>
-                                      <a :href="product.colorChart" class="text-white bg-teal-700 py-1 rounded-md px-2 font-semibold" title="Color Chart">Colors<span class="ml-2"><i class="fal fa-download"></i></span></a>
-                                  </div>
-                                  <div v-for="embroidery in product.embroideries" :key="embroidery.id">
-                                      <a  :href="route('download.artwork',[embroidery.id,order.id])"  @click="downloadOrder(embroidery.id,order.id)" class="w-full text-sm text-white bg-teal-700  py-1 rounded-md px-2 font-semibold">{{embroidery.format.abbreviation}}<span class="ml-2"><i class="fal fa-download"></i></span></a>
-                                  </div>
-
-
+                              <div class="mt-3 block">
+                                  <a :href="product.colorChart" class="text-white bg-teal-700 py-1 rounded-md px-2 font-semibold m-1 inline-block" title="Color Chart">Color Chart<span class="ml-2"><i class="fal fa-download"></i></span></a>
+                                  <a v-for="embroidery in product.embroideries" :key="embroidery.id"  :href="route('download.artwork',[embroidery.id,order.id])"  @click="downloadOrder(embroidery.id,order.id)" class="text-sm text-white bg-teal-700  py-1 rounded-md px-2 font-semibold m-1 inline-block">{{embroidery.format.abbreviation}}<span class="ml-2"><i class="fal fa-download"></i></span></a>
                               </div>
                               <div class="flex justify-end mt-3">
                                   <Link :href="route('reviews.show',product.id)" title="Review this Product" class="text-teal-700 font-bold hover:text-teal-800">Review this Product</Link>
