@@ -23,7 +23,7 @@ class HelpCenterConroller extends Controller
         $faqs=FaqResource::collection(Faq::when(request('search'),function ($query,$search){
             $query->where('question','like', '%'.$search.'%');
         })->
-        paginate(20));
+        paginate(10));
         $search=request('search');
         return inertia::render('help-center.index', compact('categories','faqs','search'));
     }
@@ -64,7 +64,7 @@ class HelpCenterConroller extends Controller
         $faqs=FaqResource::collection(Faq::where('faq_category_id', $faq_category->id)->when(request('search'),function ($query,$search){
             $query->where('question','like', '%'.$search.'%');
         })->
-        paginate(20));
+        paginate(10));
         $search=request('search');
 
         return inertia::render('help-center.show', compact('faqs', 'faq_category','categories','search'));

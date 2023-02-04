@@ -21,7 +21,7 @@ class AdminFaqsController extends Controller
     {
         //
         //$faqs=Faq::with('category')->paginate(10);
-        $faqs=FaqResource::collection(Faq::paginate(10));
+        $faqs=FaqResource::collection(Faq::paginate(20));
         $categories=FaqCategory::select('name','slug','id')->get();
 
         return  inertia::render('admin.faqs.index', compact('faqs','categories'));

@@ -68,21 +68,7 @@
             </tbody>
 
         </table>
-        <div class="bg-gray-50 p-3 flex justify-between">
-            <div class="self-center">
-                <h6 class="font-medium">Showing <span class="text-sky-800">{{ faqs.current_page }}</span> of <span
-                    class="text-sky-800">{{ faqs.last_page }}</span> Page(s)</h6>
-            </div>
-            <div class="flex">
-                <Link :href="faqs.prev_page_url" class="btn-primary text-xs m-1" v-if="faqs.prev_page_url"><span
-                    class="mr-2"><i class="far fa-angle-left"></i></span>Prev
-                </Link>
-                <Link :href="faqs.next_page_url" class="btn-primary text-xs m-1" v-if="faqs.next_page_url">Next
-                    <span class="ml-2"><i class="far fa-angle-right"></i></span></Link>
-
-            </div>
-
-        </div>
+        <pagination :data="faqs"></pagination>
     </div>
 
     <template #sidebar>
@@ -111,6 +97,7 @@ import TitleBlock from "@/views/components/title-block.vue";
 import Sidelink from "@/views/components/sidelink.vue";
 import {Link} from "@inertiajs/inertia-vue3";
 import {Dropdown, Button} from "flowbite-vue";
+import Pagination from "@/views/components/pagination.vue"
 
 defineProps({
     faqs:Object,
