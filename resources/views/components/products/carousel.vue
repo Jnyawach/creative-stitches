@@ -78,7 +78,7 @@ function slidePrevious(){
 const showModal=ref(false)
 const currentImage=ref('')
 function triggerModal(slide:any){
-    currentImage.value=slide.full_image;
+    currentImage.value=slide;
     showModal.value=true
 }
 
