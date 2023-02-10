@@ -163,7 +163,7 @@
                     <div class="self-end">
                         <ul class="flex gap-4">
                             <li >
-                                <Link href="#" class="text-white hover:text-teal-500" title="Pinterest">
+                                <Link href="https://www.pinterest.com/creativestitchesembroidery/" class="text-white hover:text-teal-500" title="Pinterest">
                                     <span><i class="fab fa-pinterest-p"></i></span>
                                 </Link>
                             </li>

@@ -26,6 +26,9 @@
                           top-0 bottom-0 right-1 my-auto p-2 h-10 w-10 text-white hover:bg-teal-700/50">
                 <span><i class="far fa-angle-right"></i></span>
             </button>
+            <div class="absolute top-1 right-1">
+                <a data-pin-do="buttonFollow" href="https://www.pinterest.com/creativestitchesembroidery/">Pinterest</a>
+            </div>
         </div>
 
         <full-image  :show="showModal" @close="showModal=false">
@@ -35,6 +38,9 @@
         </full-image>
 
     </div>
+    <component is="script" type="application/javascript" async defer src="//assets.pinterest.com/js/pinit.js">
+
+    </component>
 </template>
 
 <script setup lang="ts">
