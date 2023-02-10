@@ -68,7 +68,7 @@
                     <span><i class="fas fa-bars"></i></span>
                 </button>
             </div>
-            <div class="w-full ">
+            <div class="w-full">
                 <search></search>
             </div>
         </div>
