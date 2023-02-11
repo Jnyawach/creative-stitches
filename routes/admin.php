@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminPermissionController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminPromotionController;
 use App\Http\Controllers\Admin\AdminQuoteController;
+use App\Http\Controllers\Admin\AdminReviewController;
 use App\Http\Controllers\Admin\AdminRolesController;
 use App\Http\Controllers\Admin\AdminCategoriesController;
 use App\Http\Controllers\Admin\AdminSizeController;
@@ -24,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware'=>['auth:admin']], function (){
+    Route::resource('admin/ratings', AdminReviewController::class);
     Route::resource('admin/users', UserController::class);
     Route::resource('admin/subscriptions', AdminSubscriptionController::class);
     Route::resource('admin/payments', AdminPaymentsController::class);

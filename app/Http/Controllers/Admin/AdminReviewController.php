@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\OrderResource;
-use App\Models\Order;
+use App\Http\Resources\ReviewResource;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class AdminOrdersController extends Controller
+class AdminReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,13 +18,13 @@ class AdminOrdersController extends Controller
     public function index()
     {
         //
-        $orders=OrderResource::collection(Order::query()
+        $reviews=ReviewResource::collection(Review::with(['product','user'])
             ->when(request('search'),function ($query,$search){
-                $query->where('order_code','like', '%'.$search.'%');
-            })->where('status','Paid')->with('user')->paginate(20));
+                $query->where('comment','like', '%'.$search.'%');
+            })
+            ->paginate(10));
         $filters=request()->only(['search']);
-
-        return inertia::render('admin.purchases.index', compact('orders','filters'));
+        return inertia::render('admin.ratings.index', compact('reviews','filters'));
     }
 
     /**
@@ -57,9 +57,10 @@ class AdminOrdersController extends Controller
     public function show($id)
     {
         //
-        $order=new OrderResource(Order::with('user','products','payment')->findOrFail($id));
-
-        return inertia::render('admin.purchases.show', compact('order'));
+        $review=new ReviewResource(Review::with(['product','user'])->findOrFail($id));
+        $previous = Review::where('id', '<', $id)->max('id');
+        $next = Review::where('id', '>', $id)->min('id');
+        return inertia::render('admin.ratings.show',compact('review','next','previous'));
     }
 
     /**
@@ -94,5 +95,9 @@ class AdminOrdersController extends Controller
     public function destroy($id)
     {
         //
+        $review=Review::findOrFail($id);
+        $review->delete();
+        return redirect()->route('ratings.index')
+            ->with('status','Reviews successfully deleted');
     }
 }
