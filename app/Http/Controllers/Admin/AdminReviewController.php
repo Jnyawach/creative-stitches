@@ -19,11 +19,14 @@ class AdminReviewController extends Controller
     {
         //
         $reviews=ReviewResource::collection(Review::with(['product','user'])
-            ->when(request('search'),function ($query,$search){
-                $query->where('comment','like', '%'.$search.'%');
+            ->when(request('rating'),function ($query,$rating){
+                $query->orderBy('rating', $rating);
+            })
+            ->when(request('age'),function ($query,$age){
+                $query->orderBy('created_at', $age);
             })
             ->paginate(10));
-        $filters=request()->only(['search']);
+        $filters=request()->only(['age','rating']);
         return inertia::render('admin.ratings.index', compact('reviews','filters'));
     }
 

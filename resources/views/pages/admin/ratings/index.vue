@@ -10,16 +10,23 @@
     </title-block>
 
     <div class="my-10">
-        <div class="flex justify-end">
+        <div class="flex gap-1 justify-end px-3">
+            <div class="self-center">
+                <h6>Sort By:</h6>
+            </div>
             <div>
-
-                <div class="relative">
-                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                        <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                    </div>
-                    <input v-model="search" type="search" id="product-search" class="block p-2 pl-10 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-sky-600 focus:border-sky-600" placeholder="Search Order by Code..." required>
-
-                </div>
+                <select class="h-9 rounded-lg text-sm" v-model="rating">
+                    <option selected value="">Random</option>
+                    <option value="DESC">Rating High</option>
+                    <option value="ASC">Rating Low</option>
+                </select>
+            </div>
+            <div>
+                <select class="h-9 rounded-lg text-sm" v-model="age">
+                    <option selected value="">Random</option>
+                    <option value="ASC">Newest</option>
+                    <option value="DESC">Oldest</option>
+                </select>
             </div>
         </div>
         <table class="table-auto w-full mt-3 border-t">
@@ -103,10 +110,12 @@ let props=defineProps({
     filters:Object
 })
 
-const search=ref(props.filters.search)
-watch(search, _.debounce(function (value:any) {
+const age=ref(props.filters.age?props.filters.age:'')
+const rating=ref(props.filters.rating?props.filters.rating:'')
+watch([age, rating], _.debounce(function (value:any) {
     Inertia.get(route('ratings.index'),{
-        search:value
+       age:age.value,
+        rating:rating.value
     }, {preserveState:true, replace:true});
 }, 300))
 </script>
