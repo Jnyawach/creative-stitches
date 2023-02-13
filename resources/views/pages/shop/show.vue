@@ -55,7 +55,7 @@
                     <meta itemprop="offerCount" content="16" />
                     <meta itemprop="priceCurrency" content="USD" />
                 </div>
-                <div v-if="product.totalRating" itemprop="aggregateRating" itemtype="https://schema.org/AggregateRating" itemscope>
+                <div v-if="product.rating" itemprop="aggregateRating" itemtype="https://schema.org/AggregateRating" itemscope>
                     <meta itemprop="reviewCount" :content="product.totalRating" />
                     <meta itemprop="ratingValue" :content="product.rating" />
                 </div>
