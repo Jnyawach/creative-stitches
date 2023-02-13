@@ -55,7 +55,7 @@
                     <meta itemprop="offerCount" content="16" />
                     <meta itemprop="priceCurrency" content="USD" />
                 </div>
-                <div itemprop="aggregateRating" itemtype="https://schema.org/AggregateRating" itemscope>
+                <div v-if="product.totalRating" itemprop="aggregateRating" itemtype="https://schema.org/AggregateRating" itemscope>
                     <meta itemprop="reviewCount" :content="product.totalRating" />
                     <meta itemprop="ratingValue" :content="product.rating" />
                 </div>
@@ -149,7 +149,7 @@
                 </span>
             </h5>
             <hr class="mt-3">
-            <div v-for="review in reviews.data" class="mt-5">
+            <div  v-for="review in reviews.data" class="mt-5">
                 <!---review schema-->
                 <div>
                     <div itemtype="https://schema.org/Product" itemscope>
@@ -159,7 +159,7 @@
                             <meta itemprop="reviewCount" :content="product.totalRating" />
                             <meta itemprop="ratingValue" :content="product.rating" />
                         </div>
-                        <div itemprop="review" itemtype="https://schema.org/Review" itemscope>
+                        <div  itemprop="review" itemtype="https://schema.org/Review" itemscope>
                             <div itemprop="author" itemtype="https://schema.org/Person" itemscope>
                                 <meta itemprop="name" :content="review.user.name+' '+review.user.last_name" />
                             </div>

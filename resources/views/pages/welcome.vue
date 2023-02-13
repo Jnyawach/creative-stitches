@@ -66,7 +66,10 @@
 
         </section>
 
-        <section class="bg-stone-100 py-14 px-5 md:px-18">
+
+    </div>
+    <section class="bg-stone-100 py-14 px-5 md:px-18">
+        <div class="max-w-[1280px] mx-auto">
             <div class="grid grid-cols-2 sm:grid-cols-3 justify-center gap-2">
                 <div class="text-center md:px-16">
                     <p class="text-4xl"><i class="fa-light fa-shield-cross"></i></p>
@@ -87,8 +90,8 @@
                 </div>
 
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 </template>
 <script setup lang="ts">
 import {Link} from "@inertiajs/inertia-vue3";
