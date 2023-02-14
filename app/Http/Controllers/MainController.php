@@ -16,7 +16,7 @@ class MainController extends Controller
     {
         //
 
-        $products=Product::with('embroideries','promotion')->latest()->inRandomOrder()->limit(15)->get();
+        $products=Product::with('embroideries','promotion')->inRandomOrder()->limit(15)->get();
         $products=ProductResource::collection($products);
         $promotion=new PromotionResource(Promotion::where('status',1)->latest()->first());
 

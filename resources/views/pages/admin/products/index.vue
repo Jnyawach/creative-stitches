@@ -10,7 +10,10 @@
             <p class="text-sm" v-else><span class="ml-2 mr-3 text-teal-900"><i class="fas fa-info-circle"></i></span>Embroidery design files</p>
         </template>
     </title-block>
-    <div class="flex justify-end mt-5">
+    <div class="flex justify-between mt-5 px-3">
+        <div>
+          <h6 class="font-bold text-lg">Total Products: {{products.total}}</h6>
+        </div>
 
         <div >
 
