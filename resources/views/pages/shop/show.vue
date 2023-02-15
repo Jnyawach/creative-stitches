@@ -93,7 +93,7 @@
                 </h6>
                 <p class="text-sm mt-2">
                     <span class="inline-block mr-3">
-                        <span class="text-teal-700">Available Formats</span><span v-for="format in product.embroideries" :key="format.id" class="ml-1 font-semibold">.{{format.format.abbreviation}}</span>
+                        <span class="text-teal-700">Available Formats</span><span v-for="format in product.embroideries" :key="format.id" class="ml-1 font-semibold inline-block">.{{format.format.abbreviation}}</span>
                     </span>
                     <span class="inline-block mr-3"><span class="text-teal-700">Total Stitches:</span> {{product.total_stitches}}</span>
                     <span class="inline-block mr-3"><span class="text-teal-700">Size:</span> {{product.design_size_mm}}mm | {{product.design_size_inches}}"</span>
