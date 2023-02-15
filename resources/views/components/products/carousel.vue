@@ -2,22 +2,21 @@
     <div class="grid sm:grid-cols-5 gap-1">
         <div class="flex gap-1 sm:block sm:space-y-1  sm:col-span-1 order-2">
             <div class="overflow-hidden" v-show="product.mainImage.icon">
-                <img @click="slideActive=0" :src="product.mainImage.icon" class="w-[100px] sm:w-full rounded-md cursor-pointer ">
+                <img @click="slideActive=0" :src="product.mainImage.icon" class="w-[100px] sm:w-full rounded-sm cursor-pointer ">
             </div>
             <div class="overflow-hidden" v-if="product.secondImage.icon">
-                <img @click="slideActive=1" :src="product.secondImage.icon" class="w-[100px] sm:w-full rounded-md cursor-pointer ">
+                <img @click="slideActive=1" :src="product.secondImage.icon" class="w-[100px] sm:w-full rounded-sm cursor-pointer ">
             </div>
             <div class="overflow-hidden" v-if="product.thirdImage.icon">
-                <img @click="slideActive=2" :src="product.thirdImage.icon" class="w-[100px] sm:w-full rounded-md cursor-pointer ">
+                <img @click="slideActive=2" :src="product.thirdImage.icon" class="w-[100px] sm:w-full rounded-sm cursor-pointer ">
             </div>
             <div class="overflow-hidden" v-if="product.fourthImage.icon">
-                <img @click="slideActive=3" :src="product.fourthImage.icon" class="w-[100px] sm:w-full rounded-md cursor-pointer ">
+                <img @click="slideActive=3" :src="product.fourthImage.icon" class="w-[100px] sm:w-full rounded-sm cursor-pointer ">
             </div>
         </div>
-        <div class="grid relative  col-span-4 order-1 sm:order-2">
-            <div v-show="slideActive===index" v-for="(slide,index) in images">
-                <img @click="triggerModal(slide)" :src="slide" class="w-full rounded-md cursor-zoom-in" :alt="product.name">
-            </div>
+        <div class="grid relative  sm:col-span-4 order-1 sm:order-2">
+            <img v-show="slideActive===index" v-for="(slide,index) in images" @click="triggerModal(slide)" :src="slide" class="w-full rounded-md cursor-zoom-in" :alt="product.name">
+
             <button @click="slidePrevious()" class="absolute rounded-full bg-teal-700/30
                             top-0 bottom-0  left-1 my-auto p-2 h-10 w-10 text-white hover:bg-teal-700/50">
                 <span><i class="far fa-angle-left"></i></span>
@@ -31,13 +30,14 @@
             </div>
         </div>
 
-        <full-image  :show="showModal" @close="showModal=false">
-            <div class="flex justify-center">
-             <img :src="currentImage">
-            </div>
-        </full-image>
+
 
     </div>
+    <full-image  :show="showModal" @close="showModal=false">
+        <div class="flex justify-center">
+            <img :src="currentImage">
+        </div>
+    </full-image>
     <component is="script" type="application/javascript" async defer src="//assets.pinterest.com/js/pinit.js">
 
     </component>
