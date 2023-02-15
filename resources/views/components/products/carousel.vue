@@ -1,25 +1,25 @@
 <template>
-    <div class="grid md:grid-cols-5 gap-1">
-        <div class="flex justify-center md:grid gap-1  md:col-span-1 order-2 md:order-1 w-full">
+    <div class="grid sm:grid-cols-5 gap-1">
+        <div class="flex gap-1 sm:block sm:space-y-1  sm:col-span-1 order-2">
             <div class="overflow-hidden" v-show="product.mainImage.icon">
-                <img @click="slideActive=0" :src="product.mainImage.icon" class="object-fit rounded-md cursor-pointer ">
+                <img @click="slideActive=0" :src="product.mainImage.icon" class="w-[100px] sm:w-full rounded-md cursor-pointer ">
             </div>
             <div class="overflow-hidden" v-if="product.secondImage.icon">
-                <img @click="slideActive=1" :src="product.secondImage.icon" class="object-fit rounded-md cursor-pointer ">
+                <img @click="slideActive=1" :src="product.secondImage.icon" class="w-[100px] sm:w-full rounded-md cursor-pointer ">
             </div>
             <div class="overflow-hidden" v-if="product.thirdImage.icon">
-                <img @click="slideActive=2" :src="product.thirdImage.icon" class="object-fit rounded-md cursor-pointer ">
+                <img @click="slideActive=2" :src="product.thirdImage.icon" class="w-[100px] sm:w-full rounded-md cursor-pointer ">
             </div>
             <div class="overflow-hidden" v-if="product.fourthImage.icon">
-                <img @click="slideActive=3" :src="product.fourthImage.icon" class="object-fit rounded-md cursor-pointer ">
+                <img @click="slideActive=3" :src="product.fourthImage.icon" class="w-[100px] sm:w-full rounded-md cursor-pointer ">
             </div>
         </div>
-        <div class="flex justify-center relative col-span-4 order-1 md:order-2">
+        <div class="grid relative  col-span-4 order-1 sm:order-2">
             <div v-show="slideActive===index" v-for="(slide,index) in images">
-                <img @click="triggerModal(slide)" :src="slide" class="object-fit rounded-md cursor-zoom-in" :alt="product.name">
+                <img @click="triggerModal(slide)" :src="slide" class="w-full rounded-md cursor-zoom-in" :alt="product.name">
             </div>
             <button @click="slidePrevious()" class="absolute rounded-full bg-teal-700/30
-                            top-0 bottom-0 left-1 my-auto p-2 h-10 w-10 text-white hover:bg-teal-700/50">
+                            top-0 bottom-0  left-1 my-auto p-2 h-10 w-10 text-white hover:bg-teal-700/50">
                 <span><i class="far fa-angle-left"></i></span>
             </button>
             <button @click="slideNext()" class="absolute rounded-full bg-teal-700/30

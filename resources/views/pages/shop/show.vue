@@ -66,12 +66,12 @@
             </div>
         </div>
         <!---Product Display-->
-        <div class="grid md:grid-cols-6 gap-8 mt-4 px-3 md:px-18">
-            <div class="md:col-span-3">
+        <div class="grid md:grid-cols-6 gap-8 mt-4 px-2 md:px-18">
+            <div class="grid md:col-span-3">
                 <!--product carousel-->
               <carousel :product="product"></carousel>
             </div>
-            <div class="md:col-span-3">
+            <div class="grid md:col-span-3">
               <div class="flex justify-between">
                   <h6 v-if="product.orders" class="font-semibold">{{product.orders}} Sale(s)
                       <span v-if="product.rating" class="text-sm">
