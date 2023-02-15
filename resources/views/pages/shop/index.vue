@@ -2,7 +2,7 @@
     <Head>
         <title>Shop Embroidery Designs</title>
         <meta name="keywords" content="embroidery designs, Machine embroidery designs, digital files">
-        <meta name="descriptions" content="Buy Embroidery designs online. Digitally downloadable designs. Available in multiple formats">
+        <meta name="descriptions" content="Buy Embroidery designs online. Available for download in multiple formats">
     </Head>
     <div class="p-3 bg-teal-50">
         <div class="max-w-[1280px] mx-auto">
