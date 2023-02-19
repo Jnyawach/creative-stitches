@@ -186,7 +186,7 @@ class ShopController extends Controller
             })
             ->when(request('hoop'),function ($query,$hoop){
                 $query->where('size_id',$hoop);
-            })->where('category_id', $category->id)->with('embroideries','promotion')->inRandomOrder()->paginate(20);
+            })->where('category_id', $category->id)->with('embroideries','promotion')->paginate(20);
         $products=ProductResource::collection($products);
         $hoops=Size::select('id','size_in_mm','size_in_inches')->get();
         $filters=request()->only(['price','hoop','range']);
