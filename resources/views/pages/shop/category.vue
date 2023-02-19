@@ -1,8 +1,8 @@
 <template layout="main">
     <Head>
         <title>{{category.name}}</title>
-        <meta name="keywords" :content="category.keywords">
-        <meta name="descriptions" :content="category.meta_description">
+        <meta name="keywords" :content="category.tags">
+        <meta name="descriptions" :content="category.description">
     </Head>
     <div class="p-3 bg-teal-50">
         <div class="max-w-[1280px] mx-auto">
