@@ -17,11 +17,20 @@
             </div>
         </div>
     </div>
+    <div v-if="order">
+        <img :src="'https://www.shareasale.com/sale.cfm?tracking='+order.order_code+'&amount='+order.amount+'&merchantID=137988&transtype=sale'" width="1" height="1">
+        <component :is="'script'"  src="https://www.dwin1.com/45943.js" type="text/javascript" defer="defer">
+        </component>
+
+    </div>
 </template>
 
 <script setup lang="ts">
 import {Head} from "@inertiajs/inertia-vue3";
 import {Link} from "@inertiajs/inertia-vue3";
+defineProps({
+    order:Object
+})
 </script>
 
 <style scoped>

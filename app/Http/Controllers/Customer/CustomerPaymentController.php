@@ -24,6 +24,7 @@ class CustomerPaymentController extends Controller
         if(\Cart::isEmpty()){
             return redirect()->route('shop.index');
         }
+
         $order=Order::where('user_id',Auth::id())->count();
         if ($order<1){
             $condition = new \Darryldecode\Cart\CartCondition(array(
@@ -68,7 +69,18 @@ class CustomerPaymentController extends Controller
 
         ]);
 
-       //return $checkout;
+        $order=Order::create([
+            'user_id'=>Auth::id(),
+            'order_code'=>'CS-'.Carbon::now()->timestamp,
+            'status'=>'Pending',
+            'amount'=>\Cart::getTotal(),
+            'payment_intent'=>$checkout['payment_intent'],
+            'discount'=>\Cart::getSubTotal()-\Cart::getTotal(),
+            'sub_total'=>\Cart::getSubTotal()
+        ]);
+        $order->products()->sync($products);
+
+      // return $checkout;
 
         return inertia::render('account.payment.index', compact('checkout'));
     }
@@ -143,8 +155,13 @@ class CustomerPaymentController extends Controller
         return inertia::render('account.payment.unsuccessful');
     }
     public function paymentSuccess(){
+        if (\Cart::getConditions()){
+            \Cart::clearCartConditions();
+        }
+
         \Cart::clear();
-        return inertia::render('account.payment.success');
+        $order=Order::where('user_id',Auth::id())->where('status','Paid')->where('created_at','>',Carbon::now()->subHours(5))->latest()->first();
+        return inertia::render('account.payment.success', compact('order'));
 
     }
 }

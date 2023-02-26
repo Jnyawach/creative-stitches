@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\AffiliateSubmit;
 use App\Events\ContactResponse;
 use App\Events\QuoteRequestEvent;
+use App\Listeners\AffiliateListener;
 use App\Listeners\ContactResponseListener;
 use App\Listeners\QuoteRequestListener;
 use App\Listeners\SendConfirmationEmail;
@@ -36,6 +38,9 @@ class EventServiceProvider extends ServiceProvider
 
         QuoteRequestEvent::class => [
             QuoteRequestListener::class,
+        ],
+        AffiliateSubmit::class => [
+            AffiliateListener::class,
         ],
     ];
 
