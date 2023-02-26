@@ -160,6 +160,7 @@ class CustomerPaymentController extends Controller
         }
 
         \Cart::clear();
+
         $order=Order::where('user_id',Auth::id())->where('status','Paid')->where('created_at','>',Carbon::now()->subHours(5))->latest()->first();
         return inertia::render('account.payment.success', compact('order'));
 
