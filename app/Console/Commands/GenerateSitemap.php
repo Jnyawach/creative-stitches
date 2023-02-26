@@ -55,7 +55,7 @@ class GenerateSitemap extends Command
             $sitemap->add(Url::create("/shop/category/{$category->slug}"));
         });
         FaqCategory::all()->each(function (FaqCategory $category) use ($sitemap) {
-            $sitemap->add(Url::create("/help-center/category/{$category->slug}"));
+            $sitemap->add(Url::create("/help-center/{$category->slug}"));
         });
         $sitemap->writeToFile(public_path('sitemap.xml'));
     }
