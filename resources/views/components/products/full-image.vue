@@ -9,7 +9,7 @@
             leave-to-class="opacity-0 scale-125"
         >
             <div @click.self="$emit('close')" v-if="show" class="inset-0 fixed bg-black-100 bg-opacity-70 z-[10000] grid place-items-center p-5" >
-                <div class="lg:w-4/6 w-full rounded-xl">
+                <div class="lg:w-2/3  w-full rounded-xl h-screen overflow-y-auto">
                     <header class="p-3">
                         <div class="flex justify-end">
 
