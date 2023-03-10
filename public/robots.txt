@@ -1,4 +1,3 @@
 User-agent: *
-Disallow: /admin/
-
+Disallow:
 Sitemap: https://creativestitches.store/sitemap.xml

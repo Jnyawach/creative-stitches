@@ -17,10 +17,10 @@
                 <p class="text-sm"><span class="ml-3 text-teal-700"><i class="fa-regular fa-envelope"></i></span> info@creativestitching.store</p>
                 <p class="mt-2 text-sm"><span class="ml-3 text-teal-700"><i class="fa-regular fa-mobile-notch"></i></span> +254705813739</p>
                 <ul class="flex gap-2 px-3 mt-3 text-xl">
-                    <li><Link hre="#" title="Pinterest"><span><i class="fa-brands fa-pinterest"></i></span></Link></li>
-                    <li><Link hre="#" title="Facebook"><span><i class="fa-brands fa-facebook"></i></span></Link></li>
-                    <li><Link hre="#" title="Instagram"><span><i class="fa-brands fa-instagram"></i></span></Link></li>
-                    <li><Link hre="#" title="Twitter"><span><i class="fa-brands fa-twitter"></i></span></Link></li>
+                    <li><a href="https://www.pinterest.com/creativestitchesembroidery/" target="_blank" title="Pinterest"><span><i class="fa-brands fa-pinterest"></i></span></a></li>
+                    <li><a href="https://www.facebook.com/profile.php?id=100090987513196" target="_blank" title="Facebook"><span><i class="fa-brands fa-facebook"></i></span></a></li>
+                    <li><a href="https://www.instagram.com/creativestitchesembroidery/" target="_blank" title="Instagram"><span><i class="fa-brands fa-instagram"></i></span></a></li>
+
                 </ul>
             </div>
         </div>

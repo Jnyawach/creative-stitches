@@ -28,7 +28,7 @@
                                 <div class="col-span-3 self-center">
                                     <h6 class="font-bold text-sm">{{item.name}}</h6>
                                     <p class="text-sm"><span class="text-teal-700">USD</span> {{Number( item.price).toFixed(2)}}</p>
-                                    <p class="text-sm">Available formats: <span class="text-teal-700 font-bold">{{item.attributes.format}}</span></p>
+                                    <p class="text-sm">Available formats: <span class="text-teal-700 font-bold inline-block">{{item.attributes.format}}</span></p>
                                 </div>
                             </div>
                             <hr class="mt-3">

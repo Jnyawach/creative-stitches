@@ -109,7 +109,7 @@
             <div>
                 <h6 class="font-bold text-white">Shop</h6>
                 <div class="mt-3">
-                    <ul class="text-[13px] font-medium">
+                    <ul class="sm:text-[13px] font-medium space-y-3">
                         <li>
                             <Link :href="route('shop.index')" class="text-white hover:text-teal-500" title="Shop all Embroidery Designs">Shop all</Link>
                         </li>
@@ -129,7 +129,7 @@
                             <Link :href="route('blog.index')" class="text-white hover:text-teal-500" title="Blog">Blog</Link>
                         </li>
                         <li class="py-1">
-                            <Link href="https://careermove.co.ke/hiring/creative-stitches" class="text-white hover:text-teal-500" title="Jobs">Jobs</Link>
+                            <a href="https://careermove.co.ke/hiring/creative-stitches" target="_blank" class="text-white hover:text-teal-500" title="Jobs">Jobs</a>
                         </li>
                         <li class="py-1">
                             <Link :href="route('custom-embroidery.index')" class="text-white hover:text-teal-500" title="Custom Embroidery">Custom Embroidery</Link>
@@ -161,26 +161,22 @@
                         </ul>
                     </div>
                     <div class="self-end">
-                        <ul class="flex gap-4">
+                        <ul class="flex gap-6 text-lg">
                             <li >
-                                <Link href="https://www.pinterest.com/creativestitchesembroidery/" class="text-white hover:text-teal-500" title="Pinterest">
+                                <a href="https://www.pinterest.com/creativestitchesembroidery/" target="_blank" class="text-white hover:text-teal-500" title="Pinterest">
                                     <span><i class="fab fa-pinterest-p"></i></span>
-                                </Link>
+                                </a>
                             </li>
                             <li>
-                                <Link href="#" class="text-white hover:text-teal-500" title="Facebook">
+                                <a href="https://www.facebook.com/profile.php?id=100090987513196" target="_blank" class="text-white hover:text-teal-500" title="Facebook">
                                     <span><i class="fab fa-facebook-f"></i></span>
-                                </Link>
+                                </a>
                             </li>
+
                             <li>
-                                <Link href="#" class="text-white hover:text-teal-500" title="Twitter">
-                                    <span><i class="fab fa-twitter"></i></span>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="#" class="text-white hover:text-teal-500" title="Instagram">
+                                <a href="https://www.instagram.com/creativestitchesembroidery/" target="_blank" class="text-white hover:text-teal-500" title="Instagram">
                                     <span><i class="fab fa-instagram"></i></span>
-                                </Link>
+                                </a>
                             </li>
                         </ul>
 
@@ -204,7 +200,7 @@
                             <Link :href="route('terms.conditions')" class="text-white hover:text-teal-500" title="Terms and Conditions">Terms & Conditions</Link>
                         </li>
                         <li>
-                            <Link :href="route('cookie.policy')" class="text-white hover:text-teal-500" title="Privacy Policy">Privacy Policy</Link>
+                            <Link :href="route('privacy.policy')" class="text-white hover:text-teal-500" title="Privacy Policy">Privacy Policy</Link>
                         </li>
                         <li>
                             <Link :href="route('cookie.policy')" class="text-white hover:text-teal-500" title="Cookie Policy">Cookie Policy</Link>
