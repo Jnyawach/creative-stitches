@@ -16,14 +16,14 @@
                             <label for="first_name" class="creative-label"><span class="mr-2 text-sky-800"><i class="fal fa-user-circle"></i></span>First Name:</label>
                             <input type="text" class="creative-input" id="first_name" placeholder="Enter your first name" required v-model="form.name"/>
                             <div v-if="form.errors.name" class="creative-error">
-                                <span><span><i class="fal fa-exclamation-circle"></i></span>{{ form.errors.name }}</span>
+                                <span>{{ form.errors.name }}</span>
                             </div>
                         </div>
                         <div class="mt-3">
                             <label for="last_name" class="creative-label"><span class="mr-2 text-sky-800"><i class="fal fa-user-circle"></i></span>Last name:</label>
                             <input type="text" class="creative-input" id="last_name" placeholder="Enter your last name" required v-model="form.last_name"/>
                             <div v-if="form.errors.last_name" class="creative-error">
-                                <span><span><i class="fal fa-exclamation-circle"></i></span>{{ form.errors.last_name }}</span>
+                                <span>{{ form.errors.last_name }}</span>
                             </div>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                         <label for="form-input" class="creative-label"><span class="mr-2 text-sky-800"><i class="fal fa-envelope"></i></span>Email:</label>
                         <input type="email" class="creative-input" id="form-input" placeholder="Enter your email" required v-model="form.email"/>
                         <div v-if="form.errors.email" class="creative-error">
-                            <span><span><i class="fal fa-exclamation-circle"></i></span>{{ form.errors.email }}</span>
+                            <span>{{ form.errors.email }}</span>
                         </div>
                     </div>
 
@@ -40,7 +40,7 @@
                             <label for="password" class="creative-label"><span class="mr-2 text-sky-800"><i class="fal fa-lock"></i></span>Password:</label>
                             <input type="password" class="creative-input" id="password" placeholder="Enter your password" required v-model="form.password"/>
                             <div v-if="form.errors.password" class="creative-error">
-                                <span><span><i class="fal fa-exclamation-circle"></i></span>{{ form.errors.password}}</span>
+                                <span>{{ form.errors.password}}</span>
                             </div>
                         </div>
                         <div class="mt-3">

@@ -15,14 +15,14 @@
                         <label for="form-input" class="creative-label"><span class="mr-2 text-teal-700"><i class="fal fa-envelope"></i></span>Email:</label>
                         <input type="email" class="creative-input" id="form-input" placeholder="Enter your email" required v-model="form.email"/>
                         <div v-if="form.errors.email" class="creative-error">
-                            <span><span class="mr-2"><i class="fal fa-exclamation-circle"></i></span>{{ form.errors.email }}</span>
+                            <span>{{ form.errors.email }}</span>
                         </div>
                     </div>
                     <div class="mt-7">
                         <label for="password" class="creative-label"><span class="mr-2 text-teal-700"><i class="fal fa-lock"></i></span>Password:</label>
                         <input type="password" class="creative-input" id="password" placeholder="Enter your password" required v-model="form.password"/>
                         <div v-if="form.errors.password" class="creative-error">
-                            <span><span class="mr-2"><i class="fal fa-exclamation-circle"></i></span>{{ form.errors.password}}</span>
+                            <span>{{ form.errors.password}}</span>
                         </div>
                     </div>
                     <div class="flex mt-4 place-content-end">

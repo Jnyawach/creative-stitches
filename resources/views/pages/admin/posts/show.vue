@@ -6,7 +6,10 @@
        <TitleBlock>
            <h6 class="font-bold text-sm">{{post.data.title}}</h6>
            <template #info>
-               <p class="text-sm"><span class="ml-2 mr-2 text-teal-900"><i class="fas fa-info-circle"></i></span>Blog Posts</p>
+               <p class="text-sm flex gap-2">
+                   <svg class="fill-teal-700 h-5 self-center" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
+                   <span>Categories for classifying products</span>
+               </p>
            </template>
        </TitleBlock>
        <div>
@@ -16,7 +19,7 @@
            </div>
            <div class="px-3 mt-3">
                <h1 class="font-bold text-2xl">{{post.data.title}}</h1>
-               <p class="text-teal-700 font-bold text-sm my-2">Published on {{new Date(post.data.created_at).toDateString()}} by {{post.data.author}}</p>
+               <p class="text-teal-700 font-bold text-sm my-2">Published on {{new Date(post.data.created_at).toDateString()}} by {{post.data.author.name}} {{post.data.author.last_name}}</p>
                <div class="bg-teal-50 border-l-2 border-l-teal-700 p-2">
                    <p>{{post.data.summary}}</p>
                </div>
@@ -28,16 +31,16 @@
    <template #sidebar>
        <div class="mt-3">
            <sidelink :link="route('posts.edit', post.data.id)">
-               <span class="mr-2"><i class="fal fa-pen"></i></span>Edit Post
+               Edit Post
            </sidelink>
 
            <Link :href="route('posts.destroy',post.data.id)" class="text-red-700   mt-2 font-bold"  method="delete" as="button">
-               <span class="mr-2"><i class="far fa-trash-alt"></i></span>Delete Post
+               Delete Post
            </Link>
 
            <Link :href="route('post-status',post.data.id)" class="text-red-700 mt-2 font-bold"  method="patch" as="button">
-               <span v-if="post.data.status"> <span class="mr-2"><i class="far fa-stopwatch"></i></span>Disable Post</span>
-               <span v-else class="text-green-800"><span class="mr-2"><i class="far fa-stopwatch"></i></span>Enable Post</span>
+               <span v-if="post.data.status">Disable Post</span>
+               <span v-else class="text-green-800">Enable Post</span>
            </Link>
        </div>
    </template>

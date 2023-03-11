@@ -6,14 +6,18 @@
     <title-block>
         <h6 class="font-bold text-sm">Message from {{message.data.name}}</h6>
         <template #info >
-            <p class="text-sm"><span class="ml-2 mr-2 text-teal-900"><i class="fas fa-info-circle"></i></span>Subject:  {{message.data.subject}}</p>
+            <p class="text-sm flex gap-2">
+                <svg class="fill-teal-700 h-4 self-center" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
+                <span>Subject:  {{message.data.subject}}</span>
+            </p>
+
         </template>
     </title-block>
 
     <div class="mt-10">
         <div class="flex px-2 py-3 justify-between bg-gray-50">
          <p>{{message.data.subject}}</p>
-            <Link :href="route('contact.index')" title="Inbox" class="text-teal-700"><span class="mr-2"><i class="fal fa-long-arrow-alt-left"></i></span>Return to inbox</Link>
+            <Link :href="route('contact.index')" title="Inbox" class="text-teal-700 font-semibold">Return to inbox</Link>
 
         </div>
         <div class="mt-3 px-2">
@@ -48,7 +52,7 @@
     <template #sidebar>
         <div class="mt-3">
             <Link :href="route('contact.destroy',message.data.id)" class="text-sm btn-danger"  method="delete" as="button">
-                <span class="mr-2"><i class="far fa-trash-alt"></i></span>Delete Message
+                Delete Message
             </Link>
         </div>
     </template>
