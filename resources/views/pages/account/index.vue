@@ -12,8 +12,12 @@
             <div class="border rounded-xl p-3">
                 <div class="flex justify-between">
                     <h6 class="font-bold">You profile Information</h6>
-                    <button @click="editUser=true" class="text-teal-700 font-bold"><span class="mr-2"><i
-                        class="fal fa-pen"></i></span>Edit
+                    <button @click="editUser=true" class="text-teal-700 font-bold flex gap-2">
+
+                        <svg class="h-4 fill-teal-700 self-center" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M495 59.6C516.9 81.47 516.9 116.9 495 138.8L182.3 451.6C170.9 462.9 156.9 471.2 141.5 475.8L20.52 511.4C14.9 513 8.827 511.5 4.687 507.3C.5466 503.2-1.002 497.1 .6506 491.5L36.23 370.5C40.76 355.1 49.09 341.1 60.44 329.7L373.2 16.97C395.1-4.897 430.5-4.897 452.4 16.97L495 59.6zM341 94.4L417.6 170.1L472.4 116.2C481.8 106.8 481.8 91.6 472.4 82.23L429.8 39.6C420.4 30.23 405.2 30.23 395.8 39.6L341 94.4zM318.4 117L83.07 352.4C75.5 359.9 69.95 369.3 66.93 379.6L39.63 472.4L132.4 445.1C142.7 442.1 152.1 436.5 159.6 428.9L394.1 193.6L318.4 117z"/></svg>
+                       <span class="self-center">
+                            Edit
+                       </span>
                     </button>
                     <user-edit :show="editUser" @close="editUser=false" :user="user.data"></user-edit>
                 </div>
@@ -28,9 +32,12 @@
                 <!--address management-->
                 <div class="flex justify-between">
                     <h6 class="font-bold">Address Information</h6>
-                    <button @click="editAddress=true" type="button" class="text-teal-700 font-bold"
+                    <button @click="editAddress=true" type="button" class="text-teal-700 font-bold flex gap-2"
                             v-if="user.data.address">
-                        <span class="mr-2"><i class="fal fa-pen"></i></span>Edit
+                        <svg class="h-4 fill-teal-700 self-center" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M495 59.6C516.9 81.47 516.9 116.9 495 138.8L182.3 451.6C170.9 462.9 156.9 471.2 141.5 475.8L20.52 511.4C14.9 513 8.827 511.5 4.687 507.3C.5466 503.2-1.002 497.1 .6506 491.5L36.23 370.5C40.76 355.1 49.09 341.1 60.44 329.7L373.2 16.97C395.1-4.897 430.5-4.897 452.4 16.97L495 59.6zM341 94.4L417.6 170.1L472.4 116.2C481.8 106.8 481.8 91.6 472.4 82.23L429.8 39.6C420.4 30.23 405.2 30.23 395.8 39.6L341 94.4zM318.4 117L83.07 352.4C75.5 359.9 69.95 369.3 66.93 379.6L39.63 472.4L132.4 445.1C142.7 442.1 152.1 436.5 159.6 428.9L394.1 193.6L318.4 117z"/></svg>
+                        <span class="self-center">
+                            Edit
+                       </span>
                     </button>
 
 
@@ -50,8 +57,11 @@
                     </div>
                     <div v-else>
                         <button @click="createAddress=true" type="button"
-                                class="hover:text-teal-700 font-bold border py-2 px-8 rounded-full hover:border-teal-700">
-                            <span class="mr-2"><i class="fal fa-pen"></i></span> Add Address
+                                class="hover:text-teal-700 font-bold border py-2 px-8 rounded-full hover:border-teal-700 flex justify-center gap-3 group">
+                            <svg class="h-4  self-center group-hover:fill-teal-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M495 59.6C516.9 81.47 516.9 116.9 495 138.8L182.3 451.6C170.9 462.9 156.9 471.2 141.5 475.8L20.52 511.4C14.9 513 8.827 511.5 4.687 507.3C.5466 503.2-1.002 497.1 .6506 491.5L36.23 370.5C40.76 355.1 49.09 341.1 60.44 329.7L373.2 16.97C395.1-4.897 430.5-4.897 452.4 16.97L495 59.6zM341 94.4L417.6 170.1L472.4 116.2C481.8 106.8 481.8 91.6 472.4 82.23L429.8 39.6C420.4 30.23 405.2 30.23 395.8 39.6L341 94.4zM318.4 117L83.07 352.4C75.5 359.9 69.95 369.3 66.93 379.6L39.63 472.4L132.4 445.1C142.7 442.1 152.1 436.5 159.6 428.9L394.1 193.6L318.4 117z"/></svg>
+                            <span class="self-center">
+                            Add Address
+                       </span>
                         </button>
                         <address-create :show="createAddress" @close="createAddress=false"
                                         :user="user.data.id"></address-create>
@@ -61,8 +71,11 @@
                 <hr class="my-3">
                 <div class="flex justify-between">
                     <h6 class="font-bold">Password Management</h6>
-                    <button @click="editPassword=true" type="button" class="text-teal-700 font-bold">
-                        <span class="mr-2"><i class="fal fa-pen"></i></span>Edit
+                    <button @click="editPassword=true" type="button" class="text-teal-700 font-bold flex gap-2">
+                        <svg class="h-4 fill-teal-700 self-center" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M495 59.6C516.9 81.47 516.9 116.9 495 138.8L182.3 451.6C170.9 462.9 156.9 471.2 141.5 475.8L20.52 511.4C14.9 513 8.827 511.5 4.687 507.3C.5466 503.2-1.002 497.1 .6506 491.5L36.23 370.5C40.76 355.1 49.09 341.1 60.44 329.7L373.2 16.97C395.1-4.897 430.5-4.897 452.4 16.97L495 59.6zM341 94.4L417.6 170.1L472.4 116.2C481.8 106.8 481.8 91.6 472.4 82.23L429.8 39.6C420.4 30.23 405.2 30.23 395.8 39.6L341 94.4zM318.4 117L83.07 352.4C75.5 359.9 69.95 369.3 66.93 379.6L39.63 472.4L132.4 445.1C142.7 442.1 152.1 436.5 159.6 428.9L394.1 193.6L318.4 117z"/></svg>
+                        <span class="self-center">
+                            Edit
+                       </span>
                     </button>
                     <password-edit :show="editPassword" @close="editPassword=false"
                                    :user="user.data.id"></password-edit>

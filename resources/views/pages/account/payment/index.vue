@@ -9,9 +9,9 @@
                 <p class="text-lg space-x-2 font-bold">
                     <Link :href="route('cart.index')" class="hover:text-teal-700" title="Order Basket">Basket</Link>
                     |
-                    <Link href="#" class="text-gray-300 cursor-not-allowed">Payment</Link>
+                    <button title="Payment" class="text-gray-300 cursor-not-allowed">Payment</button>
                     |
-                    <Link href="#" class="text-gray-300 cursor-not-allowed">Order Complete</Link>
+                    <button title="Order Complete" class="text-gray-300 cursor-not-allowed">Order Complete</button>
                 </p>
             </div>
 
@@ -42,13 +42,14 @@
 
                         <div class="py-8">
                             <button type="button" @click="submit" class="py-3 px-5 rounded-full bg-teal-700 font-semibold
-                       text-white">
+                           text-white flex justify-center gap-3">
+                                <span class="self-center">Place Order</span>
+                                <svg v-if="loader" class="fill-white animate-ping self-center" height="10" xmlns="http://www.w3.org/2000/svg"
+                                         viewBox="0 0 448 512"><path
+                                        d="M0 256a56 56 0 1 1 112 0A56 56 0 1 1 0 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"/></svg>
 
-                                Place Order
-                                <span v-if="loader">
-                               <span class="animate-ping"><i class="fas fa-ellipsis-h"></i></span>
-                           </span>
-                                <span v-else class="ml-3"><i class="far fa-long-arrow-right"></i></span>
+                                <svg v-else class="w-5 fill-white self-center" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M363.3 100.7l144 144C510.4 247.8 512 251.9 512 255.1s-1.562 8.188-4.688 11.31l-144 144c-6.25 6.25-16.38 6.25-22.62 0s-6.25-16.38 0-22.62l116.7-116.7H16c-8.844 0-16-7.156-16-15.1c0-8.844 7.156-16 16-16h441.4l-116.7-116.7c-6.25-6.25-6.25-16.38 0-22.62S357.1 94.44 363.3 100.7z"/></svg>
+
 
                             </button>
                         </div>
@@ -95,6 +96,7 @@ import {Head, usePage,Link} from "@inertiajs/inertia-vue3";
 import {useForm} from "@inertiajs/inertia-vue3";
 import {computed, ref} from "vue";
 import { StripeCheckout } from '@vue-stripe/vue-stripe';
+import {Button} from "flowbite-vue";
 
 let props=defineProps({
     checkout:Object

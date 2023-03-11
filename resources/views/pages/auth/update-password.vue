@@ -43,7 +43,7 @@
                         <button type="submit" :disabled="form.processing" class="py-3 w-1/2  px-10 bg-teal-700 rounded-full text-white font-semibold">Update Password</button>
                     </div>
                     <div class="flex justify-center mt-5">
-                        <Link href="#" class="hover:text-teal-700 font-semibold" @click="$emit('resendEmail')">Resend new Code</Link>
+                        <button  class="hover:text-teal-700 font-semibold" @click="$emit('resendEmail')">Resend new Code</button>
                     </div>
 
                 </form>
@@ -55,6 +55,7 @@
 <script setup lang="ts">
 import {useForm} from "@inertiajs/inertia-vue3";
 import {Link} from "@inertiajs/inertia-vue3";
+import {Button} from "flowbite-vue";
 defineProps({
     update:Boolean
 })

@@ -22,11 +22,15 @@
                         class="text-sky-800">{{ orders.meta.last_page }}</span> Page(s)</h6>
                 </div>
                 <div class="flex justify-end">
-                    <Link :href="orders.links.prev" class="btn-primary text-xs m-1" v-if="orders.links.prev"><span
-                        class="mr-2"><i class="far fa-angle-left"></i></span>Prev
+                    <Link :href="orders.links.prev" class="btn-primary text-xs m-1 flex gap-1" v-if="orders.links.prev">
+                        <svg class="fill-white h-4 self-center" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path d="M203.9 405.3c5.877 6.594 5.361 16.69-1.188 22.62c-6.562 5.906-16.69 5.375-22.59-1.188L36.1 266.7c-5.469-6.125-5.469-15.31 0-21.44l144-159.1c5.906-6.562 16.03-7.094 22.59-1.188c6.918 6.271 6.783 16.39 1.188 22.62L69.53 256L203.9 405.3z"/></svg>
+                        <span class="self-center">Prev</span>
                     </Link>
-                    <Link :href="orders.links.next" class="btn-primary text-xs m-1" v-if="orders.links.next">Next
-                        <span class="ml-2"><i class="far fa-angle-right"></i></span></Link>
+                    <Link :href="orders.links.next" class="btn-primary text-xs m-1  flex gap-1" v-if="orders.links.next">
+                        <span class="self-center">Next</span>
+
+                        <svg class="fill-white h-4 self-center" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path d="M219.9 266.7L75.89 426.7c-5.906 6.562-16.03 7.094-22.59 1.188c-6.918-6.271-6.783-16.39-1.188-22.62L186.5 256L52.11 106.7C46.23 100.1 46.75 90.04 53.29 84.1C59.86 78.2 69.98 78.73 75.89 85.29l144 159.1C225.4 251.4 225.4 260.6 219.9 266.7z"/></svg>
+                    </Link>
 
                 </div>
             </div>
@@ -59,8 +63,14 @@
                           <p><span class="text-teal-700 mr-1">Stitch Count:</span>{{product.total_stitches}}</p>
                           <div class="hidden sm:block">
                               <div class="mt-3 block">
-                                  <a :href="product.colorChart" class="text-white bg-teal-700 py-1 rounded-md px-2 font-semibold m-1 inline-block" title="Color Chart">Color Chart<span class="ml-2"><i class="fal fa-download"></i></span></a>
-                                  <a v-for="embroidery in product.embroideries" :key="embroidery.id"  :href="route('download.artwork',[embroidery.id,order.id])"  @click="downloadOrder(embroidery.id,order.id)" class="text-sm text-white bg-teal-700  py-1 rounded-md px-2 font-semibold m-1 inline-block">{{embroidery.format.abbreviation}}<span class="ml-2"><i class="fal fa-download"></i></span></a>
+                                  <a :href="product.colorChart" class="text-white bg-teal-700 py-1 rounded-md px-2 font-semibold m-1 inline-block gap-1" title="Color Chart">
+                                      <span class="self-center inline-block mr-1">Colors</span>
+                                      <svg class="fill-white h-4 inline-block self-center" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M245.4 379.1C248.4 382.7 252.2 384 256 384s7.594-1.344 10.62-4.047l144-128c6.594-5.859 7.219-15.98 1.344-22.58c-5.875-6.625-16.06-7.234-22.59-1.328L272 332.4V16C272 7.156 264.8 0 256 0S240 7.156 240 16v316.4L122.6 228C116.1 222.1 105.9 222.8 100 229.4C94.16 235.1 94.78 246.1 101.4 251.1L245.4 379.1zM448 320h-48c-8.836 0-16 7.162-16 16c0 8.836 7.164 16 16 16H448c17.67 0 32 14.33 32 32v64c0 17.67-14.33 32-32 32H64c-17.67 0-32-14.33-32-32v-64c0-17.67 14.33-32 32-32h48C120.8 352 128 344.8 128 336C128 327.2 120.8 320 112 320H64c-35.35 0-64 28.65-64 64v64c0 35.35 28.65 64 64 64h384c35.35 0 64-28.65 64-64v-64C512 348.7 483.3 320 448 320zM440 416c0-13.25-10.75-24-24-24s-24 10.75-24 24s10.75 24 24 24S440 429.3 440 416z"/></svg>
+                                  </a>
+                                  <a v-for="embroidery in product.embroideries" :key="embroidery.id"  :href="route('download.artwork',[embroidery.id,order.id])"  @click="downloadOrder(embroidery.id,order.id)" class="text-sm text-white bg-teal-700  py-1 rounded-md px-2 font-semibold m-1 inline-block">
+                                      <span class="self-center inline-block mr-1">{{embroidery.format.abbreviation}}</span>
+                                      <svg class="fill-white h-4 inline-block self-center" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M245.4 379.1C248.4 382.7 252.2 384 256 384s7.594-1.344 10.62-4.047l144-128c6.594-5.859 7.219-15.98 1.344-22.58c-5.875-6.625-16.06-7.234-22.59-1.328L272 332.4V16C272 7.156 264.8 0 256 0S240 7.156 240 16v316.4L122.6 228C116.1 222.1 105.9 222.8 100 229.4C94.16 235.1 94.78 246.1 101.4 251.1L245.4 379.1zM448 320h-48c-8.836 0-16 7.162-16 16c0 8.836 7.164 16 16 16H448c17.67 0 32 14.33 32 32v64c0 17.67-14.33 32-32 32H64c-17.67 0-32-14.33-32-32v-64c0-17.67 14.33-32 32-32h48C120.8 352 128 344.8 128 336C128 327.2 120.8 320 112 320H64c-35.35 0-64 28.65-64 64v64c0 35.35 28.65 64 64 64h384c35.35 0 64-28.65 64-64v-64C512 348.7 483.3 320 448 320zM440 416c0-13.25-10.75-24-24-24s-24 10.75-24 24s10.75 24 24 24S440 429.3 440 416z"/></svg>
+                                  </a>
                               </div>
                               <div class="flex justify-end mt-3">
                                   <Link :href="route('reviews.show',product.id)" title="Review this Product" class="text-teal-700 font-bold hover:text-teal-800">Review this Product</Link>
@@ -69,12 +79,18 @@
                       </div>
                   </div>
                   <div class="sm:hidden">
-                      <div class="grid mt-3 gap-1 grid-cols-3">
-                          <div class="w-full grid">
-                              <a :href="product.colorChart" class="text-center w-full text-sm text-white bg-teal-700  py-1 rounded-md px-2 font-semibold" title="Color Chart">Colors<span class="ml-2"><i class="fal fa-download"></i></span></a>
+                      <div class="block space-x-1 mt-3">
+                          <div class="inline-block ">
+                              <a :href="product.colorChart" class="text-white bg-teal-700 py-1 rounded-md px-2 font-semibold m-1 inline-block gap-1" title="Color Chart">
+                                  <span class="self-center inline-block mr-1">Colors</span>
+                                  <svg class="fill-white h-4 inline-block self-center" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M245.4 379.1C248.4 382.7 252.2 384 256 384s7.594-1.344 10.62-4.047l144-128c6.594-5.859 7.219-15.98 1.344-22.58c-5.875-6.625-16.06-7.234-22.59-1.328L272 332.4V16C272 7.156 264.8 0 256 0S240 7.156 240 16v316.4L122.6 228C116.1 222.1 105.9 222.8 100 229.4C94.16 235.1 94.78 246.1 101.4 251.1L245.4 379.1zM448 320h-48c-8.836 0-16 7.162-16 16c0 8.836 7.164 16 16 16H448c17.67 0 32 14.33 32 32v64c0 17.67-14.33 32-32 32H64c-17.67 0-32-14.33-32-32v-64c0-17.67 14.33-32 32-32h48C120.8 352 128 344.8 128 336C128 327.2 120.8 320 112 320H64c-35.35 0-64 28.65-64 64v64c0 35.35 28.65 64 64 64h384c35.35 0 64-28.65 64-64v-64C512 348.7 483.3 320 448 320zM440 416c0-13.25-10.75-24-24-24s-24 10.75-24 24s10.75 24 24 24S440 429.3 440 416z"/></svg>
+                              </a>
                           </div>
-                          <div v-for="embroidery in product.embroideries" class="w-full grid" :key="embroidery.id">
-                              <a :href="route('download.artwork',[embroidery.id,order.id])"  class="text-center w-full text-sm text-white bg-teal-700  py-1 rounded-md px-2 font-semibold">{{embroidery.format.abbreviation}}<span class="ml-2"><i class="fal fa-download"></i></span></a>
+                          <div v-for="embroidery in product.embroideries" class="inline-block " :key="embroidery.id">
+                              <a :href="route('download.artwork',[embroidery.id,order.id])"  class="text-white bg-teal-700 py-1 rounded-md px-2 font-semibold m-1 inline-block gap-1">
+                                  <span class="self-center inline-block mr-1">{{embroidery.format.abbreviation}}</span>
+                                  <svg class="fill-white h-4 inline-block self-center" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M245.4 379.1C248.4 382.7 252.2 384 256 384s7.594-1.344 10.62-4.047l144-128c6.594-5.859 7.219-15.98 1.344-22.58c-5.875-6.625-16.06-7.234-22.59-1.328L272 332.4V16C272 7.156 264.8 0 256 0S240 7.156 240 16v316.4L122.6 228C116.1 222.1 105.9 222.8 100 229.4C94.16 235.1 94.78 246.1 101.4 251.1L245.4 379.1zM448 320h-48c-8.836 0-16 7.162-16 16c0 8.836 7.164 16 16 16H448c17.67 0 32 14.33 32 32v64c0 17.67-14.33 32-32 32H64c-17.67 0-32-14.33-32-32v-64c0-17.67 14.33-32 32-32h48C120.8 352 128 344.8 128 336C128 327.2 120.8 320 112 320H64c-35.35 0-64 28.65-64 64v64c0 35.35 28.65 64 64 64h384c35.35 0 64-28.65 64-64v-64C512 348.7 483.3 320 448 320zM440 416c0-13.25-10.75-24-24-24s-24 10.75-24 24s10.75 24 24 24S440 429.3 440 416z"/></svg>
+                              </a>
                           </div>
                       </div>
                       <div class="flex justify-end mt-2">
@@ -93,7 +109,6 @@ import {Link,Head} from "@inertiajs/inertia-vue3";
 import {defineProps, ref, watch} from "vue";
 import AccountMenu from "@/views/components/account-menu.vue";
 import {Inertia} from "@inertiajs/inertia";
-
 import _ from "lodash"
 
 
