@@ -15,8 +15,10 @@
 
                             <div>
                                 <div class="text-end">
-                                    <button class="bg-teal-900 rounded-full h-8 w-8" type="button" @click="$emit('close')"><span class="text-white text-lg"><i
-                                        class="fal fa-times"></i></span></button>
+                                    <button class="bg-teal-900 rounded-full h-8 w-8 flex place-content-center" type="button" @click="$emit('close')">
+
+                                        <svg class="h-5 self-center fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M312.1 375c9.369 9.369 9.369 24.57 0 33.94s-24.57 9.369-33.94 0L160 289.9l-119 119c-9.369 9.369-24.57 9.369-33.94 0s-9.369-24.57 0-33.94L126.1 256L7.027 136.1c-9.369-9.369-9.369-24.57 0-33.94s24.57-9.369 33.94 0L160 222.1l119-119c9.369-9.369 24.57-9.369 33.94 0s9.369 24.57 0 33.94L193.9 256L312.1 375z"/></svg>
+                                    </button>
                                 </div>
                             </div>
                         </div>
