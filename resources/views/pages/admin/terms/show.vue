@@ -26,11 +26,11 @@
 
     <template #sidebar>
        <div class="mt-3">
-           <Link :href="route('terms.edit',term.id)" class="btn-primary m-2" >
-               <span class="mr-2"><i class="fa-light fa-pen"></i></span>Edit
+           <Link :href="route('terms.edit',term.id)" class="btn-primary m-2 btn-sm" >
+               Edit
            </Link>
-           <Link :href="route('terms.destroy',term.id)" class="btn-danger m-2"  method="delete" as="button">
-               <span class="mr-2"><i class="far fa-trash-alt"></i></span>Delete
+           <Link :href="route('terms.destroy',term.id)" class="btn-danger m-2 btn-sm"  method="delete" as="button">
+               Delete
            </Link>
        </div>
     </template>

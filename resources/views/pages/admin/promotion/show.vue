@@ -6,8 +6,10 @@
         <title-block>
             <h6 class="font-bold text-sm">{{promotion.name}}</h6>
             <template #info >
-                <p class="text-sm" v-if="$page.props.status"><span class="ml-2 text-teal-900"><i class="fas fa-info-circle"></i></span> {{$page.props.status}}</p>
-                <p class="text-sm" v-else><span class="ml-2 mr-3 text-teal-900"><i class="fas fa-info-circle"></i></span>Running promotions</p>
+                <p class="text-sm flex gap-2">
+                    <svg class="fill-teal-700 h-5 self-center" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
+                    <span>Running Promotions</span>
+                </p>
             </template>
         </title-block>
 
@@ -54,15 +56,16 @@
                         <form @submit.prevent="remove(product.id)"
                               v-if="promotion.products.find(item=>item.id===product.id)">
 
-                            <button class="text-red-700" type="submit">
-                                <span class="mr-2"><i class="far fa-plus"></i></span> Remove from promotion
+                            <button class="text-red-700 flex gap-1" type="submit">
+                                <svg class="w-3 self-center fill-red-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M432 256C432 264.8 424.8 272 416 272H32c-8.844 0-16-7.15-16-15.99C16 247.2 23.16 240 32 240h384C424.8 240 432 247.2 432 256z"/></svg>
+                                <span>Remove from Promotion</span>
                             </button>
                         </form>
                         <form @submit.prevent="submit(product.id)"
                               v-else>
-
-                            <button class="text-teal-700" type="submit">
-                                <span class="mr-2"><i class="far fa-plus"></i></span> Add to promotion
+                            <button class="text-teal-700 flex gap-1" type="submit">
+                                <svg class="h-4 self-center fill-teal-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M432 256C432 264.8 424.8 272 416 272h-176V448c0 8.844-7.156 16.01-16 16.01S208 456.8 208 448V272H32c-8.844 0-16-7.15-16-15.99C16 247.2 23.16 240 32 240h176V64c0-8.844 7.156-15.99 16-15.99S240 55.16 240 64v176H416C424.8 240 432 247.2 432 256z"/></svg>
+                                <span>Add to promotion</span>
                             </button>
                         </form>
 
@@ -75,21 +78,7 @@
 
             </table>
 
-            <div class="bg-gray-50 p-3 flex justify-between">
-                <div class="self-center">
-                    <h6 class="font-medium">Showing <span class="text-sky-800">{{ products.current_page }}</span> of <span
-                        class="text-sky-800">{{ products.last_page }}</span> Page(s)</h6>
-                </div>
-                <div class="flex">
-                    <Link :href="products.prev_page_url" class="btn-primary text-xs m-1" v-if="products.prev_page_url"><span
-                        class="mr-2"><i class="far fa-angle-left"></i></span>Prev
-                    </Link>
-                    <Link :href="products.next_page_url" class="btn-primary text-xs m-1" v-if="products.next_page_url">Next
-                        <span class="ml-2"><i class="far fa-angle-right"></i></span></Link>
-
-                </div>
-
-            </div>
+            <indirect-pagination :data="products"></indirect-pagination>
 
         </div>
         <template #sidebar>
@@ -111,6 +100,8 @@ import {ref, watch} from "vue";
 import {Inertia} from "@inertiajs/inertia";
 import _ from "lodash"
 import Sidelink from "@/views/components/sidelink.vue";
+import Pagination from "@/views/components/pagination.vue";
+import IndirectPagination from "@/views/components/indirect-pagination.vue";
 let props=defineProps({
     promotion:Object,
     products:Object,

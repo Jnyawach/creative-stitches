@@ -7,8 +7,10 @@
         <h6 class="font-bold text-sm">Request for Quotations</h6>
 
         <template #info >
-            <p class="text-sm" v-if="$page.props.status"><span class="ml-2 text-teal-900"><i class="fas fa-info-circle"></i></span> {{$page.props.status}}</p>
-            <p class="text-sm" v-else><span class="ml-2 mr-3 text-teal-900"><i class="fas fa-info-circle"></i></span>Request for Quotations</p>
+            <p class="text-sm flex gap-2">
+                <svg class="fill-teal-700 h-4 self-center" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
+                <span>Request for Quotations</span>
+            </p>
         </template>
     </title-block>
     <div class="mt-10 px-3">
@@ -26,13 +28,15 @@
 
     <template #sidebar>
         <div class="mt-2">
-            <Link  :href="route('quote.responded',quote.data.id)" class="text-sm font-bold  text-start"  method="patch" as="button">
-                <span class="mr-2"><i class="far fa-eye"></i></span>Mark responded
+            <Link  :href="route('quote.responded',quote.data.id)" class="text-sm font-bold  text-start text-teal-700"  method="patch" as="button">
+                Mark responded
             </Link>
 
-            <Link :href="route('quote-request.destroy',quote.data.id)" class="text-sm font-bold  text-start"  method="delete" as="button">
-                <span class="mr-2"><i class="far fa-trash-alt"></i></span>Delete
-            </Link>
+            <div>
+                <Link :href="route('quote-request.destroy',quote.data.id)" class="text-sm font-bold  text-start text-red-700"  method="delete" as="button">
+                    Delete Request
+                </Link>
+            </div>
         </div>
 
     </template>
