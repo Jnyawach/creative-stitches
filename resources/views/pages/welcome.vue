@@ -1,7 +1,7 @@
 <template layout="main">
     <Head>
         <title>Machine Embroidery designs</title>
-        <meta name="description" content="Planning your next embroidery project. Get access to a library of embroidery designs. Download instantly in multiple formats">
+        <meta name="description" content="Planning your next embroidery project. Get access to a library of machine embroidery designs. Download instantly in multiple formats">
         <link rel=“canonical” href="/" />
     </Head>
     <!--Hero image based on running promotion-->
