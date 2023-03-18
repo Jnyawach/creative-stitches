@@ -7,7 +7,7 @@ axios.defaults.baseURL=import.meta.env.VITE_APP_URL;
 import InstantSearch from 'vue-instantsearch/vue3/es';
 import { createPinia } from 'pinia'
 createInertiaApp({
-	resolve: (name) => resolvePageComponent(name, import.meta.glob('../views/pages/**/*.vue')),
+	resolve: (name) => resolvePageComponent(name, import.meta.glob('../views/pages/**/*.vue',{ eager: true })),
 	setup({ el, app, props, plugin }) {
 		createApp({ render: () => h(app, props) })
 			.use(plugin)
