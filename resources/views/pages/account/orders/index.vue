@@ -109,7 +109,7 @@ import {Link,Head} from "@inertiajs/inertia-vue3";
 import {defineProps, ref, watch} from "vue";
 import AccountMenu from "@/views/components/account-menu.vue";
 import {Inertia} from "@inertiajs/inertia";
-import _ from "lodash"
+import {debounce} from 'lodash'
 
 
 let props=defineProps({
@@ -117,7 +117,7 @@ let props=defineProps({
     filters:Object
 })
 const search=ref(props.filters.search)
-watch(search, _.debounce(function (value:any) {
+watch(search, debounce(function (value:any) {
     Inertia.get(route('orders.index'),{
         search:value
     }, {preserveState:true, replace:true});

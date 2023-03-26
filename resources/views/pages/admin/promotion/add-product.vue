@@ -106,7 +106,7 @@ import {Link} from "@inertiajs/inertia-vue3";
 import {useForm} from "@inertiajs/inertia-vue3";
 import {ref, watch} from "vue";
 import {Inertia} from "@inertiajs/inertia";
-import _ from "lodash"
+import {debounce} from 'lodash'
 let props=defineProps({
     promotion:Object,
     products:Object,
@@ -130,7 +130,7 @@ const remove=(product:any)=>{
 
 const search=ref(props.filters.search)
 
-watch(search, _.debounce(function (value:any) {
+watch(search, debounce(function (value:any) {
     Inertia.get(route('add-product',props.promotion.id),{
         search:value
     }, {preserveState:true, replace:true});
