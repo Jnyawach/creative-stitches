@@ -118,7 +118,7 @@ import {Link} from "@inertiajs/inertia-vue3";
 import { Dropdown} from 'flowbite-vue'
 import {ref, watch} from "vue";
 import {Inertia} from "@inertiajs/inertia";
-import _ from "lodash"
+import {debounce} from 'lodash'
 import Pagination from "@/views/components/pagination.vue";
 
 let props=defineProps({
@@ -127,7 +127,7 @@ let props=defineProps({
 })
 
 let search=ref(props.search)
-watch(search, _.debounce(function (value) {
+watch(search, debounce(function (value) {
     Inertia.get(route('posts.index'),{
         search:value
     }, {preserveState:true, replace:true});

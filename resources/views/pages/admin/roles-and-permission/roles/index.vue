@@ -184,7 +184,7 @@ import {Link} from "@inertiajs/inertia-vue3";
 import Sidelink from "@/views/components/sidelink.vue";
 import Modal from "@/views/components/modal.vue";
 import {ref, watch} from "vue";
-import _ from "lodash"
+import {debounce} from 'lodash';
 import {Inertia} from "@inertiajs/inertia";
 import {useForm} from "@inertiajs/inertia-vue3";
 import IndirectPagination from "@/views/components/indirect-pagination.vue";
@@ -202,7 +202,7 @@ const showModal=ref(false)
 const showEditModal=ref(false)
 
 let search=ref(props.filters.search)
-watch(search, _.debounce(function (value) {
+watch(search, debounce(function (value) {
     Inertia.get(route('roles.index'),{
         search:value
     }, {preserveState:true, replace:true});

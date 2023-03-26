@@ -81,13 +81,13 @@ import {Head,Link} from "@inertiajs/inertia-vue3";
 import TitleBlock from "@/views/components/title-block.vue";
 import {ref, watch} from "vue";
 import {Inertia} from "@inertiajs/inertia";
-import _ from "lodash"
+import {debounce} from 'lodash';
 let props=defineProps({
     orders:Object,
     filters:Object
 })
 const search=ref(props.filters.search)
-watch(search, _.debounce(function (value:any) {
+watch(search, debounce(function (value:any) {
     Inertia.get(route('purchases.index'),{
         search:value
     }, {preserveState:true, replace:true});

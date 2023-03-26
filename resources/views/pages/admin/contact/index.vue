@@ -79,7 +79,7 @@ import TitleBlock from "@/views/components/title-block.vue";
 import {reactive, watch} from "vue";
 import {Link} from "@inertiajs/inertia-vue3";
 import {useTruncate} from "@/scripts/use/useTruncate";
-import _ from "lodash";
+import {debounce} from 'lodash';
 import {Inertia} from "@inertiajs/inertia";
 import Pagination from "@/views/components/pagination.vue";
 
@@ -92,7 +92,7 @@ const sort=reactive({
     status:props.filters.status
 })
 
-watch(sort,_.debounce(()=>{
+watch(sort, debounce(()=>{
     Inertia.get(route('contact.index'),{
         search:sort.search, status:sort.status
     }, {preserveState:true, replace:true});

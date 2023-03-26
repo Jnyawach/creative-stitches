@@ -80,9 +80,7 @@ import {Head} from "@inertiajs/inertia-vue3";
 import {reactive, watch} from "vue";
 import {Inertia} from "@inertiajs/inertia";
 import {Link} from "@inertiajs/inertia-vue3";
-import {useTruncate} from "@/scripts/use/useTruncate";
-import _ from "lodash";
-import IndirectPagination from "@/views/components/indirect-pagination.vue";
+import {debounce} from 'lodash'
 import Pagination from "@/views/components/pagination.vue";
 
 let props=defineProps({
@@ -94,7 +92,7 @@ const sort=reactive({
     search:props.filters.search,
     status:props.filters.status
 })
-watch(sort,_.debounce(()=>{
+watch(sort, debounce(()=>{
     Inertia.get(route('contact.index'),{
         search:sort.search, status:sort.status
     }, {preserveState:true, replace:true});

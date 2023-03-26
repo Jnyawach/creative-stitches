@@ -108,7 +108,7 @@ import {Head, Link} from "@inertiajs/inertia-vue3";
 import TitleBlock from "@/views/components/title-block.vue";
 import {ref, watch} from "vue";
 import {Inertia} from "@inertiajs/inertia";
-import _ from "lodash"
+import {debounce} from 'lodash';
 import Pagination from "@/views/components/pagination.vue";
 import {useTruncate} from "@/scripts/use/useTruncate";
 import { Dropdown} from 'flowbite-vue'
@@ -119,7 +119,7 @@ let props=defineProps({
 
 const age=ref(props.filters.age?props.filters.age:'')
 const rating=ref(props.filters.rating?props.filters.rating:'')
-watch([age, rating], _.debounce(function (value:any) {
+watch([age, rating], debounce(function (value:any) {
     Inertia.get(route('ratings.index'),{
        age:age.value,
         rating:rating.value

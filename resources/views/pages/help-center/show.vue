@@ -93,7 +93,7 @@ import Accordion from "@/views/components/accordion.vue";
 import {Head} from "@inertiajs/inertia-vue3";
 import {ref, watch} from "vue";
 import {Inertia} from "@inertiajs/inertia";
-import _ from "lodash"
+import {debounce} from 'lodash';
 let props=defineProps({
     categories:Object,
     faqs:Object,
@@ -101,7 +101,7 @@ let props=defineProps({
     faq_category:Object
 })
 let search=ref(props.search)
-watch(search, _.debounce(function (value) {
+watch(search, debounce(function (value) {
     Inertia.get(route('help-center.index'),{
         search:value
     }, {preserveState:true, replace:true});
