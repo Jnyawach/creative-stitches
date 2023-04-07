@@ -16,7 +16,10 @@
         <div class="flex justify-end mr-2">
             <small>Image credit: {{post.data.credit}}</small>
         </div>
-        <div class="mt-2 leading-10" v-html="post.data.content"/>
+        <div v-html="post.data.content"
+             class="prose-lg prose-headings:font-bold
+             prose-headings:text-gray-900 prose-text-gray-500 prose-a:text-teal-700">
+        </div>
         <p><span class="text-teal-700 mr-2">Tags:</span>{{post.data.tags}}</p>
         <div class="flex mt-2 gap-3">
             <div>
