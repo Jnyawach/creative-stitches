@@ -68,7 +68,7 @@ let form=useForm({
 const submit=()=>{
    form.post(route('user.authenticate'),{
        onSuccess:()=>{
-           props.login=false;
+           
            form.reset()
            emits('closeModal');
        }

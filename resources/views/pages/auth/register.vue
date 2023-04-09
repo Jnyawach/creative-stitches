@@ -6,7 +6,7 @@
                 <h6>Please register a new account</h6>
             </div>
 
-            <div class="w-full my-8 px-3">
+            <div class="w-full my-5 px-3 h-[50vh] overflow-y-auto custom-scrolling">
                 <form class="w-full" @submit.prevent="submit">
                     <div class="grid sm:grid-cols-2 gap-1">
                         <div class="mt-3">
