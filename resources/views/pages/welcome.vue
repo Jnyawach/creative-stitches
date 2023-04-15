@@ -1,8 +1,9 @@
 <template layout="main">
     <Head>
         <title>Download Machine Embroidery designs</title>
-        <meta name="description" content="Get access to Creative Stitches library of machine embroidery designs. Download instantly in multiple formats">
+        <meta name="description" content="Get access to Creative Stitches library of machine embroidery designs. Download instantly in multiple formats. Shop today!">
         <link rel=“canonical” href="/" />
+        <meta name="keywords" content="machine embroidery downloads, custom embroidery digitizing, machine embroidery designs, embroidery threads, quilting supplies, dakota collectibles, iron on design, fsl embroidery designs, iron on designs, svg designs, screen print download, hand embroidery, sewing patterns, digital pdf instructions">
     </Head>
     <!--Hero image based on running promotion-->
     <div class="bg-black-100 ">

@@ -21,9 +21,8 @@
                 <div class="md:col-span-3 space-y-3 gap-2">
                     <div class="grid grid-cols-6 m-1 border p-2 rounded-lg gap-2" v-for="item in cart.items">
                         <div class="col-span-6 sm:hidden grid grid-cols-6">
-                            <h6 class="col-span-5 justify-between text-sm text-lg font-bold "><span>{{
-                                    item.name
-                                }}</span>
+                            <h6 class="col-span-5 justify-between text-sm text-lg font-bold ">
+                                <span>{{item.name }}</span>
                             </h6>
                             <h6 class="col-span-1"><span class="font-bold text-teal-700 ">$ {{ item.price }}</span></h6>
                         </div>
@@ -31,10 +30,10 @@
                             <img :src="item.attributes.image" class="rounded-lg">
                         </div>
                         <div class="col-span-4">
-                            <h6 class="hidden sm:flex justify-between text-sm lg:text-lg font-bold "><span>{{
-                                    item.name
-                                }}</span>
-                                <span class="font-bold text-teal-700 text-2xl">$ {{ item.price }}</span></h6>
+                            <h6 class="hidden sm:flex justify-between text-sm lg:text-lg font-bold ">
+                                <span>{{item.name }}</span>
+                                </h6>
+                            <h5><span class="font-bold text-teal-700 text-2xl">$ {{ item.price }}</span></h5>
                             <p class="text-sm lg:text-md break-words"><span class="text-teal-700">Formats:</span>
                                 <span class="break-words">{{ item.attributes.format }}</span></p>
                             <p class="text-sm lg:text-md "><span class="text-teal-700">Total Stitches:</span>

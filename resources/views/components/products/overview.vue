@@ -59,13 +59,14 @@
                                                 <span class="self-center">({{product.totalRating}})</span>
                                             </div>
                                         </div>
-                                        <div>
-                                            <p class="text-xl font-bold ">
-                                                $ {{Number(product.price).toFixed(2)}}
-                                                <span v-if="product.promotion" class="ml-1 text-teal-700 line-through text-xs">
+
+                                    </div>
+                                    <div>
+                                        <p class="text-2xl font-bold ">
+                                            $ {{Number(product.price).toFixed(2)}}
+                                            <span v-if="product.promotion" class="ml-1 text-teal-700 line-through text-xs">
                                              $ {{Number(product.promotion.discount/100*product.price+product.price).toFixed(2)}}</span>
-                                            </p>
-                                        </div>
+                                        </p>
                                     </div>
 
                                     <div class="mt-3 grid sm:grid-cols-2">
@@ -92,7 +93,7 @@
                                     <h5 class="font-bold">Overview</h5>
                                     <div class="mt-2">
                                         <p class="text-sm"><span class="text-teal-700">Size (W/H):</span> {{product.design_size_mm}}mm | {{product.design_size_inches}}"</p>
-                                        <p class="text-sm"><span class="text-teal-700">Formats:</span> <span class="mr-2 font-bold inline-block" v-for="format in product.embroideries" :key="format.id">{{format.format.abbreviation}}</span> </p>
+                                        <p class="text-sm"><span class="text-teal-700">Formats:</span> <span class="mr-2 font-bold inline-block" v-for="format in product.embroideries" :key="format.id">{{format.format.abbreviation}},</span> </p>
                                         <p class="text-sm"><span class="text-teal-700">Total Stitches:</span> {{product.total_stitches}}</p>
                                         <p class="text-sm"><span class="text-teal-700">SKU:</span> {{product.sku}}</p>
 

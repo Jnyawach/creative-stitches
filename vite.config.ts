@@ -7,6 +7,7 @@ import inertia from './resources/scripts/vite/inertia-layout'
 
 
 
+
 export default defineConfig({
 	plugins: [
 		inertia(),
@@ -16,8 +17,10 @@ export default defineConfig({
 			postcss: [
 				tailwindcss(),
 				autoprefixer(),
-			],
+            ],
 		}),
+
+
 
 	],
     resolve: {
