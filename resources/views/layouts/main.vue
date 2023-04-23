@@ -236,6 +236,7 @@
             </a>
 
         <subscribe :show="subscribeModal" @close="subscribeModal=false" @open="subscribeModal=true"></subscribe>
+        <cookies  :show="cookieModal" @close="cookieModal=false" @open="cookieModal=true"></cookies>
     </footer>
 </template>
 <script setup lang="ts">
@@ -255,6 +256,7 @@ import Search from "@/views/components/search.vue";
 import Drawer from "@/views/components/drawer.vue";
 import Subscribe from "@/views/components/user/subscribe.vue";
 import {Button} from "flowbite-vue";
+import Cookies from "@/views/components/cookies.vue";
 
 const {categories}=useCategory()
 const  {coupon}=useCoupon()
@@ -299,6 +301,7 @@ watch(store,()=>{
     }
 })
 const subscribeModal=ref(false)
+const cookieModal=ref(false)
 </script>
 
 <style scoped>
