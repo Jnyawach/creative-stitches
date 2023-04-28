@@ -49,12 +49,12 @@ class AdminBlogController extends Controller
         //
        $validated=$request->validate([
            'title'=>'required|min:10|string|max:120',
-           'credit'=>'required|string|max:120',
+           'credit'=>'nullable|string|max:120',
            'author'=>'required|integer',
            'summary'=>'required|min:10|string|max:850',
            'tags'=>'required|string',
            'content'=>'required',
-           'image'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:width=1200,height=675',
+           'image'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:width=1200,height=675',
        ]);
 
         $post=Post::create([
@@ -117,7 +117,7 @@ class AdminBlogController extends Controller
         //
         $validated=$request->validate([
             'title'=>'required|min:10|string|max:120',
-            'credit'=>'required|string|max:120',
+            'credit'=>'nullable|string|max:120',
             'author'=>'required|integer',
             'summary'=>'required|min:10|string|max:850',
             'tags'=>'required|string',

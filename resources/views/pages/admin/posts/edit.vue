@@ -13,7 +13,7 @@
             <img :src="postImage">
         </div>
         <div class="mt-8 p-3">
-            <form @submit.prevent="form.patch(route('posts.update',post.id))">
+            <form @submit.prevent="form.post(route('posts.update',post.id))">
                 <div class="grid">
                     <div>
                         <label class="creative-label">Title:</label>
@@ -98,7 +98,7 @@
 
                 <div class="grid mt-5">
                     <div>
-                        <label class="sumo-label" for="post_image">Post Image:</label>
+                        <label class="sumo-label" for="post_image">Post Image (optional):</label>
                         <div>
                             <small class="font-medium">Accepted file types PNG, JPG, JPEG. Maximum size of 2MB. Size 1200px by 675px</small>
                         </div>
@@ -110,7 +110,7 @@
                 </div>
 
                 <div>
-                    <label class="creative-label">Image Credit:</label>
+                    <label class="creative-label">Image Credit (optional):</label>
 
                     <input type="text" class="creative-input" required placeholder="Enter Image Credit"
                            v-model="form.credit">
@@ -150,7 +150,8 @@ let form=useForm({
     image:'',
     author:props.post.author_id,
     tags:props.post.tags,
-    credit:props.post.credit
+    credit:props.post.credit,
+    _method:'PATCH'
 })
 </script>
 

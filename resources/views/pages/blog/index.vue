@@ -34,7 +34,7 @@
     </div>
     <div class="max-w-[1280px] mx-auto">
         <div class="grid px-3 md:px-12 md:grid-cols-2 my-10 gap-4">
-            <div>
+            <div v-if="latest.postImage">
                 <img :src="latest.postImage" class="rounded-3xl shadow-sm" :alt="latest.title">
             </div>
             <div class="self-center">
@@ -61,7 +61,7 @@
                 <Link v-for="trend in trends" :key="trend.id" :title="trend.title"
                       :href="route('blog.show',trend.slug)">
                     <div class="border rounded-2xl hover:shadow border-gray-200 overflow-hidden min-h-[350px]">
-                        <img :src="trend.postIcon" class="w-full" :alt="trend.title">
+                        <img v-if="trend.postImage" :src="trend.postIcon" class="w-full" :alt="trend.title">
                         <div class="p-2 py-3">
                             <h6 class="font-bold text-sm">{{ trend.title }}</h6>
                             <p>{{ useTruncate(trend.summary, 100) }}</p>

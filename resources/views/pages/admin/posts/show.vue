@@ -13,10 +13,12 @@
            </template>
        </TitleBlock>
        <div>
-           <img :src="post.data.postImage">
-           <div>
-               <small>Image credit: {{post.data.credit}}</small>
-           </div>
+          <div v-if="post.data.postImage">
+              <img :src="post.data.postImage">
+              <div>
+                  <small>Image credit: {{post.data.credit}}</small>
+              </div>
+          </div>
            <div class="px-3 mt-3">
                <h1 class="font-bold text-2xl">{{post.data.title}}</h1>
                <p class="text-teal-700 font-bold text-sm my-2">Published on {{new Date(post.data.created_at).toDateString()}} by {{post.data.author.name}} {{post.data.author.last_name}}</p>
