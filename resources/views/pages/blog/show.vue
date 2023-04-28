@@ -21,7 +21,7 @@
         <div v-html="post.data.content"
              class="prose-lg prose-headings:font-bold
              prose-headings:text-gray-900 prose-text-gray-500 prose-a:text-teal-700
-             prose-ul:list-disc">
+             prose-ul:list-disc prose-img:rounded-2xl" >
         </div>
         <p><span class="text-teal-700 mr-2">Tags:</span>{{post.data.tags}}</p>
         <div class="flex mt-2 gap-3">
