@@ -24,7 +24,7 @@
                             <h6 class="col-span-5 justify-between text-lg font-bold ">
                                 <span>{{item.name }}</span>
                             </h6>
-                            <h6 class="col-span-1"><span class="font-bold text-teal-700 ">$ {{ item.price }}</span></h6>
+                            <h6 class="col-span-1"><span class="font-bold text-teal-700 ">$ {{  Number( item.price).toFixed(2)}}</span></h6>
                         </div>
                         <div class="col-span-1">
                             <img :src="item.attributes.image" class="rounded-lg">
@@ -33,7 +33,7 @@
                             <h6 class="hidden sm:flex justify-between text-sm lg:text-lg font-bold ">
                                 <span>{{item.name }}</span>
                                 </h6>
-                            <h5><span class="font-bold text-teal-700 text-2xl">$ {{ item.price }}</span></h5>
+                            <h5><span class="font-bold text-teal-700 text-2xl">$ {{ Number( item.price).toFixed(2) }}</span></h5>
                             <p class="text-sm lg:text-md break-words"><span class="text-teal-700">Formats:</span>
                                 <span class="break-words">{{ item.attributes.format }}</span></p>
                             <p class="text-sm lg:text-md "><span class="text-teal-700">Total Stitches:</span>

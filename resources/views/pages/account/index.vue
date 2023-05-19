@@ -117,7 +117,7 @@
 <script setup lang="ts">
 import {Head} from "@inertiajs/inertia-vue3";
 import {Link} from "@inertiajs/inertia-vue3";
-import {defineProps, ref} from "vue";
+import {ref} from "vue";
 import AccountMenu from "@/views/components/account-menu.vue";
 import {Button} from "flowbite-vue";
 import AddressCreate from "@/views/components/account/address-create.vue";

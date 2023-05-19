@@ -25,7 +25,7 @@
 
                             <div class="mt-3 grid grid-cols-4 gap-2" v-for="item in cart.items" :key="item.id">
                                 <div class="col-span-1">
-                                    <img :src="item.attributes.image" class="rounded-md">
+                                    <img :src="item.attributes.image" class="rounded-md" :alt="item.name">
                                 </div>
                                 <div class="col-span-3 self-center">
                                     <h6 class="font-bold text-sm">{{item.name}}</h6>
