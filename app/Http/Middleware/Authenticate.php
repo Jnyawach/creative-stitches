@@ -19,8 +19,8 @@ class Authenticate extends Middleware
            if ($request->routeIs('admin.*')){
                return route('admin.login');
            }else{
-                request()->session()->flash('requireAuth', 'Auth is required');
-               return  url()->previous();
+
+               return  route('login');
            }
         }
         /*

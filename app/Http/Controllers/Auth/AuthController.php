@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Inertia\Inertia;
 use Spatie\Permission\Models\Role;
 
 class AuthController extends Controller
@@ -51,7 +52,7 @@ class AuthController extends Controller
         if (Auth::guard('web')->attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->back();
+            return redirect()->intended('/');
         }
 
         return back()->withErrors([
@@ -80,6 +81,7 @@ class AuthController extends Controller
 
 
 
+
     }
 
     public function updatePassword(Request $request){
@@ -101,6 +103,23 @@ class AuthController extends Controller
         $user=User::where('email',$validate['email'])->firstOrFail();
         $user->update(['password'=>Hash::make($validate['password'])]);
         $verify->update(['status'=>0]);
+        Auth::guard('web')->login($user);
         return redirect()->back();
+    }
+
+    public function signin(){
+        return inertia::render('auth/sign-in');
+    }
+
+    public function signup(){
+        return inertia::render('auth/sign-up');
+    }
+
+    public function requestPassword(){
+        return inertia::render('auth/request-password');
+    }
+
+    public function newPassword(){
+        return inertia::render('auth/new-password');
     }
 }

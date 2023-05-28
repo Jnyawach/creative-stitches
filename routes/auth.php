@@ -22,6 +22,10 @@ Route::group(['middleware'=>['auth:admin']], function (){
 //User/Client login
 
 Route::group([], function (){
+    Route::get('/auth/new-password',[AuthController::class,'newPassword'])->name('new.password');
+    Route::get('/auth/request-password',[AuthController::class,'requestPassword'])->name('request.password');
+    Route::get('/auth/sign-up',[AuthController::class,'signup'])->name('register');
+    Route::get('/auth/sign-in',[AuthController::class,'signin'])->name('login');
     Route::post('/auth/update-password',[AuthController::class, 'updatePassword'])->name('update.password');
     Route::post('/auth/request-reset',[AuthController::class, 'resetPassword'])->name('reset.password');
     Route::post('register',[AuthController::class, 'register'])->name('save.user');
