@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Api\CartController;
+use App\Http\Controllers\Customer\SearchController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +25,5 @@ Route::get('get/categories',[ApiController::class, 'getCategories']);
 Route::get('get/posts',[ApiController::class, 'getPosts']);
 Route::get('get/coupon',[ApiController::class, 'getCoupon']);
 Route::get('get/country',[ApiController::class, 'getCountry']);
+Route::get('product/search',[SearchController::class,'index']);
 

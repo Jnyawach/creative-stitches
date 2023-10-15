@@ -1,78 +1,74 @@
 <template>
-    <div  class="z-[10000]">
-        <ais-instant-search :search-client="searchClient" index-name="products" >
+    <div  class="z-[10000] relative">
+        <div>
+            <input type="search" class="search-input" v-model="search" placeholder="Search for designs by keyword">
+        </div>
+        <div v-if="search" class="bg-white z-[1000] shadow absolute w-full border mt-1 rounded-lg overflow-hidden">
+         <div class="flex justify-between pt-3 px-3 pb-1 border-b">
+             <h5 class="text-lg text-teal-700 font-bold items-center">Products</h5>
+             <h5>5 Results found</h5>
+         </div>
+            <div class="p-3  divide-y" v-if="products.length">
+               <div v-for="product in products" :key="product.id" class="p-1">
+                   <Link :href="route('shop.show',product.slug)" title="Product name">
+                       <div class="flex  gap-2">
+                           <div class="w-[80px]">
+                               <img class="w-[80px] " :src="product.mainImage.icon" :alt="product.name">
+                           </div>
+                           <div class="">
+                               <h6 class="text-lg font-bold">{{product.name}}</h6>
+                               <p>{{useTruncate(product.meta_description, 50)}}</p>
+                           </div>
 
-            <ais-configure
-                :attributesToSnippet="['names','categories','description','keywords']"
-                :hits-per-page.camel="4">
-                <ais-autocomplete class="relative ">
-                    <template v-slot="{ currentRefinement, indices, refine }">
-                    <span class="relative">
-                        <input
-                            type="search"
-                            :value="currentRefinement"
-                            placeholder="Search for anything"
-                            class="rounded-full w-full focus:border-teal-700"
-                            autofocus
-                            autocomplete="off"
-                            @input="refine($event.currentTarget.value)"
-                            @keypress.enter="search"
-                        >
-                    </span>
-                        <div class="search-result absolute mt-3 px-2 w-full sm:px-0" v-if="currentRefinement.length">
-                            <div class="rounded-lg  shadow-lg overflow-hidden">
-                                <div class="bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                                    <div class="divide-y divide-teal-900" v-for="item in indices" :key="item.objectID">
-                                        <div class="flex justify-between items-center" v-if="indices.length">
-                                            <h2 class="capitalize text-teal-700 py-1 px-2">
-                                                {{ item.indexName }}
-                                            </h2>
-                                            <ais-stats class="" />
-                                        </div>
-                                        <Link :href="route('shop.show', hit.slug)" class="grid grid-cols-6 items-center space-x-4 px-2 py-2 transition hover:bg-gray-100 " v-for="(hit, index) in item.hits" :key="index">
-                                            <div class="grid col-span-1">
-                                                <img
-                                                    :src="hit.thumbnail"
-                                                    :alt="hit.name"
-                                                />
+                       </div>
+                   </Link>
+               </div>
+            </div>
+            <div v-else class="p-3">
 
-                                            </div>
-                                            <div class="col-span-5">
+                <h6  v-if="loading && products.length" class="flex items-center gap-2">
+                    <span> Loading</span>
+                    <svg class="w-5 fill-black animate-ping" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                       <path d="M400 256c0 26.5 21.5 48 48 48s48-21.5 48-48S474.5 208 448 208S400 229.5 400 256zM112 256c0-26.5-21.5-48-48-48S16 229.5 16 256S37.5 304 64 304S112 282.5 112 256zM304 256c0-26.5-21.5-48-48-48S208 229.5 208 256S229.5 304 256 304S304 282.5 304 256z"/>
+                    </svg>
+                </h6>
+                <h6 v-else class="text-lg font-bold">No products found!</h6>
+            </div>
+        </div>
 
-                                                <ais-highlight attribute="name" :hit="hit" class="block font-bold"></ais-highlight>
-                                                <ais-snippet attribute="description" :hit="hit" class="block text-sm"></ais-snippet>
-                                            </div>
-                                        </Link>
-                                    </div>
-                                    <ais-powered-by  class="flex justify-end border-t  mt-4 px-2 py-2"></ais-powered-by>
-                                </div>
-                            </div>
-                        </div>
-                    </template>
-                </ais-autocomplete>
-            </ais-configure>
-        </ais-instant-search>
     </div>
 
 </template>
 
 <script setup lang="ts">
-import algoliasearch from 'algoliasearch/lite';
+
 import {Link} from "@inertiajs/inertia-vue3";
-import {Inertia} from "@inertiajs/inertia";
+import {watch,ref} from "vue";
+import {debounce} from 'lodash';
+import axios from "axios";
+import {useTruncate} from "@/scripts/use/useTruncate";
 
+const search = ref('');
+const products=ref([]);
+const loading=ref(false);
 
-const searchClient=algoliasearch(
-    import.meta.env.VITE_ALGOLIA_APP_ID,
-    import.meta.env.VITE_ALGOLIA_SECRET
-)
-function search(){
-    Inertia.get(route('search.algolia'))
+const searchProducts= async()=>{
+    if (!search) return
+    loading.value=true;
+ await axios.get('/api/product/search',{
+     params:{
+         search:search.value
+     }
+ }).then((response)=>{
+
+     products.value=response.data.data;
+        loading.value=false;
+ })
 }
+watch(search, debounce(()=>searchProducts(), 300))
 </script>
 
+
 <style scoped>
-.search-result{
-    z-index: 100000 !important;
-}
+
 </style>

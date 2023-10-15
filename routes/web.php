@@ -32,7 +32,6 @@ Route::group([], function (){
 
 Route::group([],function(){
     Route::post('details/subscribe', [CustomerDetailsController::class,'subscribe'])->name('subscribe');
-    Route::get('search-algolia', [SearchController::class,'index'])->name('search.algolia');
     Route::resource('details', CustomerDetailsController::class)->middleware('guest:web');
     Route::post('enter-promo', [CustomerCartController::class,'enterPromo'])->name('enter.promo');
     Route::patch('move-wishlist/{id}', [CustomerCartController::class,'moveWishlist'])->name('move.wishlist');

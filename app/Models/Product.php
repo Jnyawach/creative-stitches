@@ -41,14 +41,14 @@ class Product extends Model implements HasMedia
      */
     public function toSearchableArray()
     {
-        $array = $this->toArray();
-        $array2=[
-            'categories'=>$this->category()->pluck('name')->toArray(),
-            'thumbnail' => $this->getFirstMediaUrl('mainImage','mainImage-icon')
 
+
+        return [
+            'name' => $this->name,
+            'meta_description'=>$this->meta_description,
+            'description'=>$this->description,
+            'keywords'=>$this->keywords,
         ];
-
-        return array_merge($array,$array2);
     }
 
     public function productable(){

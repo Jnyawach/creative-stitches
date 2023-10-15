@@ -35,4 +35,8 @@ class ApiController extends Controller
         return Country::select('name','id')->orderBy('name')->get();
     }
 
+    public function productSearch(){
+
+    }
+
 }

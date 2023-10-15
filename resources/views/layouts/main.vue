@@ -11,8 +11,8 @@
                </span>
             </p>
         </div>
-        <div class="flex py-4  px-3 gap-5 justify-between">
-            <div class="flex md:w-3/4 gap-5 justify-between">
+        <div class="flex py-4  px-3 gap-5 justify-between items-center">
+            <div class="flex md:w-3/4 gap-5 justify-between items-center">
 
                 <div class="self-center">
                     <Link href="/" title="Creative Stitches home">
@@ -23,7 +23,7 @@
                     <search></search>
                 </div>
             </div>
-            <div class="flex mr-5">
+            <div class="flex mr-5 items-center">
                 <ul class="flex self-center font-medium gap-6 text-lg">
                     <li v-if="!auth" class="self-center">
                         <button class="hover:text-gray-900 " @click="authModal=true">

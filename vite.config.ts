@@ -14,10 +14,9 @@ export default defineConfig({
 		vue(),
 
 		laravel({
-			postcss: [
-				tailwindcss(),
-				autoprefixer(),
-            ],
+            input: ['resources/css/tailwind.css', 'resources/scripts/main.ts'],
+            ssr: 'resources/scripts/ssr.js',
+            refresh: true,
 		}),
 
 
@@ -29,4 +28,8 @@ export default defineConfig({
             'ziggy-vue': '/vendor/tightenco/ziggy/src/js/vue',
         },
     },
+    ssr: {
+        noExternal: ['@inertiajs/server'],
+    },
+
 })
